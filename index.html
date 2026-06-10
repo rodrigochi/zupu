@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>族譜 徐氏 · Árbol genealógico familia Xu / Chi</title>
+
+<!-- WhatsApp / Open Graph -->
+<meta property="og:title"       content="族譜 徐氏 · Familia Xu / Chi">
+<meta property="og:description" content="Árbol genealógico de la familia Xu / Chi. De Chánglè y Wuhuá a Héshān y Chile. 916 personas · 30 generaciones · ~900 años de historia familiar.">
+<meta property="og:image"       content="./assets/og-image.png">
+<meta property="og:type"        content="website">
+<meta property="og:locale"      content="es_CL">
+<meta name="twitter:card"       content="summary_large_image">
+<meta name="description"        content="Árbol genealógico de la familia Xu / Chi. De Chánglè y Wuhuá a Héshān y Chile.">
+<meta name="theme-color"        content="#faf6f0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     PORTADA
+════════════════════════════════════════════ -->
+<div id="cover">
+  <div class="cover-inner">
+
+    <div class="seal"><div class="seal-zh zh">徐氏</div></div>
+    <h1 class="cover-title zh">族譜 · 徐氏</h1>
+    <p class="cover-subtitle">Árbol genealógico de la familia Xu / Chi</p>
+    <p class="cover-desc">De Chánglè / Wuhuá a Héshān y Chile</p>
+
+    <div class="divider-ornament" style="display:flex;align-items:center;gap:12px;margin:20px 0 24px;color:var(--border2)">
+      <span style="flex:1;height:1px;background:var(--border2);display:block"></span>
+      <span style="color:var(--gold);font-size:18px">❧</span>
+      <span style="flex:1;height:1px;background:var(--border2);display:block"></span>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="num" id="stat-people">916</div>
+        <div class="lbl">Personas</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="stat-gen">30</div>
+        <div class="lbl">Generaciones</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="stat-mig">76</div>
+        <div class="lbl">Migraciones</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="stat-clans">67</div>
+        <div class="lbl">Clanes de esposas</div>
+      </div>
+    </div>
+
+    <!-- Sección 1: Árbol genealógico -->
+    <div class="cover-section-title">Explorar el árbol familiar</div>
+    <div class="cover-btns">
+      <button class="cbtn primary" onclick="startApp('lineage')">
+        <div class="icon">📜</div>
+        <div class="clbl">Ruta familiar</div>
+        <div class="cdesc">Línea directa a Chile</div>
+      </button>
+      <button class="cbtn" onclick="startApp('tree')">
+        <div class="icon">🌳</div>
+        <div class="clbl">Árbol genealógico</div>
+        <div class="cdesc">Árbol completo interactivo</div>
+      </button>
+      <button class="cbtn" onclick="startApp('search')">
+        <div class="icon">🔍</div>
+        <div class="clbl">Buscar persona</div>
+        <div class="cdesc">Por nombre o lugar</div>
+      </button>
+      <button class="cbtn" onclick="startApp('history')">
+        <div class="icon">🗺️</div>
+        <div class="clbl">Migraciones</div>
+        <div class="cdesc">Rutas · clanes · cronología</div>
+      </button>
+    </div>
+
+    <!-- Separador ornamental -->
+    <div class="cover-divider">
+      <span class="orn">❦</span>
+    </div>
+
+    <!-- Sección 2: Escritos e historias -->
+    <div class="cover-articles-title">Escritos e historias</div>
+    <div class="cover-articles" id="cover-articles-grid">
+      <!-- Se llena dinámicamente desde articles.json -->
+      <button class="abtn" onclick="startArticle('viaje-china-2025')">
+        <div class="aicon">✈️</div>
+        <div class="atxt">
+          <div class="albl">Mi viaje a China 2025</div>
+          <div class="adesc">Notas personales sobre el viaje familiar</div>
+        </div>
+      </button>
+      <button class="abtn" onclick="startArticle('chinos-hakka')">
+        <div class="aicon">🏮</div>
+        <div class="atxt">
+          <div class="albl">Los chinos hakka</div>
+          <div class="adesc">Historia, identidad y migraciones</div>
+        </div>
+      </button>
+      <button class="abtn" onclick="startArticle('migracion-china-chile-1980-1930')">
+        <div class="aicon">🚢</div>
+        <div class="atxt">
+          <div class="albl">Migración china-Chile (1880–1930)</div>
+          <div class="adesc">La llegada de los chinos a Chile</div>
+        </div>
+      </button>
+      <button class="abtn" onclick="startArticle('los-chi-en-chile')">
+        <div class="aicon">🇨🇱</div>
+        <div class="atxt">
+          <div class="albl">Los Chi en Chile</div>
+          <div class="adesc">Historia familiar en China y Chile</div>
+        </div>
+      </button>
+    </div>
+
+    <div class="cover-footer">
+      Fuente: 族譜 (zúpǔ) familiar · Clan 徐 de Niánkēng (粘坑), Guǎngdōng<br>
+      <span id="cover-footer-compiled">Compilado por la familia</span> · <span id="cover-footer-years" style="color:var(--red)">~900 años de historia</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     APLICACIÓN
+════════════════════════════════════════════ -->
+<div id="app" class="hidden">
+
+  <!-- Banda de revisión -->
+  <div id="review-banner">
+    <strong>🔍 Modo revisión activo</strong>
+    <span>— mostrando datos incompletos, dudosos y traducciones pendientes</span>
+  </div>
+
+  <!-- Barra superior -->
+  <div id="topbar">
+    <div class="topbar-title zh" onclick="goHome()" title="Volver a portada">族譜 · 徐氏</div>
+    <div class="spacer"></div>
+    <div id="search-wrap">
+      <input id="search-input" type="text"
+        placeholder="Buscar persona, lugar, 張氏…"
+        oninput="onSearchInput(this,false)"
+        onblur="hideSearchDropdown()"
+        autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <div class="lang-controls">
+      <div class="lc-group">
+        <button class="lc-btn" id="btn-es" onclick="setLang('es')" title="Español">
+          <img class="flag-img" src="https://flagcdn.com/w40/es.png" width="24" alt="ES">
+        </button>
+        <button class="lc-btn" id="btn-en" onclick="setLang('en')" title="English">
+          <img class="flag-img" src="https://flagcdn.com/w40/us.png" width="24" alt="EN">
+        </button>
+      </div>
+      <div class="lc-group">
+        <button class="lc-btn" id="btn-trad" onclick="setScript('trad')" title="Traditional Chinese (繁體)">
+          <img class="flag-img" src="https://flagcdn.com/w40/tw.png" width="24" alt="繁">
+        </button>
+        <button class="lc-btn" id="btn-simp" onclick="setScript('simp')" title="Simplified Chinese (简体)">
+          <img class="flag-img" src="https://flagcdn.com/w40/cn.png" width="24" alt="简">
+        </button>
+      </div>
+    </div>
+    <button class="review-btn" onclick="toggleReview()" title="Modo revisión">🔍</button>
+  </div>
+
+  <!-- Pestañas de navegación -->
+  <div id="nav-tabs">
+    <button class="nav-tab active" data-view="lineage" onclick="setView('lineage')">📜 Ruta familiar</button>
+    <button class="nav-tab"        data-view="tree"    onclick="setView('tree')">🌳 Árbol</button>
+    <button class="nav-tab"        data-view="search"  onclick="setView('search')">🔍 Buscar</button>
+    <button class="nav-tab"        data-view="history" onclick="setView('history')">🗺️ Historia y lugares</button>
+  </div>
+
+  <!-- Contenido principal -->
+  <div id="main">
+
+    <!-- ── Vista: Ruta familiar ── -->
+    <div id="v-lineage" class="view active">
+      <div class="scroll-area">
+        <div class="content-max">
+          <div class="lineage-header">
+            <h2 class="zh">📜 Ruta familiar</h2>
+            <p>Treinta generaciones desde <span class="zh">廿九郎公</span>, de finales de la Dinastía Song (~1150), hasta la llegada a Chile. Toca una tarjeta para leer la historia.</p>
+          </div>
+          <div id="lineflow"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Vista: Árbol ── -->
+    <div id="v-tree" class="view">
+      <div id="tree-canvas">
+        <div id="lineage-panel">
+          <h3 id="lineage-panel-title">📜 Línea a Chile</h3>
+          <div id="ll"></div>
+        </div>
+        <svg id="tree-svg"></svg>
+        <div id="tree-stats">
+          <strong id="tree-stat-n">—</strong>personas · ~900 años
+        </div>
+        <div id="tree-controls">
+          <button class="tc-btn" onclick="resetView()"   title="Centrar">⊙</button>
+          <button class="tc-btn" onclick="expandAll()"   title="Expandir todo">＋</button>
+          <button class="tc-btn" onclick="collapseAll()" title="Colapsar todo">－</button>
+        </div>
+        <div id="tree-legend">
+          <h4 id="tree-legend-title">Ramas</h4>
+          <div id="tree-legend-body"></div>
+        </div>
+        <div id="tooltip"></div>
+      </div>
+
+      <!-- Panel de persona -->
+      <div id="person-panel" class="hidden">
+        <div id="pp-header">
+          <button id="pp-close" onclick="closePanel()">✕</button>
+          <div id="pp-zh" class="zh"></div>
+          <div id="pp-py"></div>
+        </div>
+        <div id="pp-breadcrumb"></div>
+        <div id="pp-body"></div>
+        <div id="pp-actions">
+          <button class="pp-action" onclick="copyPersonLink(selId)">🔗 Copiar enlace</button>
+          <button class="pp-action" id="pp-goto-father"
+            onclick="if(selId&&byId[selId]&&byId[selId].pid)openPerson(byId[selId].pid)">👆 Ver padre</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Vista: Buscar ── -->
+    <div id="v-search" class="view">
+      <div class="scroll-area">
+        <div class="content-max">
+          <input class="search-big" id="search-view-input" type="text"
+            placeholder="Buscar por nombre chino, pinyin, lugar, esposa, apellido…"
+            oninput="onSearchInput(this,true)"
+            autocomplete="off">
+          <div class="search-results-count" id="search-count"></div>
+          <div id="search-view-results"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Vista: Historia y lugares ── -->
+    <div id="v-history" class="view">
+      <div class="scroll-area">
+        <div class="content-max">
+          <div class="history-tabs">
+            <button class="htab active" data-tab="migrations" onclick="buildHistoryView('migrations')">🗺️ Migraciones</button>
+            <button class="htab"        data-tab="spouses"    onclick="buildHistoryView('spouses')">💍 Clanes de esposas</button>
+            <button class="htab"        data-tab="timeline"   onclick="buildHistoryView('timeline')">⏳ Cronología</button>
+          </div>
+          <div id="history-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Vista: Artículo ── -->
+    <div id="v-article" class="view">
+      <div class="scroll-area">
+        <div class="article-wrap">
+          <div class="article-topbar">
+            <button class="article-back" onclick="goBackFromArticle()">← Volver</button>
+            <button class="article-copy" onclick="copyArticleLink(location.hash.replace('#article=',''))">🔗 Copiar enlace</button>
+          </div>
+          <div id="article-content-wrap"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /#main -->
+</div><!-- /#app -->
+
+<!-- ══════════════════════════════════════════
+     ERROR
+════════════════════════════════════════════ -->
+<div id="error-screen">
+  <div class="err-icon">📜</div>
+  <h2>No se pudo cargar el árbol</h2>
+  <p>El archivo <code>data/zupu.json</code> no se pudo leer.<br>
+  Usa un servidor local o GitHub Pages — no funciona con <code>file://</code>.</p>
+  <pre id="error-msg"></pre>
+</div>
+
+<div id="toast"></div>
+
+<script src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+data/zupu_v*.json
+promp.txt
+prompt2.txt
+prompt3.txt
+update_zupu.py
+zupu_database_final_v7.json
+zupu_v7_tree.html
+*.Zone.Identifier
+*:Zone.Identifier
+*:sec.endpointdlp
+.claude/

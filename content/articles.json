@@ -1,0 +1,38 @@
+[
+  {
+    "id": "viaje-china-2025",
+    "title": "Mi viaje a China 2025",
+    "subtitle": "Notas personales sobre mi viaje familiar a China",
+    "file": "viaje-china-2025.md",
+    "buttonLabel": "Mi viaje a China 2025",
+    "icon": "✈️",
+    "tags": ["China", "familia", "viaje", "2025"]
+  },
+  {
+    "id": "chinos-hakka",
+    "title": "Los chinos hakka",
+    "subtitle": "Historia, identidad y migraciones del pueblo hakka",
+    "file": "chinos-hakka.md",
+    "buttonLabel": "Los chinos hakka",
+    "icon": "🏮",
+    "tags": ["Hakka", "China", "historia"]
+  },
+  {
+    "id": "migracion-china-chile-1980-1930",
+    "title": "Migración china-Chile (1880–1930)",
+    "subtitle": "Notas sobre la migración china hacia Chile",
+    "file": "migracion-china-chile-1980-1930.md",
+    "buttonLabel": "Migración china-Chile (1880–1930)",
+    "icon": "🚢",
+    "tags": ["China", "Chile", "migración", "historia"]
+  },
+  {
+    "id": "los-chi-en-chile",
+    "title": "Los Chi en Chile",
+    "subtitle": "Historia familiar de los Chi en China y Chile",
+    "file": "los-chi-en-chile.md",
+    "buttonLabel": "Los Chi en Chile",
+    "icon": "🇨🇱",
+    "tags": ["Chi", "Chile", "familia"]
+  }
+]
