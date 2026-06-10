@@ -136,7 +136,10 @@ html,body{height:100%;font-family:'Noto Serif TC','Songti SC','Georgia',serif;ba
 .lcard.rod:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(200,148,26,.2)}
 .lcard .lgen{font-size:10px;color:var(--dim);font-family:'Segoe UI',monospace;letter-spacing:1px;margin-bottom:4px}
 .lcard .lzh{font-size:26px;color:var(--red);letter-spacing:4px;line-height:1}
+.lcard .lcivil{font-size:14px;color:var(--green);font-weight:600;margin-top:4px;font-family:'Segoe UI',sans-serif}
 .lcard .lpy{font-size:13px;color:var(--muted);margin-top:3px;font-family:'Segoe UI',sans-serif}
+.lcard .lhakka{font-size:12px;color:var(--dim);margin-top:2px;font-family:'Segoe UI',sans-serif;font-style:italic}
+.lcard .lhakka .hk-lbl{font-style:normal;font-weight:600;color:var(--muted);margin-right:4px;font-size:10px;text-transform:uppercase;letter-spacing:.4px}
 .lcard .lrole{font-size:12px;color:var(--ink2);margin-top:8px;line-height:1.6;font-family:'Segoe UI',sans-serif}
 .lcard .lstory{font-size:13px;color:var(--ink2);margin-top:10px;line-height:1.7;font-family:'Segoe UI',sans-serif;border-left:3px solid var(--gold2);padding-left:12px}
 .lcard .lstory p{margin:0 0 10px}
@@ -211,6 +214,10 @@ html,body{height:100%;font-family:'Noto Serif TC','Songti SC','Georgia',serif;ba
 #pp-header{padding:14px 44px 10px 16px;border-bottom:1px solid var(--border);background:var(--paper3);flex-shrink:0;position:relative}
 #pp-zh{font-size:26px;color:var(--red);letter-spacing:4px}
 #pp-py{font-size:12px;color:var(--muted);margin-top:3px;font-family:'Segoe UI',sans-serif}
+#pp-civil{font-size:13px;color:var(--green);font-weight:600;margin-top:4px;font-family:'Segoe UI',sans-serif}
+#pp-civil:empty{display:none}
+#pp-hakka{font-size:11px;color:var(--muted);margin-top:2px;font-family:'Segoe UI',sans-serif;font-style:italic}
+#pp-hakka:empty{display:none}
 #pp-close{position:absolute;top:12px;right:12px;background:none;border:none;color:var(--dim);font-size:20px;cursor:pointer;line-height:1;transition:color .15s;padding:4px}
 #pp-close:hover{color:var(--ink)}
 #pp-breadcrumb{font-size:11px;color:var(--dim);padding:6px 16px;background:var(--paper3);border-bottom:1px solid var(--border);font-family:'Segoe UI',sans-serif;overflow-x:auto;white-space:nowrap;scrollbar-width:none}

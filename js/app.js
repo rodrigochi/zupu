@@ -55,6 +55,7 @@ const I18N = {
     sec_burial:'Entierro', sec_notes:'Notas', sec_source:'Fuente y confianza',
     sec_biography:'Biografía', sec_name_meaning:'Significado del nombre',
     f_alias:'Alias / 字', f_branch:'Rama', f_father:'Padre', f_spouses:'Esposas',
+    f_civil:'Nombre civil', f_hakka:'Hakka Meixian',
     f_children:'Hijos', f_origin:'Origen', f_place:'Residencia', f_migration:'Migración',
     f_birth:'Nacimiento', f_death:'Fallecimiento',
     marriages:'matrimonio', marriages_pl:'matrimonios',
@@ -88,6 +89,7 @@ const I18N = {
     sec_burial:'Burial', sec_notes:'Notes', sec_source:'Source & confidence',
     sec_biography:'Biography', sec_name_meaning:'Name meaning',
     f_alias:'Alias / 字', f_branch:'Branch', f_father:'Father', f_spouses:'Wife/wives',
+    f_civil:'Civil name', f_hakka:'Hakka Meixian',
     f_children:'Children', f_origin:'Origin', f_place:'Residence', f_migration:'Migration',
     f_birth:'Birth', f_death:'Death',
     marriages:'marriage', marriages_pl:'marriages',
@@ -401,7 +403,9 @@ function buildLineageView() {
       ${isChile?`<div class="chile-badge">🇨🇱 Chile</div>`:''}
       <div class="lgen">${t('gen_label')} ${p.gen}</div>
       <div class="lzh zh">${zhFull(p)}</div>
+      ${p.civil_name_es?`<div class="lcivil">${escHtml(p.civil_name_es)}</div>`:''}
       <div class="lpy">${p.py||''}</div>
+      ${p.hakka_py?`<div class="lhakka"><span class="hk-lbl">客家</span> ${escHtml(p.hakka_py)}</div>`:''}
       ${storyHtml?`<div class="lstory">${storyHtml}</div>`:role?`<div class="lrole">${role}</div>`:''}
       <div class="lmeta">
         ${p.birth?`<span>🗓 <b>${p.birth}</b></span>`:''}
@@ -619,6 +623,10 @@ function openPanel(p) {
   selId=p.id;
   document.getElementById('pp-zh').textContent=zhFull(p);
   document.getElementById('pp-py').textContent=p.py||'';
+  const civEl=document.getElementById('pp-civil');
+  if(civEl) civEl.textContent=p.civil_name_es||'';
+  const hkEl=document.getElementById('pp-hakka');
+  if(hkEl) hkEl.textContent=p.hakka_py?`客家: ${p.hakka_py}`:'';
   buildBreadcrumb(p.id);
   document.getElementById('pp-body').innerHTML=buildPanelHTML(p);
   const panel=document.getElementById('person-panel');
@@ -647,8 +655,10 @@ function buildPanelHTML(p) {
 
   // Identidad
   h+=`<div class="pp-section"><div class="pp-section-title">${t('sec_identity')}</div>`;
+  if(p.civil_name_es) h+=ppField(t('f_civil'),p.civil_name_es);
   if(p.alias) h+=ppField(t('f_alias'),p.alias);
   h+=ppField(t('f_branch'),branchLabel(p.branch)||'—');
+  if(p.hakka_py) h+=ppField(t('f_hakka'),p.hakka_py);
   h+=`</div>`;
 
   // Familia
@@ -708,9 +718,10 @@ function buildPanelHTML(p) {
   }
 
   // Notas
-  if(p.notes){
+  const notesText = lang==='en' ? (p.notes_eng||p.notes) : p.notes;
+  if(notesText){
     h+=`<div class="pp-section"><div class="pp-section-title">${t('sec_notes')}</div>`;
-    h+=`<div class="pp-field"><p>${escHtml(p.notes)}</p></div>`;
+    h+=`<div class="pp-field"><p>${escHtml(notesText)}</p></div>`;
     h+=`</div>`;
   }
 
@@ -947,7 +958,7 @@ function renderMigrationMap(){
   const maxN=Math.max(...Object.values(counts),1);
   const rScale=n=>4+Math.sqrt(n/maxN)*18;
 
-  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json')
     .then(r=>r.json()).then(world=>{
       const proj=d3.geoMercator().center([108,26]).scale(W*2.1).translate([W*0.48,H*0.42]);
       const pathGen=d3.geoPath().projection(proj);
