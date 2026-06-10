@@ -34,6 +34,7 @@ html,body{height:100%;font-family:'Noto Serif TC','Songti SC','Georgia',serif;ba
 #cover{position:fixed;inset:0;background:var(--paper);z-index:100;display:flex;flex-direction:column;overflow-y:auto}
 #cover.hidden{display:none}
 .cover-inner{max-width:680px;margin:0 auto;padding:40px 24px 80px;width:100%}
+.cover-lang{display:flex;gap:8px;justify-content:flex-end;margin-bottom:20px}
 .seal{width:72px;height:72px;border-radius:50%;border:3px solid var(--seal);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;position:relative}
 .seal::before{content:'';position:absolute;inset:4px;border-radius:50%;border:1.5px solid var(--seal);opacity:.4}
 .seal-zh{font-size:26px;color:var(--seal);letter-spacing:1px;line-height:1}

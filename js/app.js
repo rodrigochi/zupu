@@ -12,7 +12,7 @@ let lang = localStorage.getItem('zupu-lang') || 'es';
 let script = localStorage.getItem('zupu-script') || 'trad';
 
 const BRANCH_COLORS = {
-  chanle:'#9b3030', niankeng:'#c8941a', migrated:'#5a7a9a', chile:'#b02232',
+  chanle:'#9b3030', niankeng:'#c8941a', migrated:'#5a7a9a', chile:'#3a7a50',
   guangzhou:'#999', china_reciente:'#999', zhu:'#999',
 };
 const HIDDEN_BRANCHES = new Set(['guangzhou','china_reciente','zhu']);
@@ -191,11 +191,16 @@ function storyText(p) {
 function branchLabel(b) { return (lang==='en' ? BRANCH_LABELS_EN : BRANCH_LABELS_ES)[b] || b; }
 function provLabel(s) { return (lang==='en' ? PROV_LABELS_EN : PROV_LABELS_ES)[s] || s; }
 
+function syncLangBtns() {
+  ['btn-es','cover-btn-es'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('active',lang==='es');});
+  ['btn-en','cover-btn-en'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('active',lang==='en');});
+  ['btn-trad','cover-btn-trad'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('active',script==='trad');});
+  ['btn-simp','cover-btn-simp'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('active',script==='simp');});
+}
 function setLang(l) {
   lang = l;
   localStorage.setItem('zupu-lang', l);
-  document.getElementById('btn-es').classList.toggle('active', l==='es');
-  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  syncLangBtns();
   const lf = document.getElementById('lineflow');
   if(lf) lf.removeAttribute('data-built');
   applyI18n();
@@ -208,8 +213,7 @@ function setLang(l) {
 function setScript(s) {
   script = s;
   localStorage.setItem('zupu-script', s);
-  document.getElementById('btn-trad').classList.toggle('active', s==='trad');
-  document.getElementById('btn-simp').classList.toggle('active', s==='simp');
+  syncLangBtns();
   refreshTreeNames();
   buildLineagePanelTree();
   const lf = document.getElementById('lineflow');
@@ -220,13 +224,7 @@ function setScript(s) {
 }
 
 function applyI18n() {
-  // Toggle button states
-  const be=document.getElementById('btn-es'), bn=document.getElementById('btn-en');
-  const bt=document.getElementById('btn-trad'), bs=document.getElementById('btn-simp');
-  if(be) be.classList.toggle('active', lang==='es');
-  if(bn) bn.classList.toggle('active', lang==='en');
-  if(bt) bt.classList.toggle('active', script==='trad');
-  if(bs) bs.classList.toggle('active', script==='simp');
+  syncLangBtns();
   // Cover
   const covSub=document.querySelector('.cover-subtitle'); if(covSub) covSub.textContent=t('cover_subtitle');
   const covDesc=document.querySelector('.cover-desc'); if(covDesc) covDesc.textContent=t('cover_desc');
@@ -319,6 +317,10 @@ async function boot() {
 function processData() {
   DB.forEach(p => { byId[p.id] = p; });
   DB.forEach(p => { if (p.pid && byId[p.pid]) (kids[p.pid]=kids[p.pid]||[]).push(p.id); });
+  // Sort children by birth_order when defined
+  Object.keys(kids).forEach(pid => {
+    kids[pid].sort((a,b) => ((byId[a]?.birth_order??999) - (byId[b]?.birth_order??999)));
+  });
   LINEAGE = DB.filter(p => p.rodrigo).sort((a,b) => a.gen - b.gen);
 }
 

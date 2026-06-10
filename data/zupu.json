@@ -13047,7 +13047,8 @@
       "zh_simplified": null,
       "burial_spa": null,
       "zh_simp": "徐捷武",
-      "story_eng": "Xu Jiewu (徐捷武), known in Chile as Enrique Chi Flores, was the son of Xu Zhaozhang (徐兆璋) and María Flores Nilo. His Chinese name combines the characters *Jie* (捷), meaning swiftness and victory, and *Wu* (武), evoking martial strength and valor.\n\nThe direct line continues through his son Xu Qingxian (徐慶賢)."
+      "story_eng": "Xu Jiewu (徐捷武), known in Chile as Enrique Chi Flores, was the son of Xu Zhaozhang (徐兆璋) and María Flores Nilo. His Chinese name combines the characters *Jie* (捷), meaning swiftness and victory, and *Wu* (武), evoking martial strength and valor.\n\nThe direct line continues through his son Xu Qingxian (徐慶賢).",
+      "birth_order": 2
     },
     {
       "id": "PRODRIGO",
@@ -36176,8 +36177,10 @@
       "burial": null,
       "place": null,
       "notes": "徐淑媛, hija mayor, quedó en China",
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Shuyuan (徐淑媛) es la hija mayor de Xu Zhaozhang (徐兆璋), nacida en China. Permaneció allí cuando su padre emigró a Chile. Su nombre combina 淑 (shū), «virtuosa» o «delicada», y 媛 (yuán), «mujer hermosa» — un nombre femenino clásico de la tradición literaria china.",
+      "flags": [],
+      "birth_order": 1,
+      "story_eng": "Xu Shuyuan (徐淑媛) is the eldest daughter of Xu Zhaozhang (徐兆璋), born in China. She remained there when her father emigrated to Chile. Her name combines 淑 (shū), meaning virtuous or gentle, and 媛 (yuán), meaning a beautiful woman — a classic feminine name in the Chinese literary tradition."
     },
     {
       "id": "CHI_900005",
@@ -36199,8 +36202,10 @@
       "burial": null,
       "place": null,
       "notes": "Juan Chi Flores (Chile)",
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Huan (徐胡安), conocido en la familia como Juan, nació en Chile. Es hijo de Xu Zhaozhang (徐兆璋) y María Flores Nilo. Su nombre chino 胡安 es la transliteración fonética del español *Juan*, sin significado propio más allá del sonido.",
+      "flags": [],
+      "birth_order": 3,
+      "story_eng": "Xu Huan (徐胡安), known in the family as Juan, was born in Chile. He is the son of Xu Zhaozhang (徐兆璋) and María Flores Nilo. His Chinese name 胡安 is a phonetic transcription of the Spanish name *Juan*, with no independent meaning beyond the sound."
     },
     {
       "id": "CHI_900006",
@@ -36222,8 +36227,10 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Jianbang (徐建邦) nació en Chile. Es hijo de Xu Zhaozhang (徐兆璋) y María Flores Nilo. Su nombre combina 建 (jiàn), «fundar» o «edificar», y 邦 (bāng), «nación» o «patria» — evocando la idea de construir raíces en una nueva tierra.",
+      "flags": [],
+      "birth_order": 4,
+      "story_eng": "Xu Jianbang (徐建邦) was born in Chile. He is the son of Xu Zhaozhang (徐兆璋) and María Flores Nilo. His name combines 建 (jiàn), to build or found, and 邦 (bāng), nation or homeland — evoking the idea of laying roots in a new land."
     },
     {
       "id": "CHI_900007",
@@ -36245,8 +36252,10 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Siqiang (徐思強) nació en Chile. Es hijo de Xu Zhaozhang (徐兆璋) y María Flores Nilo. Su nombre combina 思 (sī), «reflexión» o «pensamiento», y 強 (qiáng), «fuerza» o «vigor».",
+      "flags": [],
+      "birth_order": 5,
+      "story_eng": "Xu Siqiang (徐思強) was born in Chile. He is the son of Xu Zhaozhang (徐兆璋) and María Flores Nilo. His name combines 思 (sī), meaning reflection or thought, and 強 (qiáng), meaning strength or vigor."
     },
     {
       "id": "CHI_900008",
@@ -36268,8 +36277,9 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Kaidi (徐凱蒂) es hija de Xu Jianbang (徐建邦). Su nombre chino 凱蒂 es la transliteración fonética del nombre occidental *Katie*, sin significado propio más allá del sonido.",
+      "flags": [],
+      "story_eng": "Xu Kaidi (徐凱蒂) is the daughter of Xu Jianbang (徐建邦). Her Chinese name 凱蒂 is a phonetic transcription of the Western name *Katie*, with no independent meaning beyond the sound."
     },
     {
       "id": "CHI_900009",
@@ -36291,8 +36301,9 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Meilin (徐美琳) es hija de Xu Jianbang (徐建邦). Su nombre combina 美 (měi), «belleza», y 琳 (lín), «jade fino» — evocando elegancia y distinción.",
+      "flags": [],
+      "story_eng": "Xu Meilin (徐美琳) is the daughter of Xu Jianbang (徐建邦). Her name combines 美 (měi), beautiful, and 琳 (lín), fine jade — evoking elegance and refinement."
     },
     {
       "id": "CHI_900010",
@@ -36314,8 +36325,9 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Jianli (徐建禮) es hijo de Xu Jianbang (徐建邦). Su nombre combina 建 (jiàn), «fundar», y 禮 (lǐ), «etiqueta» o «ritual» — uno de los valores centrales de la cultura confuciana.",
+      "flags": [],
+      "story_eng": "Xu Jianli (徐建禮) is the son of Xu Jianbang (徐建邦). His name combines 建 (jiàn), to establish, and 禮 (lǐ), ritual or propriety — one of the central values of Confucian culture."
     },
     {
       "id": "CHI_900011",
@@ -36337,8 +36349,9 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Heshan (徐鶴山) es hijo de Xu Siqiang (徐思強). Su nombre combina 鶴 (hè), «grulla», y 山 (shān), «montaña» — rindiendo homenaje a Héshān (鶴山), la ciudad de Guǎngdōng donde sus antepasados vivieron durante varias generaciones.",
+      "flags": [],
+      "story_eng": "Xu Heshan (徐鶴山) is the son of Xu Siqiang (徐思強). His name combines 鶴 (hè), crane, and 山 (shān), mountain — honoring Héshān (鶴山), the city in Guǎngdōng where his ancestors lived for many generations."
     },
     {
       "id": "CHI_900012",
@@ -36360,8 +36373,9 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Jianming (徐建明) es hijo de Xu Siqiang (徐思強). Su nombre combina 建 (jiàn), «fundar», y 明 (míng), «claridad» o «luz».",
+      "flags": [],
+      "story_eng": "Xu Jianming (徐建明) is the son of Xu Siqiang (徐思強). His name combines 建 (jiàn), to build or establish, and 明 (míng), bright or enlightened."
     },
     {
       "id": "CHI_900013",
@@ -36383,8 +36397,9 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Yixin (徐毅信) es hijo de Xu Siqiang (徐思強). Su nombre combina 毅 (yì), «determinación» o «firmeza», y 信 (xìn), «confianza» o «lealtad».",
+      "flags": [],
+      "story_eng": "Xu Yixin (徐毅信) is the son of Xu Siqiang (徐思強). His name combines 毅 (yì), resolve or determination, and 信 (xìn), trust or faithfulness."
     },
     {
       "id": "CHI_900014",
@@ -36406,8 +36421,9 @@
       "burial": null,
       "place": null,
       "notes": "Mujer / 女",
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Ruiyan (徐瑞妍) es hija de Xu Siqiang (徐思強). Su nombre combina 瑞 (ruì), «augurio venturoso», y 妍 (yán), «belleza» o «elegancia».",
+      "flags": [],
+      "story_eng": "Xu Ruiyan (徐瑞妍) is the daughter of Xu Siqiang (徐思強). Her name combines 瑞 (ruì), meaning auspicious omen, and 妍 (yán), beautiful or graceful."
     },
     {
       "id": "CHI_900015",
@@ -36429,8 +36445,9 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Siyuan (徐思源) es hijo de Xu Qingxian (徐慶賢). Su nombre combina 思 (sī), «reflexión», y 源 (yuán), «origen» o «fuente» — evocando la memoria y el retorno a las raíces.",
+      "flags": [],
+      "story_eng": "Xu Siyuan (徐思源) is the son of Xu Qingxian (徐慶賢). His name combines 思 (sī), reflection, and 源 (yuán), source or origin — evoking memory and a return to one's roots."
     },
     {
       "id": "CHI_900016",
@@ -36567,8 +36584,9 @@
       "burial": null,
       "place": null,
       "notes": null,
-      "story_spa": null,
-      "flags": []
+      "story_spa": "Xu Xiangguang (徐祥光) es hijo de Xu Jiewu (徐捷武). Su nombre combina 祥 (xiáng), «auspicioso» o «buena fortuna», y 光 (guāng), «luz» o «gloria».",
+      "flags": [],
+      "story_eng": "Xu Xiangguang (徐祥光) is the son of Xu Jiewu (徐捷武). His name combines 祥 (xiáng), auspicious or fortunate, and 光 (guāng), light or radiance."
     }
   ],
   "_meta": {
