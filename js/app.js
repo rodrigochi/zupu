@@ -53,6 +53,7 @@ const I18N = {
     gen_label:'GENERACIÓN', chile_tag:'🇨🇱 Línea directa a Chile',
     sec_identity:'Identidad', sec_family:'Familia', sec_places:'Lugares', sec_dates:'Fechas',
     sec_burial:'Entierro', sec_notes:'Notas', sec_source:'Fuente y confianza',
+    sec_biography:'Biografía', sec_name_meaning:'Significado del nombre',
     f_alias:'Alias / 字', f_branch:'Rama', f_father:'Padre', f_spouses:'Esposas',
     f_children:'Hijos', f_origin:'Origen', f_place:'Residencia', f_migration:'Migración',
     f_birth:'Nacimiento', f_death:'Fallecimiento',
@@ -85,6 +86,7 @@ const I18N = {
     gen_label:'GENERATION', chile_tag:'🇨🇱 Direct line to Chile',
     sec_identity:'Identity', sec_family:'Family', sec_places:'Places', sec_dates:'Dates',
     sec_burial:'Burial', sec_notes:'Notes', sec_source:'Source & confidence',
+    sec_biography:'Biography', sec_name_meaning:'Name meaning',
     f_alias:'Alias / 字', f_branch:'Branch', f_father:'Father', f_spouses:'Wife/wives',
     f_children:'Children', f_origin:'Origin', f_place:'Residence', f_migration:'Migration',
     f_birth:'Birth', f_death:'Death',
@@ -404,7 +406,7 @@ function buildLineageView() {
       <div class="lmeta">
         ${p.birth?`<span>🗓 <b>${p.birth}</b></span>`:''}
         ${p.place?`<span>📍 <b>${p.place.split('(')[0].trim()}</b></span>`:''}
-        ${(p.spouses&&p.spouses.length)?`<span>💍 ${p.spouses.map(s=>convertBioScript(s.replace(/\s*\(.*\)/g,'').trim())).join(' · ')}</span>`:''}
+        ${(p.spouses&&p.spouses.length)?`<span>👰 ${p.spouses.length}</span>`:''}
         ${kcount?`<span>👶 ${kcount}</span>`:''}
       </div>
     </div>${i<LINEAGE.length-1?'<div class="lconn"><div class="lconn-dot"></div></div>':''}`;
@@ -694,6 +696,17 @@ function buildPanelHTML(p) {
     h+=`</div>`;
   }
 
+  // Biografía / Significado del nombre
+  const pStory = storyText(p);
+  if(pStory) {
+    const sLabel = p.branch==='chile' ? t('sec_name_meaning') : (p.rodrigo ? t('sec_biography') : null);
+    if(sLabel) {
+      h+=`<div class="pp-section"><div class="pp-section-title">${sLabel}</div>`;
+      h+=`<div class="pp-field md-body">${renderMd(pStory)}</div>`;
+      h+=`</div>`;
+    }
+  }
+
   // Notas
   if(p.notes){
     h+=`<div class="pp-section"><div class="pp-section-title">${t('sec_notes')}</div>`;
@@ -773,29 +786,19 @@ async function showArticle(id) {
   `;
 
   // Load markdown
+  const el=document.getElementById('article-md-body');
   if(loadedMd[id]){
-    renderMd(loadedMd[id]);
+    el.innerHTML=renderMd(loadedMd[id]);
   } else {
     try{
       const res=await fetch('./content/'+art.file);
       if(!res.ok) throw new Error(`HTTP ${res.status}`);
       const md=await res.text();
       loadedMd[id]=md;
-      renderMd(md);
+      el.innerHTML=renderMd(md);
     }catch(e){
-      document.getElementById('article-md-body').innerHTML=`<div class="article-error">⚠️ No se pudo cargar el artículo: ${escHtml(e.message)}<br><small>Asegúrate de que el archivo ./content/${escHtml(art.file||'')} exista.</small></div>`;
+      el.innerHTML=`<div class="article-error">⚠️ No se pudo cargar el artículo: ${escHtml(e.message)}<br><small>Asegúrate de que el archivo ./content/${escHtml(art.file||'')} exista.</small></div>`;
     }
-  }
-}
-
-function renderMd(md) {
-  const el=document.getElementById('article-md-body');
-  if(!el) return;
-  if(typeof marked!=='undefined'){
-    el.innerHTML=marked.parse(md);
-  } else {
-    // Fallback: conversión básica de Markdown
-    el.innerHTML=basicMd(md);
   }
 }
 
@@ -878,21 +881,103 @@ function buildHistoryView(tab){
   historyTab=tab;
   document.querySelectorAll('.htab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
   const body=document.getElementById('history-body');
-  if(tab==='migrations') body.innerHTML=buildMigrationsHTML();
+  if(tab==='migrations'){body.innerHTML=buildMigrationsHTML();renderMigrationMap();}
   else if(tab==='spouses') body.innerHTML=buildSpousesHTML();
   else if(tab==='timeline') body.innerHTML=buildTimelineHTML();
 }
 function buildMigrationsHTML(){
   const grouped={};
   DB.filter(p=>p.migration).forEach(p=>{
-    const dest=p.migration.replace(/^→\s*/,'').split(',')[0].trim().split('(')[0].trim();
+    const dest=p.migration.replace(/^→\s*/,'').trim();
     (grouped[dest]=grouped[dest]||[]).push(p);
   });
-  return Object.keys(grouped).sort((a,b)=>grouped[b].length-grouped[a].length).map(dest=>`
+  const listHTML=Object.keys(grouped).sort((a,b)=>grouped[b].length-grouped[a].length).map(dest=>`
     <div class="migrations-group">
       <h3>${escHtml(dest)}<span class="count">${grouped[dest].length} ${t('mig_people')}</span></h3>
       <div>${grouped[dest].map(p=>`<div class="mig-chip" onclick="openPerson('${p.id}')"><span class="mzh zh">${zhFull(p)}</span> ${p.py_plain||p.py||''}</div>`).join('')}</div>
     </div>`).join('');
+  return `<div class="mig-map-wrap"><svg id="mig-map-svg"></svg><div class="mig-map-chile" id="mig-chile-note"></div></div>${listHTML}`;
+}
+
+const MIG_COORDS={
+  'Sìchuān (四川)':[104,30.5],
+  'Jiāngxī (江西)':[116,27],
+  'Běiliú (北流), Guǎngxī (廣西)':[110.4,22.7],
+  'Píngxiāng (萍鄉), Jiāngxī (江西)':[113.8,27.6],
+  'Guǎngxī (廣西)':[108.3,24],
+  'Húnán (湖南)':[112,27.8],
+  'Hèshān (鶴山), Guǎngdōng (廣東)':[112.9,22.8],
+  'Wǔhuá (五華), Guǎngdōng (廣東)':[115.8,24.1],
+  'Guǎngzhōu (廣州), Guǎngdōng (廣東)':[113.3,23.1],
+  'Húguǎng (湖廣)':[112,29],
+  'Huìzhōu (惠州), Guǎngdōng (廣東)':[114.4,23.1],
+  'Shǎnxī (陝西)':[108.9,34.3],
+  'Vietnam':[108,16],
+  'Wúzhōu (梧州), Guǎngxī (廣西)':[111.3,23.5],
+  'Jiéyáng (揭陽), Guǎngdōng (廣東)':[116.4,23.5],
+  'Bóluó (博羅), Guǎngdōng (廣東)':[114.3,23.2]
+};
+const MIG_LABELS={
+  'Sìchuān (四川)':'Sìchuān','Jiāngxī (江西)':'Jiāngxī',
+  'Běiliú (北流), Guǎngxī (廣西)':'Běiliú','Píngxiāng (萍鄉), Jiāngxī (江西)':'Píngxiāng',
+  'Guǎngxī (廣西)':'Guǎngxī','Húnán (湖南)':'Húnán',
+  'Hèshān (鶴山), Guǎngdōng (廣東)':'Hèshān','Wǔhuá (五華), Guǎngdōng (廣東)':'Wǔhuá',
+  'Guǎngzhōu (廣州), Guǎngdōng (廣東)':'Guǎngzhōu','Húguǎng (湖廣)':'Húguǎng',
+  'Huìzhōu (惠州), Guǎngdōng (廣東)':'Huìzhōu','Shǎnxī (陝西)':'Shǎnxī',
+  'Vietnam':'Vietnam','Wúzhōu (梧州), Guǎngxī (廣西)':'Wúzhōu',
+  'Jiéyáng (揭陽), Guǎngdōng (廣東)':'Jiéyáng','Bóluó (博羅), Guǎngdōng (廣東)':'Bóluó'
+};
+
+function renderMigrationMap(){
+  const svg=document.getElementById('mig-map-svg');
+  if(!svg) return;
+  const W=svg.parentElement.clientWidth||500;
+  const H=Math.round(W*0.7);
+  svg.setAttribute('width',W); svg.setAttribute('height',H);
+
+  const counts={};
+  DB.filter(p=>p.migration).forEach(p=>{
+    const k=p.migration.replace(/^→\s*/,'').trim();
+    if(k!=='Chile') counts[k]=(counts[k]||0)+1;
+  });
+  const chileN=DB.filter(p=>p.migration==='→ Chile').length;
+  const note=document.getElementById('mig-chile-note');
+  if(note&&chileN) note.innerHTML=`🇨🇱 <b>Chile</b>: ${chileN} ${t('mig_people')} — emigración al otro lado del mundo`;
+
+  const maxN=Math.max(...Object.values(counts),1);
+  const rScale=n=>4+Math.sqrt(n/maxN)*18;
+
+  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+    .then(r=>r.json()).then(world=>{
+      const proj=d3.geoMercator().center([108,26]).scale(W*2.1).translate([W*0.48,H*0.42]);
+      const pathGen=d3.geoPath().projection(proj);
+      const countries=topojson.feature(world,world.objects.countries);
+      const S=d3.select(svg);
+      S.selectAll('*').remove();
+      S.append('rect').attr('width',W).attr('height',H).attr('fill','#ddeeff').attr('rx',6);
+      S.append('g').selectAll('path').data(countries.features).join('path')
+        .attr('d',pathGen).attr('fill','#eee8df').attr('stroke','#c8b898').attr('stroke-width',0.5);
+
+      const pts=Object.entries(counts).map(([k,n])=>{
+        const xy=proj(MIG_COORDS[k]||[0,0]);
+        return{k,n,x:xy[0],y:xy[1],label:MIG_LABELS[k]||k};
+      }).filter(pt=>pt.x>0&&pt.x<W&&pt.y>0&&pt.y<H);
+
+      pts.forEach(pt=>{
+        const g=S.append('g').attr('cursor','default');
+        g.append('title').text(`${pt.label}: ${pt.n} ${t('mig_people')}`);
+        g.append('circle').attr('cx',pt.x).attr('cy',pt.y)
+          .attr('r',rScale(pt.n)).attr('fill','#c0392b99').attr('stroke','#922b21').attr('stroke-width',1);
+        if(pt.n>=3){
+          g.append('text').attr('x',pt.x).attr('y',pt.y-rScale(pt.n)-3)
+            .attr('text-anchor','middle').attr('font-size','10').attr('fill','#3a2a1a')
+            .attr('font-family','Noto Serif TC,serif').text(`${pt.label} ${pt.n}`);
+        }
+      });
+    }).catch(()=>{
+      d3.select(svg).append('text').attr('x',W/2).attr('y',H/2)
+        .attr('text-anchor','middle').attr('fill','#666').text('Mapa no disponible (sin conexión)');
+    });
 }
 function buildSpousesHTML(){
   const clanMap={};

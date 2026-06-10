@@ -20,6 +20,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -236,6 +237,9 @@
           <button class="tc-btn" onclick="resetView()"   title="Centrar">⊙</button>
           <button class="tc-btn" onclick="expandAll()"   title="Expandir todo">＋</button>
           <button class="tc-btn" onclick="collapseAll()" title="Colapsar todo">－</button>
+          <button class="tc-btn" onclick="focusNode('PGRANDPA')" title="Ir a la rama chilena">
+            <img src="https://flagcdn.com/w20/cl.png" width="16" alt="🇨🇱" style="display:block">
+          </button>
         </div>
         <div id="tree-legend">
           <h4 id="tree-legend-title">Ramas</h4>
