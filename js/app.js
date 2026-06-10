@@ -12,16 +12,15 @@ let lang = localStorage.getItem('zupu-lang') || 'es';
 let script = localStorage.getItem('zupu-script') || 'trad';
 
 const BRANCH_COLORS = {
-  chanle:'#9b3030', niankeng:'#c8941a', migrated:'#5a7a9a',
-  guangzhou:'#2d6b5a', china_reciente:'#6b4a8a', zhu:'#7a6b2d',
+  chanle:'#9b3030', niankeng:'#c8941a', migrated:'#5a7a9a', chile:'#b02232',
+  guangzhou:'#999', china_reciente:'#999', zhu:'#999',
 };
+const HIDDEN_BRANCHES = new Set(['guangzhou','china_reciente','zhu']);
 const BRANCH_LABELS_ES = {
-  chanle:'Chánglè 長樂', niankeng:'Niánkēng 粘坑', migrated:'Emigrados',
-  guangzhou:'Guǎngzhōu', china_reciente:'China reciente', zhu:'Rama Zhù 祝',
+  chanle:'Chánglè 長樂', niankeng:'Niánkēng 粘坑', migrated:'Emigrados', chile:'Chile',
 };
 const BRANCH_LABELS_EN = {
-  chanle:'Chánglè 長樂', niankeng:'Niánkēng 粘坑', migrated:'Emigrants',
-  guangzhou:'Guǎngzhōu', china_reciente:'Recent China', zhu:'Zhù Branch 祝',
+  chanle:'Chánglè 長樂', niankeng:'Niánkēng 粘坑', migrated:'Emigrants', chile:'Chile',
 };
 const PROV_LABELS_ES = {
   'ZUPU_1943':'Zupu 1943', 'ZUPU_2025':'Zupu 2025', 'FAMILIAR':'Fuente familiar',
@@ -178,7 +177,7 @@ const BIO_TRAD_TO_SIMP = {
   '纘':'缵','義':'义','興':'兴','華':'华','訓':'训','評':'评','誨':'诲',
   '諒':'谅','謝':'谢','議':'议','貞':'贞','貴':'贵','賢':'贤','賴':'赖',
   '連':'连','達':'达','鍾':'钟','長':'长','開':'开','閩':'闽','陽':'阳',
-  '顯':'显','鶴':'鹤','齡':'龄'
+  '顯':'显','鶴':'鹤','齡':'龄','黃':'黄','軍':'军'
 };
 function convertBioScript(text) {
   if(script !== 'simp' || !text) return text;
@@ -403,7 +402,7 @@ function buildLineageView() {
       <div class="lmeta">
         ${p.birth?`<span>🗓 <b>${p.birth}</b></span>`:''}
         ${p.place?`<span>📍 <b>${p.place.split('(')[0].trim()}</b></span>`:''}
-        ${(p.spouses&&p.spouses.length)?`<span>👰 ${p.spouses.length} esp.</span>`:''}
+        ${(p.spouses&&p.spouses.length)?`<span>💍 ${p.spouses.map(s=>convertBioScript(s.replace(/\s*\(.*\)/g,'').trim())).join(' · ')}</span>`:''}
         ${kcount?`<span>👶 ${kcount}</span>`:''}
       </div>
     </div>${i<LINEAGE.length-1?'<div class="lconn"><div class="lconn-dot"></div></div>':''}`;
@@ -471,7 +470,7 @@ function applyZoomLevel() {
 }
 
 function buildTreeLegend() {
-  const present = [...new Set(DB.map(p=>p.branch).filter(Boolean))];
+  const present = [...new Set(DB.map(p=>p.branch).filter(b=>b&&!HIDDEN_BRANCHES.has(b)))];
   document.getElementById('tree-legend-body').innerHTML = [
     ...present.map(b=>`<div class="leg-item"><div class="leg-dot" style="background:${BRANCH_COLORS[b]||'#888'}"></div>${branchLabel(b)}</div>`),
     `<div class="leg-item"><div class="leg-dot" style="background:#c8941a;box-shadow:0 0 4px rgba(200,148,26,.5)"></div>${t('legend_direct')}</div>`
