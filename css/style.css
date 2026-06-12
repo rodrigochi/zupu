@@ -41,6 +41,13 @@ html,body{height:100%;font-family:'Noto Serif TC','Songti SC','Georgia',serif;ba
 .cover-title{font-size:clamp(32px,7vw,52px);color:var(--ink);letter-spacing:8px;text-align:center;line-height:1;margin-bottom:8px}
 .cover-subtitle{font-size:clamp(13px,3vw,16px);color:var(--muted);text-align:center;letter-spacing:1px;margin-bottom:4px;font-family:'Segoe UI',sans-serif}
 .cover-desc{font-size:14px;color:var(--dim);text-align:center;margin-bottom:28px;font-family:'Segoe UI',sans-serif}
+/* Aviso de construcción */
+.wip-banner{display:flex;align-items:center;gap:14px;background:var(--gold-bg);border:1.5px dashed var(--border2);border-radius:10px;padding:11px 15px;margin-bottom:20px}
+.wip-seal{writing-mode:vertical-rl;font-size:12px;color:var(--seal);font-family:'Noto Serif TC','Songti SC','STSong',serif;border:1.5px solid var(--seal);padding:5px 4px;border-radius:2px;letter-spacing:4px;opacity:.75;flex-shrink:0;line-height:1;text-align:center}
+.wip-body{flex:1;min-width:0}
+.wip-main{font-size:13px;font-weight:600;color:var(--ink2);font-family:'Segoe UI',sans-serif;margin-bottom:2px}
+.wip-sub{font-size:11.5px;color:var(--muted);font-family:'Segoe UI',sans-serif;line-height:1.4}
+
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:28px}
 .stat-card{background:var(--paper2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-align:center}
 .stat-card .num{font-size:26px;font-weight:700;color:var(--red);font-family:'Segoe UI',sans-serif;line-height:1}

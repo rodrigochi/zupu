@@ -45,6 +45,7 @@ const I18N = {
     btn_history:'Migraciones', btn_history_desc:'Rutas · clanes · cronología',
     stat_people:'Personas', stat_gen:'Generaciones', stat_mig:'Migraciones', stat_clans:'Clanes de esposas',
     footer_compiled:'Compilado por la familia', footer_years:'~900 años de historia',
+    wip_main:'Sitio en construcción activa', wip_sub:'Seguimos incorporando datos e historias — algunos detalles pueden cambiar.',
     tab_lineage:'📜 Ruta familiar', tab_tree:'🌳 Árbol', tab_search:'🔍 Buscar', tab_history:'🗺️ Historia y lugares',
     lineage_title:'📜 Ruta familiar',
     lineage_intro_pre:'Treinta generaciones desde', lineage_intro_post:'de finales de la Dinastía Song (~1150), hasta la llegada a Chile. Toca una tarjeta para leer la historia.',
@@ -79,6 +80,7 @@ const I18N = {
     btn_history:'Migrations', btn_history_desc:'Routes · clans · timeline',
     stat_people:'People', stat_gen:'Generations', stat_mig:'Migrations', stat_clans:'Wife clans',
     footer_compiled:'Compiled by the family', footer_years:'~900 years of history',
+    wip_main:'Site under active development', wip_sub:'We are still adding data and stories — some details may change.',
     tab_lineage:'📜 Lineage', tab_tree:'🌳 Tree', tab_search:'🔍 Search', tab_history:'🗺️ History',
     lineage_title:'📜 Family lineage',
     lineage_intro_pre:'Thirty generations from', lineage_intro_post:'of the late Song Dynasty (~1150), to the arrival in Chile. Tap a card to read the story.',
@@ -244,6 +246,8 @@ function applyI18n() {
   ['stat_people','stat_gen','stat_mig','stat_clans'].forEach((k,i)=>{ if(lbls[i]) lbls[i].textContent=t(k); });
   const cf=document.getElementById('cover-footer-compiled'); if(cf) cf.textContent=t('footer_compiled');
   const cy=document.getElementById('cover-footer-years'); if(cy) cy.textContent=t('footer_years');
+  const wm=document.getElementById('wip-main'); if(wm) wm.textContent=t('wip_main');
+  const ws=document.getElementById('wip-sub'); if(ws) ws.textContent=t('wip_sub');
   // Nav tabs
   const ntabs=document.querySelectorAll('.nav-tab');
   ['tab_lineage','tab_tree','tab_search','tab_history'].forEach((k,i)=>{ if(ntabs[i]) ntabs[i].textContent=t(k); });
