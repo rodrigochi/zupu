@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="bg" cx="40%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#a82020"/>
+      <stop offset="100%" stop-color="#6e1010"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sello cuadrado con esquinas redondeadas -->
+  <rect x="2" y="2" width="96" height="96" rx="8" ry="8" fill="url(#bg)"/>
+
+  <!-- Borde exterior dorado -->
+  <rect x="2" y="2" width="96" height="96" rx="8" ry="8"
+        fill="none" stroke="#e8b830" stroke-width="3"/>
+
+  <!-- Borde interior (doble borde de sello clásico) -->
+  <rect x="10" y="10" width="80" height="80" rx="4" ry="4"
+        fill="none" stroke="#c8941a" stroke-width="1.5"/>
+
+  <!-- Marcas de esquina -->
+  <rect x="10" y="10" width="9" height="9" fill="#c8941a" rx="1"/>
+  <rect x="81" y="10" width="9" height="9" fill="#c8941a" rx="1"/>
+  <rect x="10" y="81" width="9" height="9" fill="#c8941a" rx="1"/>
+  <rect x="81" y="81" width="9" height="9" fill="#c8941a" rx="1"/>
+
+  <!-- Carácter 徐 -->
+  <text x="50" y="72"
+        font-family="'Noto Serif TC','Songti SC','STSong','SimSun','serif'"
+        font-size="62" fill="#faf6f0"
+        text-anchor="middle" dominant-baseline="auto"
+        font-weight="normal">徐</text>
+</svg>
