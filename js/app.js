@@ -210,9 +210,11 @@ function setLang(l) {
   const lf = document.getElementById('lineflow');
   if(lf) lf.removeAttribute('data-built');
   applyI18n();
+  buildCoverArticles();
   if(root) buildTreeLegend();
   if(view==='lineage') buildLineageView();
   if(view==='history') buildHistoryView(historyTab);
+  if(view==='article' && currentArticleId) showArticle(currentArticleId);
   if(selId) openPanel(byId[selId]);
 }
 
@@ -355,15 +357,18 @@ function buildStats() {
 function buildCoverArticles() {
   const container = document.getElementById('cover-articles-grid');
   if (!container || !ARTICLES || !ARTICLES.length) return;
-  container.innerHTML = ARTICLES.map(a => `
+  container.innerHTML = ARTICLES.map(a => {
+    const lbl  = lang==='en' ? (a.buttonLabel_en||a.title_en||a.title) : (a.buttonLabel||a.title);
+    const desc = lang==='en' ? (a.desc_en||a.subtitle_en||a.subtitle) : a.subtitle;
+    return `
     <button class="abtn" onclick="startArticle('${a.id}')">
       <div class="aicon">${a.icon||'📄'}</div>
       <div class="atxt">
-        <div class="albl">${escHtml(a.buttonLabel||a.title)}</div>
-        <div class="adesc">${escHtml(a.subtitle||'')}</div>
+        <div class="albl">${escHtml(lbl)}</div>
+        <div class="adesc">${escHtml(desc||'')}</div>
       </div>
-    </button>
-  `).join('');
+    </button>`;
+  }).join('');
 }
 
 function showError(err) {
@@ -781,42 +786,50 @@ window.openPerson = function(id) {
 
 // ── ARTICLE SYSTEM ──
 let loadedMd = {};
+let currentArticleId = null;
 
 async function showArticle(id) {
   const art = ARTICLES && ARTICLES.find(a=>a.id===id);
   if(!art){showToast('Artículo no encontrado'); return;}
 
   view = 'article';
+  currentArticleId = id;
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
   document.getElementById('v-article').classList.add('active');
   document.getElementById('nav-tabs').style.display='none';
   location.hash='article='+id;
 
+  // Pick language-appropriate fields
+  const title    = lang==='en' ? (art.title_en||art.title) : art.title;
+  const subtitle = lang==='en' ? (art.subtitle_en||art.subtitle||'') : (art.subtitle||'');
+  const file     = lang==='en' ? (art.file_en||art.file) : art.file;
+  const mdKey    = id + (lang==='en' && art.file_en ? '_en' : '');
+
   // Render shell immediately
   const wrap=document.getElementById('article-content-wrap');
   wrap.innerHTML=`
     <div class="article-icon">${art.icon||'📄'}</div>
-    <h1 class="article-title">${escHtml(art.title)}</h1>
-    <p class="article-subtitle">${escHtml(art.subtitle||'')}</p>
-    <div class="article-tags">${(art.tags||[]).map(t=>`<span class="article-tag">${escHtml(t)}</span>`).join('')}</div>
+    <h1 class="article-title">${escHtml(title)}</h1>
+    <p class="article-subtitle">${escHtml(subtitle)}</p>
+    <div class="article-tags">${(art.tags||[]).map(tg=>`<span class="article-tag">${escHtml(tg)}</span>`).join('')}</div>
     <div class="article-divider"></div>
     <div id="article-md-body" class="md-body"><div class="article-loading">Cargando…</div></div>
   `;
 
   // Load markdown
   const el=document.getElementById('article-md-body');
-  if(loadedMd[id]){
-    el.innerHTML=renderMd(loadedMd[id]);
+  if(loadedMd[mdKey]){
+    el.innerHTML=renderMd(loadedMd[mdKey]);
   } else {
     try{
-      const res=await fetch('./content/'+art.file);
+      const res=await fetch('./content/'+file);
       if(!res.ok) throw new Error(`HTTP ${res.status}`);
       const md=await res.text();
-      loadedMd[id]=md;
+      loadedMd[mdKey]=md;
       el.innerHTML=renderMd(md);
     }catch(e){
-      el.innerHTML=`<div class="article-error">⚠️ No se pudo cargar el artículo: ${escHtml(e.message)}<br><small>Asegúrate de que el archivo ./content/${escHtml(art.file||'')} exista.</small></div>`;
+      el.innerHTML=`<div class="article-error">⚠️ No se pudo cargar el artículo: ${escHtml(e.message)}<br><small>Archivo: ./content/${escHtml(file||'')}</small></div>`;
     }
   }
 }

@@ -34,5 +34,19 @@
     "buttonLabel": "Los Chi en Chile",
     "icon": "🇨🇱",
     "tags": ["Chi", "Chile", "familia"]
+  },
+  {
+    "id": "origen-apellido-xu",
+    "title": "El apellido 徐",
+    "title_en": "The 徐 Surname",
+    "subtitle": "El origen legendario del clan · 東海堂",
+    "subtitle_en": "The legendary origin of the clan · 東海堂",
+    "file": "origen-apellido-xu.md",
+    "file_en": "origen-apellido-xu-en.md",
+    "buttonLabel": "El apellido 徐 · origen legendario",
+    "buttonLabel_en": "The 徐 Surname · legendary origin",
+    "desc_en": "From Boyi to the State of Xu, 4,000 years of history",
+    "icon": "🏛️",
+    "tags": ["apellido", "origen", "historia", "Xu", "surname", "origin"]
   }
 ]
