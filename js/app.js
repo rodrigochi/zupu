@@ -220,6 +220,8 @@ function setScript(s) {
   script = s;
   localStorage.setItem('zupu-script', s);
   syncLangBtns();
+  const zhTit = s === 'simp' ? '族谱 · 徐氏' : '族譜 · 徐氏';
+  document.querySelectorAll('.cover-title, .topbar-title').forEach(el => el.textContent = zhTit);
   refreshTreeNames();
   buildLineagePanelTree();
   const lf = document.getElementById('lineflow');
@@ -248,6 +250,8 @@ function applyI18n() {
   const cy=document.getElementById('cover-footer-years'); if(cy) cy.textContent=t('footer_years');
   const wm=document.getElementById('wip-main'); if(wm) wm.textContent=t('wip_main');
   const ws=document.getElementById('wip-sub'); if(ws) ws.textContent=t('wip_sub');
+  const zhTit = script === 'simp' ? '族谱 · 徐氏' : '族譜 · 徐氏';
+  document.querySelectorAll('.cover-title, .topbar-title').forEach(el => el.textContent = zhTit);
   // Nav tabs
   const ntabs=document.querySelectorAll('.nav-tab');
   ['tab_lineage','tab_tree','tab_search','tab_history'].forEach((k,i)=>{ if(ntabs[i]) ntabs[i].textContent=t(k); });
