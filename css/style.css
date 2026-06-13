@@ -40,7 +40,9 @@ html,body{height:100%;font-family:'Noto Serif TC','Songti SC','Georgia',serif;ba
 .seal-zh{font-size:26px;color:var(--seal);letter-spacing:1px;line-height:1}
 .cover-title{font-size:clamp(32px,7vw,52px);color:var(--ink);letter-spacing:8px;text-align:center;line-height:1;margin-bottom:8px}
 .cover-subtitle{font-size:clamp(13px,3vw,16px);color:var(--muted);text-align:center;letter-spacing:1px;margin-bottom:4px;font-family:'Segoe UI',sans-serif}
-.cover-desc{font-size:14px;color:var(--dim);text-align:center;margin-bottom:28px;font-family:'Segoe UI',sans-serif}
+.cover-desc{font-size:14px;color:var(--dim);text-align:center;margin-bottom:10px;font-family:'Segoe UI',sans-serif}
+.cover-zupu-note{font-size:12px;color:var(--dim);text-align:center;line-height:1.7;max-width:300px;margin:0 auto 20px;font-family:'Segoe UI',sans-serif;font-style:italic}
+.cover-zupu-note em{font-style:normal;color:var(--muted)}
 /* Aviso de construcción */
 .wip-banner{display:flex;align-items:center;gap:14px;background:var(--gold-bg);border:1.5px dashed var(--border2);border-radius:10px;padding:11px 15px;margin-bottom:20px}
 .wip-seal{writing-mode:vertical-rl;font-size:12px;color:var(--seal);font-family:'Noto Serif TC','Songti SC','STSong',serif;border:1.5px solid var(--seal);padding:5px 4px;border-radius:2px;letter-spacing:4px;opacity:.75;flex-shrink:0;line-height:1;text-align:center}
@@ -137,6 +139,10 @@ html,body{height:100%;font-family:'Noto Serif TC','Songti SC','Georgia',serif;ba
 .lineage-header{margin-bottom:24px}
 .lineage-header h2{font-size:22px;color:var(--ink);letter-spacing:2px}
 .lineage-header p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.7;font-family:'Segoe UI',sans-serif}
+.lineage-origin-link{margin-top:12px;font-size:12.5px;color:var(--dim);font-family:'Segoe UI',sans-serif}
+.lol-pre{font-style:italic}
+.lol-btn{background:none;border:none;padding:0 0 0 4px;font-size:12.5px;font-family:'Noto Serif TC',serif;color:var(--red);cursor:pointer;letter-spacing:.3px;transition:color .15s;text-decoration:underline;text-decoration-color:var(--border2);text-underline-offset:3px}
+.lol-btn:hover{color:var(--red2);text-decoration-color:var(--red2)}
 .lcard{background:var(--paper2);border:1.5px solid var(--border);border-radius:14px;padding:18px 20px;cursor:pointer;transition:all .18s;position:relative}
 .lcard:hover{border-color:var(--red);box-shadow:var(--shadow);transform:translateX(4px)}
 .lcard.rod{border-color:var(--gold2);background:var(--gold-bg)}
