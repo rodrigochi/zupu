@@ -46,7 +46,8 @@ const I18N = {
     stat_people:'Personas', stat_gen:'Generaciones', stat_mig:'Migraciones', stat_clans:'Clanes de esposas',
     footer_compiled:'Compilado por la familia', footer_years:'~900 años de historia',
     wip_main:'Sitio en construcción activa', wip_sub:'Seguimos incorporando datos e historias — algunos detalles pueden cambiar.',
-    cover_zupu_note:'Un <em>zupu</em> (<span class="zh">族譜</span>) es el registro colectivo de un clan, mantenido generación tras generación. Xu&nbsp;(<span class="zh">徐</span>) y Chi son el mismo carácter: <em>Chi</em> es la pronunciación hakka de <span class="zh">徐</span>.',
+    cex_zupu:'El registro colectivo del clan, mantenido hacia adelante generación tras generación durante siglos — no una investigación hacia atrás, sino un testimonio vivo.',
+    cex_chi:'El mismo carácter chino, dos pronunciaciones. Xú es mandarín; Chí es hakka. En Chile los apellidos Xu y Chi son intercambiables.',
     lineage_origin_pre:'¿Curioso sobre los orígenes del apellido?',
     lineage_origin_btn:'Historia del apellido <span class="zh">徐</span> →',
     tab_lineage:'📜 Ruta familiar', tab_tree:'🌳 Árbol', tab_search:'🔍 Buscar', tab_history:'🗺️ Historia y lugares',
@@ -84,7 +85,8 @@ const I18N = {
     stat_people:'People', stat_gen:'Generations', stat_mig:'Migrations', stat_clans:'Wife clans',
     footer_compiled:'Compiled by the family', footer_years:'~900 years of history',
     wip_main:'Site under active development', wip_sub:'We are still adding data and stories — some details may change.',
-    cover_zupu_note:'A <em>zupu</em> (<span class="zh">族譜</span>) is a clan\'s collective record, passed down generation after generation. Xu&nbsp;(<span class="zh">徐</span>) and Chi are the same character: <em>Chi</em> is the Hakka pronunciation of <span class="zh">徐</span>.',
+    cex_zupu:'The clan\'s collective record, carried forwards generation after generation for centuries — not a search backwards, but a living testimony.',
+    cex_chi:'The same Chinese character, two pronunciations. Xú is Mandarin; Chí is Hakka. In Chile, the surnames Xu and Chi are interchangeable.',
     lineage_origin_pre:'Curious about the origins of the surname?',
     lineage_origin_btn:'History of the <span class="zh">徐</span> surname →',
     tab_lineage:'📜 Lineage', tab_tree:'🌳 Tree', tab_search:'🔍 Search', tab_history:'🗺️ History',
@@ -260,8 +262,8 @@ function applyI18n() {
   const ws=document.getElementById('wip-sub'); if(ws) ws.textContent=t('wip_sub');
   const zhTit = script === 'simp' ? '族谱 · 徐氏' : '族譜 · 徐氏';
   document.querySelectorAll('.cover-title, .topbar-title').forEach(el => el.textContent = zhTit);
-  const czn = document.getElementById('cover-zupu-note');
-  if(czn) czn.innerHTML = t('cover_zupu_note');
+  const ez = document.getElementById('cex-text-zupu'); if(ez) ez.textContent = t('cex_zupu');
+  const ec = document.getElementById('cex-text-chi');  if(ec) ec.textContent = t('cex_chi');
   const lol = document.getElementById('lineage-origin-link');
   if(lol) lol.innerHTML = `<span class="lol-pre">${t('lineage_origin_pre')}</span> <button class="lol-btn" onclick="startArticle('origen-apellido-xu')">${t('lineage_origin_btn')}</button>`;
   // Nav tabs
