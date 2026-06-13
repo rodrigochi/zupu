@@ -37,7 +37,7 @@ const PROV_LABELS_EN = {
 const I18N = {
   es:{
     cover_subtitle:'Árbol genealógico de la familia Xu / Chi',
-    cover_desc:'De Chánglè / Wuhuá a Héshān y Chile',
+    cover_desc:'De Changle / Wuhua a Heshan y Chile',
     sec_tree:'Explorar el árbol familiar', sec_articles:'Escritos e historias',
     btn_lineage:'Ruta familiar', btn_lineage_desc:'Línea directa a Chile',
     btn_tree:'Árbol genealógico', btn_tree_desc:'Árbol completo interactivo',
@@ -46,8 +46,8 @@ const I18N = {
     stat_people:'Personas', stat_gen:'Generaciones', stat_mig:'Migraciones', stat_clans:'Clanes de esposas',
     footer_compiled:'Compilado por la familia', footer_years:'~900 años de historia',
     wip_main:'Sitio en construcción activa', wip_sub:'Seguimos incorporando datos e historias — algunos detalles pueden cambiar.',
-    cex_zupu:'El registro colectivo del clan, mantenido hacia adelante generación tras generación durante siglos — no una investigación hacia atrás, sino un testimonio vivo.',
-    cex_chi:'El mismo carácter chino, dos pronunciaciones. Xú es mandarín; Chí es hakka. En Chile los apellidos Xu y Chi son intercambiables.',
+    cex_zupu:'Registro del clan, mantenido hacia adelante generación tras generación. No una búsqueda hacia el pasado — un testimonio vivo que cada generación continúa.',
+    cex_chi:'El mismo carácter, dos pronunciaciones. Xú en mandarín, Chí en hakka. En Chile los apellidos Xu y Chi son el mismo: completamente intercambiables.',
     lineage_origin_pre:'¿Curioso sobre los orígenes del apellido?',
     lineage_origin_btn:'Historia del apellido <span class="zh">徐</span> →',
     tab_lineage:'📜 Ruta familiar', tab_tree:'🌳 Árbol', tab_search:'🔍 Buscar', tab_history:'🗺️ Historia y lugares',
@@ -76,7 +76,7 @@ const I18N = {
   },
   en:{
     cover_subtitle:'Family tree of the Xu / Chi family',
-    cover_desc:'From Chánglè / Wuhuá to Héshān and Chile',
+    cover_desc:'From Changle / Wuhua to Heshan and Chile',
     sec_tree:'Explore the family tree', sec_articles:'Stories & writings',
     btn_lineage:'Family lineage', btn_lineage_desc:'Direct line to Chile',
     btn_tree:'Family tree', btn_tree_desc:'Full interactive tree',
@@ -85,8 +85,8 @@ const I18N = {
     stat_people:'People', stat_gen:'Generations', stat_mig:'Migrations', stat_clans:'Wife clans',
     footer_compiled:'Compiled by the family', footer_years:'~900 years of history',
     wip_main:'Site under active development', wip_sub:'We are still adding data and stories — some details may change.',
-    cex_zupu:'The clan\'s collective record, carried forwards generation after generation for centuries — not a search backwards, but a living testimony.',
-    cex_chi:'The same Chinese character, two pronunciations. Xú is Mandarin; Chí is Hakka. In Chile, the surnames Xu and Chi are interchangeable.',
+    cex_zupu:'Clan record, carried forwards generation after generation. Not a search into the past — a living testimony that each generation continues.',
+    cex_chi:'The same character, two pronunciations. Xú in Mandarin, Chí in Hakka. In Chile the surnames Xu and Chi are the same: fully interchangeable.',
     lineage_origin_pre:'Curious about the origins of the surname?',
     lineage_origin_btn:'History of the <span class="zh">徐</span> surname →',
     tab_lineage:'📜 Lineage', tab_tree:'🌳 Tree', tab_search:'🔍 Search', tab_history:'🗺️ History',
@@ -232,6 +232,8 @@ function setScript(s) {
   syncLangBtns();
   const zhTit = s === 'simp' ? '族谱 · 徐氏' : '族譜 · 徐氏';
   document.querySelectorAll('.cover-title, .topbar-title').forEach(el => el.textContent = zhTit);
+  const czupu = document.getElementById('cex-char-zupu');
+  if(czupu) czupu.textContent = s === 'simp' ? '族谱' : '族譜';
   refreshTreeNames();
   buildLineagePanelTree();
   const lf = document.getElementById('lineflow');
@@ -264,6 +266,8 @@ function applyI18n() {
   document.querySelectorAll('.cover-title, .topbar-title').forEach(el => el.textContent = zhTit);
   const ez = document.getElementById('cex-text-zupu'); if(ez) ez.textContent = t('cex_zupu');
   const ec = document.getElementById('cex-text-chi');  if(ec) ec.textContent = t('cex_chi');
+  const czupu = document.getElementById('cex-char-zupu');
+  if(czupu) czupu.textContent = script === 'simp' ? '族谱' : '族譜';
   const lol = document.getElementById('lineage-origin-link');
   if(lol) lol.innerHTML = `<span class="lol-pre">${t('lineage_origin_pre')}</span> <button class="lol-btn" onclick="startArticle('origen-apellido-xu')">${t('lineage_origin_btn')}</button>`;
   // Nav tabs

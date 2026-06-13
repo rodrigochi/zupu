@@ -42,12 +42,13 @@ html,body{height:100%;font-family:'Noto Serif TC','Songti SC','Georgia',serif;ba
 .cover-subtitle{font-size:clamp(13px,3vw,16px);color:var(--muted);text-align:center;letter-spacing:1px;margin-bottom:4px;font-family:'Segoe UI',sans-serif}
 .cover-desc{font-size:14px;color:var(--dim);text-align:center;margin-bottom:16px;font-family:'Segoe UI',sans-serif}
 /* Panel explicativo: zupu + Chi=Xu */
-.cover-explain{display:flex;margin:0 0 22px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--paper2)}
-.cover-explain-item{flex:1;padding:16px 12px 18px;text-align:center}
+.cover-explain{display:flex;margin:0 0 0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--paper2)}
+.cover-explain-item{flex:1;padding:16px 14px 18px;text-align:center}
 .cover-explain-sep{width:1px;background:var(--border);margin:14px 0;flex-shrink:0}
 .cex-char{font-size:26px;color:var(--red);letter-spacing:2px;line-height:1;margin-bottom:5px}
 .cex-pin{font-size:10.5px;color:var(--gold);font-family:'Segoe UI',sans-serif;letter-spacing:2px;margin-bottom:9px;font-style:italic}
 .cex-text{font-size:12px;color:var(--muted);font-family:'Segoe UI',sans-serif;line-height:1.7}
+.cover-divider-thin{height:1px;background:var(--border);margin:20px 0 20px}
 /* Aviso de construcción */
 .wip-banner{display:flex;align-items:center;gap:14px;background:var(--gold-bg);border:1.5px dashed var(--border2);border-radius:10px;padding:11px 15px;margin-bottom:20px}
 .wip-seal{writing-mode:vertical-rl;font-size:12px;color:var(--seal);font-family:'Noto Serif TC','Songti SC','STSong',serif;border:1.5px solid var(--seal);padding:5px 4px;border-radius:2px;letter-spacing:4px;opacity:.75;flex-shrink:0;line-height:1;text-align:center}
