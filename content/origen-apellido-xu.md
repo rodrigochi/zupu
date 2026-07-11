@@ -7,11 +7,13 @@
 </div>
 </div>
 
+Todo apellido carga una historia detrás, pero pocos guardan una tan larga como un apellido chino. Este artículo cuenta la del nuestro: la de Boyi, Ruomu y el antiguo Estado de Xu, hasta las migraciones hakka que terminaron, generaciones después, en Chile. Antes de llegar a esa historia hace falta explicar dos cosas que la hacen posible: qué es un *zupu*, y por qué los apellidos chinos no se parecen en nada a los nuestros.
+
 ## Qué es un *zupu*
 
 Un *zupu* (族譜) es una genealogía tradicional china: un libro del clan que registra, generación tras generación, los nombres, matrimonios, descendientes, migraciones y memorias principales de una familia. A diferencia de la genealogía occidental moderna, que muchas veces es una investigación personal hacia atrás, el *zupu* funciona como un registro colectivo mantenido hacia adelante: cada generación recibe la memoria de las anteriores y tiene la responsabilidad de continuarla.<sup class="ref-mark">1</sup>
 
-Por eso un *zupu* no es solo un árbol familiar. Es también una forma de identidad. Conserva la historia del apellido, recuerda los lugares de origen, ordena las generaciones, registra a las esposas por su clan de nacimiento y transmite una idea muy antigua: que una familia no empieza con nosotros. En la tradición confuciana, recordar a los antepasados era parte de la virtud filial, la *xiao* (孝). El *Lunyu* resume ese ideal con la frase **慎終追遠**: "cuidar con respeto el final de la vida y recordar a los antepasados lejanos".<sup class="ref-mark">2</sup>
+Por eso un *zupu* no es solo un árbol familiar. Es también una forma de identidad. Conserva la historia del apellido, recuerda los lugares de origen, ordena las generaciones, registra a las esposas por su clan de nacimiento y transmite una idea muy antigua: que una familia no empieza con nosotros. En la tradición confuciana, recordar a los antepasados era parte de la virtud filial, la *xiao* (孝). En el *Lunyu*, el discípulo Zengzi (曾子) resume ese ideal con la frase **慎終追遠**: "cuidar con respeto el final de la vida y recordar a los antepasados lejanos".<sup class="ref-mark">2</sup>
 
 Este sitio nace de esa misma idea. No pretende convertir una tradición mítica en una prueba biológica, ni reemplazar la investigación histórica por leyendas. Más bien busca hacer lo que siempre hicieron los *zupu*: conservar la memoria recibida, distinguir entre tradición y registro verificable, y transmitir a los descendientes la historia de quienes vinieron antes.
 
@@ -42,7 +44,7 @@ La tradición recogida por los genealogistas del clan va más atrás todavía: l
 
 Esto requiere contexto, porque puede sonar a invención. Prácticamente todos los grandes clanes chinos hacen algo parecido: conectan su origen con figuras antiguas, soberanos legendarios, sabios, reinos o héroes culturales. Es una convención del género genealógico, comparable a las casas nobles europeas que reclamaban descender de Carlomagno, de héroes troyanos o de personajes bíblicos. El ancestro mítico no es un dato biológico verificable; es una forma tradicional de declarar antigüedad, continuidad y prestigio.
 
-Los ejemplos son abundantes. El clan **Kong (孔)** — el apellido de Confucio — lleva un registro genealógico ininterrumpido de más de 2.500 años y 83 generaciones, reconocido por el Libro Guinness de los Récords como el árbol genealógico más largo del mundo, con casi dos millones de descendientes registrados. Los emperadores de la dinastía **Tang** reclamaban descender de **Laozi** (老子), el fundador del taoísmo, cuyo nombre personal era precisamente Li Er (李耳) — de ahí que el clan imperial se llamara la "Casa Li de Longxi". El clan **Liu (劉)**, apellido de los emperadores Han, trazaba su origen hasta el Emperador Yao, uno de los soberanos míticos de la antigüedad; el propio Liu Bei, el señor de la guerra de los Tres Reinos, justificaba su autoridad afirmando ser descendiente de los Han imperiales. En todos estos casos, la función es la misma: el ancestro ilustre no es necesariamente un dato genealógico verificable, sino una declaración pública de valores y legitimidad.
+Los ejemplos son abundantes. El clan **Kong (孔)** — el apellido de Confucio — lleva un registro genealógico ininterrumpido de más de 2.500 años y más de 80 generaciones; su edición más reciente, publicada en 2009, llega hasta la 83.ª generación y documenta a más de dos millones de descendientes. Ha sido citado por el Libro Guinness de los Récords como una de las genealogías familiares ininterrumpidas más extensas conocidas. Los emperadores de la dinastía **Tang** reclamaban descender de **Laozi** (老子), el fundador del taoísmo, cuyo nombre personal era precisamente Li Er (李耳) — de ahí que el clan imperial se llamara la "Casa Li de Longxi". El clan **Liu (劉)**, apellido de los emperadores Han, trazaba su origen hasta el Emperador Yao, uno de los soberanos míticos de la antigüedad; el propio Liu Bei, el señor de la guerra de los Tres Reinos, justificaba su autoridad afirmando ser descendiente de los Han imperiales. En todos estos casos, la función es la misma: el ancestro ilustre no es necesariamente un dato genealógico verificable, sino una declaración pública de valores y legitimidad.
 
 El propio *zupu* lo trata así. Después de nombrar a Boyi, reconoce que esa parte es demasiado antigua para reconstruirse con claridad, y que la genealogía verificable comienza mucho más tarde, con Nianjiulang (廿九郎), es decir, Xu Heling (徐鶴齡) de Shicheng, a finales de la dinastía Song. Esa distinción entre la tradición heredada y los registros que pueden seguirse con mayor seguridad es habitual en los *zupu* bien compilados.<sup class="ref-mark">5</sup>
 
@@ -71,16 +73,16 @@ La leyenda dice que su mérito fue cambiar de estrategia: en lugar de construir 
 
 ## El Estado de Xu
 
-El Estado de Xu no pertenece solo al mundo de la leyenda. Era un estado independiente de la etnia Huaiyi que controlaba gran parte del valle del río Huai, centrado en el norte de Jiangsu y Anhui. Ya existía durante la tardía dinastía Shang y fue sometido por la Zhou Occidental alrededor del 1039 a.C.<sup class="ref-mark">7</sup>
+El Estado de Xu no pertenece solo al mundo de la leyenda. Era un estado independiente de la etnia Huaiyi que controlaba gran parte del valle del río Huai, centrado en el norte de Jiangsu y Anhui. Ya existía durante la tardía dinastía Shang, y hacia el 1039 a.C. fue sometido por la Zhou Occidental. Esa sumisión no duró: un siglo después Xu recuperó su independencia y llegó a encabezar una confederación de treinta y seis estados Dongyi y Huaiyi que se extendió hasta el sur de Shandong.<sup class="ref-mark">7</sup>
 
 <figure class="art-figure">
 <img src="./assets/xu_state.svg" alt="El Estado de Xu y los reinos vecinos">
 <figcaption>El Estado de Xu y los reinos vecinos · Período de Primaveras y Otoños / Reinos Combatientes</figcaption>
 </figure>
 
-Su rey más recordado es **Xu Yanwang** (徐偃王), célebre por su gobierno benevolente. La tradición lo presenta como un soberano cuya autoridad moral era reconocida por numerosos estados vecinos, no por la fuerza de la conquista, sino por su virtud. Cuando el poder central de los Zhou marchó contra él, Yanwang habría decidido no resistir para evitar el sufrimiento de su pueblo. Según la leyenda, se retiró a las montañas y miles de personas lo siguieron. Su nombre, *Yan* (偃), puede asociarse con la idea de deponer o detener las armas, y por eso quedó como una figura moral de referencia para el apellido Xu.
+El rey que lideró esa confederación fue **Xu Yanwang** (徐偃王), célebre por su gobierno benevolente. La tradición lo presenta como un soberano cuya autoridad moral era reconocida por numerosos estados vecinos, no por la fuerza de la conquista, sino por su virtud — la misma autoridad que le permitió reunir a esos treinta y seis estados bajo su mando. Cuando el poder central de los Zhou marchó contra él, Yanwang habría decidido no resistir para evitar el sufrimiento de su pueblo. Según la leyenda, se retiró a las montañas y miles de personas lo siguieron. Su nombre, *Yan* (偃), puede asociarse con la idea de deponer o detener las armas, y por eso quedó como una figura moral de referencia para el apellido Xu.
 
-Sobre el final del reino, las tradiciones difieren, algo normal en relatos de esta antigüedad. La versión más citada dice que el Estado de Wu lo conquistó en el año **512 a.C.**<sup class="ref-mark">7</sup> En lo que coinciden las versiones genealógicas es en el desenlace simbólico: los descendientes del antiguo reino conservaron su nombre como apellido.
+Tras el retiro de Yanwang, el Estado de Xu siguió existiendo, ya disminuido, durante varios siglos más. Sobre su final las tradiciones difieren, algo normal en relatos de esta antigüedad; la versión más citada dice que el Estado de Wu lo conquistó en el año **512 a.C.**<sup class="ref-mark">7</sup> En lo que coinciden las versiones genealógicas es en el desenlace simbólico: los descendientes del antiguo reino conservaron su nombre como apellido.
 
 ---
 
@@ -95,7 +97,7 @@ En la poesía inicial de nuestro *zupu* aparece este verso:
 
 **Donghai** (東海) y **Nanzhou** (南洲) son dos referencias identitarias clásicas del clan Xu, y aparecen en templos, genealogías y nombres de sala de distintas ramas de China y de la diáspora.
 
-**Donghai** (東海, literalmente "mar del este") es el *junwang* del clan: el "lugar de origen del prestigio". Es un concepto sin equivalente exacto en Occidente. No indica necesariamente dónde vive una familia, sino de qué región histórica proviene el prestigio de su linaje. En el caso de los Xu, Donghai remite al territorio asociado al antiguo Estado de Xu — una región costera del este de China, en lo que hoy es el sur de Shandong — y a la memoria de sus descendientes. De ahí el dicho tradicional **天下徐氏出東海** — "los Xu de todo el mundo vienen de Donghai" — y el nombre de sala más común del clan: **Donghai Tang** (東海堂).
+**Donghai** (東海, literalmente "mar del este") es el *junwang* del clan: el "lugar de origen del prestigio". Es un concepto sin equivalente exacto en Occidente. No indica necesariamente dónde vive una familia, sino de qué región histórica proviene el prestigio de su linaje. El núcleo del antiguo Estado de Xu estaba más al sur, en el valle del Huai, pero su época de mayor extensión —la confederación de los treinta y seis estados reunida por Xu Yanwang— llegó hasta esa franja costera del sur de Shandong, y es ese horizonte más amplio el que la tradición asocia con Donghai y con la memoria de sus descendientes. De ahí el dicho tradicional **天下徐氏出東海** — "los Xu de todo el mundo vienen de Donghai" — y el nombre de sala más común del clan: **Donghai Tang** (東海堂).
 
 **Nanzhou** (南洲, literalmente "región del sur") remite a una persona concreta: **Xu Ruzi** (徐孺子), también llamado Xu Zhi (徐稚), sabio de la dinastía Han Oriental, recordado por su erudición, modestia y piedad filial. Era originario de Nanchang, en el sur de China, de ahí el apelativo "del sur". La tradición cuenta que el gobernador Chen Fan mantenía una cama reservada exclusivamente para sus visitas. Esa anécdota fue inmortalizada por Wang Bo en el *Prefacio al Pabellón del Rey Teng*, uno de los textos más citados de la literatura china.<sup class="ref-mark">8</sup> Su nombre pasó a la historia como **南州高士**, "el alto erudito de Nanzhou".
 
@@ -111,6 +113,8 @@ Por eso muchas familias Xu usan este par de inscripciones:
 <div class="art-inscription-tr">"La herencia de Nanzhou<br>perdura por generaciones"</div>
 </div>
 </div>
+
+Vale aclarar una diferencia de grafía. En las fuentes literarias sobre Xu Ruzi, el epíteto clásico se escribe con el carácter 州 (南州高士). En los pareados y genealogías del clan, en cambio, es habitual encontrarlo con el carácter homófono 洲 (南洲), como en el verso y las inscripciones de nuestro propio *zupu*. Parece tratarse de una variante fijada por la tradición oral y escrita de los pareados familiares, ligada al mismo prestigio moral de Xu Ruzi, más que de un error de transcripción.
 
 Una remite al reino de origen; la otra, al modelo de virtud. Que el mismo par aparezca en el *zupu* de una familia hakka de Guangdong cuyos descendientes hoy viven en Chile muestra hasta dónde llegó esta tradición.
 
@@ -142,21 +146,21 @@ Este sitio continúa esa segunda historia sin borrar la primera. Conserva la tra
 <div class="art-ref-item">
 <div class="art-ref-num">2</div>
 <div class="art-ref-body">
-<strong>Confucio.</strong> <em>Lunyu</em> [論語], cap. Xue'er [學而], §9: 慎終追遠，民德歸厚矣. Texto completo con traducción de James Legge en <a href="https://ctext.org/analects/xue-er" target="_blank">ctext.org</a>
+<strong>Zengzi</strong> [曾子], en <em>Lunyu</em> [論語], cap. Xue'er [學而], §9: 曾子曰：「慎終追遠，民德歸厚矣。」Texto completo con traducción de James Legge en <a href="https://ctext.org/analects/xue-er" target="_blank">ctext.org</a>
 </div>
 </div>
 
 <div class="art-ref-item">
 <div class="art-ref-num">3</div>
 <div class="art-ref-body">
-<strong>Zheng Qiao</strong> [鄭樵] (1161). <em>Tongzhi·Shizu Lüe</em> [通志·氏族略]. El pasaje sobre Ruomu y el origen del apellido Xu es citado en: Huang, S. (2025). <em>Reconstructing the Huang surname and its related lineages.</em> Modern Science Research Archive. <a href="https://modernsciences.org/research-archive/health-sciences/reconstructing-the-huang-surname-and-its-related-lineages-a-comprehensive-analysis-of-molecular-genetics-and-historical-genealogies/" target="_blank">modernsciences.org</a>
+<strong>Lin Bao</strong> [林寶] (812). <em>Yuanhe Xingzuan</em> [元和姓纂], juan 2, sección 九魚, entrada 徐: 顓頊之後，嬴姓伯益之子，夏時受封於徐...以國為氏. <a href="https://ctext.org/wiki.pl?chapter=61784&if=en&remap=gb" target="_blank">ctext.org</a> (edición basada en el Siku Quanshu). Como fuente secundaria, véase también: Zheng Qiao [鄭樵] (1161). <em>Tongzhi·Shizu Lüe</em> [通志·氏族略].
 </div>
 </div>
 
 <div class="art-ref-item">
 <div class="art-ref-num">4</div>
 <div class="art-ref-body">
-<strong>Ministerio de Seguridad Pública de la RPC</strong> (2020). <em>2019年全国姓名报告</em> [Informe nacional de nombres 2019]. Los rankings varían ligeramente según la fuente y el año del censo. <a href="https://baike.baidu.com/en/item/Chinese%20Surname%20Population%20Ranking/1450594" target="_blank">baike.baidu.com</a>
+<strong>Ministerio de Seguridad Pública de la RPC</strong> (2020). <em>2019年全国姓名报告</em> [Informe nacional de nombres 2019]. <a href="https://www.mps.gov.cn/n2254098/n4904352/c6874655/content.html" target="_blank">mps.gov.cn</a>. Los rankings varían ligeramente según la fuente y el año del censo.
 </div>
 </div>
 

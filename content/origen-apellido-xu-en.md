@@ -7,11 +7,13 @@
 </div>
 </div>
 
+Every surname carries a story, but few carry one as long as a Chinese surname. This article tells ours: the story of Boyi, Ruomu and the ancient State of Xu, down to the Hakka migrations that ended, generations later, in Chile. Before getting to that story, two things need explaining first: what a *zupu* is, and why Chinese surnames work nothing like ours.
+
 ## What is a *zupu*?
 
 A *zupu* (族譜) is a traditional Chinese genealogy: a clan book that records, generation after generation, the names, marriages, descendants, migrations and principal memories of a family. Unlike modern Western genealogy, which is often a personal search backwards into the past, the *zupu* functions as a collective record maintained forwards: each generation receives the memory of those before it and bears the responsibility of continuing it.<sup class="ref-mark">1</sup>
 
-A *zupu* is therefore more than a family tree. It is also a form of identity. It preserves the history of the surname, recalls the places of origin, orders the generations, records wives by their birth clan, and transmits a very ancient idea: that a family does not begin with us. In the Confucian tradition, honouring one's ancestors was part of filial virtue, *xiao* (孝). The *Lunyu* captures that ideal in the phrase **慎終追遠**: "attend carefully to the end of life and remember those ancestors who are distant".<sup class="ref-mark">2</sup>
+A *zupu* is therefore more than a family tree. It is also a form of identity. It preserves the history of the surname, recalls the places of origin, orders the generations, records wives by their birth clan, and transmits a very ancient idea: that a family does not begin with us. In the Confucian tradition, honouring one's ancestors was part of filial virtue, *xiao* (孝). In the *Lunyu*, the disciple Zengzi (曾子) captures that ideal in the phrase **慎終追遠**: "attend carefully to the end of life and remember those ancestors who are distant".<sup class="ref-mark">2</sup>
 
 This site is born from that same idea. It does not seek to turn a mythical tradition into biological proof, nor to replace historical inquiry with legend. Rather, it tries to do what *zupu* have always done: preserve the received memory, distinguish between tradition and verifiable record, and pass down to descendants the story of those who came before.
 
@@ -42,7 +44,7 @@ The tradition recorded by the clan's genealogists reaches even further back: the
 
 This requires context, because it may sound like invention. Virtually all the great Chinese clans do something similar: they connect their origin to ancient figures, legendary rulers, sages, kingdoms or cultural heroes. It is a convention of the genealogical genre, comparable to European noble houses that claimed descent from Charlemagne, Trojan heroes or biblical figures. The mythical ancestor is not a verifiable biological fact; it is a traditional way of declaring antiquity, continuity and prestige.
 
-The examples are abundant. The **Kong (孔)** clan — Confucius's surname — holds an unbroken genealogical record spanning more than 2,500 years and 83 generations, recognised by the Guinness Book of Records as the longest family tree in the world, with nearly two million registered descendants. The emperors of the **Tang** dynasty claimed descent from **Laozi** (老子), the founder of Taoism, whose personal name was Li Er (李耳) — hence the imperial clan was called the "House of Li of Longxi". The **Liu (劉)** clan, the surname of the Han emperors, traced its origin to Emperor Yao, one of the mythical rulers of antiquity; Liu Bei, the warlord of the Three Kingdoms period, justified his authority by claiming descent from the imperial Han. In all these cases, the function is the same: the illustrious ancestor is not necessarily a verifiable genealogical fact, but a public declaration of values and legitimacy.
+The examples are abundant. The **Kong (孔)** clan — Confucius's surname — holds an unbroken genealogical record spanning more than 2,500 years and more than 80 generations; its most recent edition, published in 2009, reaches the 83rd generation and documents more than two million descendants. It has been cited by the Guinness Book of Records as one of the longest unbroken family genealogies known. The emperors of the **Tang** dynasty claimed descent from **Laozi** (老子), the founder of Taoism, whose personal name was Li Er (李耳) — hence the imperial clan was called the "House of Li of Longxi". The **Liu (劉)** clan, the surname of the Han emperors, traced its origin to Emperor Yao, one of the mythical rulers of antiquity; Liu Bei, the warlord of the Three Kingdoms period, justified his authority by claiming descent from the imperial Han. In all these cases, the function is the same: the illustrious ancestor is not necessarily a verifiable genealogical fact, but a public declaration of values and legitimacy.
 
 The *zupu* itself treats it as such. After naming Boyi, it acknowledges that part of the record is too ancient to reconstruct with clarity, and that the verifiable genealogy begins much later, with Nianjiulang (廿九郎) — that is, Xu Heling (徐鶴齡) of Shicheng — at the end of the Song dynasty. That distinction between inherited tradition and records that can be followed with greater confidence is typical of well-compiled *zupu*.<sup class="ref-mark">5</sup>
 
@@ -71,16 +73,16 @@ Legend says his achievement lay in changing strategy: instead of building dikes 
 
 ## The State of Xu
 
-The State of Xu does not belong only to the world of legend. It was an independent state of the Huaiyi people that controlled much of the Huai River valley, centred in what is now northern Jiangsu and Anhui. It already existed during the late Shang dynasty and was subjugated by the Western Zhou around 1039 BCE.<sup class="ref-mark">7</sup>
+The State of Xu does not belong only to the world of legend. It was an independent state of the Huaiyi people that controlled much of the Huai River valley, centred in what is now northern Jiangsu and Anhui. It already existed during the late Shang dynasty, and around 1039 BCE it was subjugated by the Western Zhou. That subjugation did not last: a century later Xu regained its independence and came to lead a confederation of thirty-six Dongyi and Huaiyi states that extended as far as southern Shandong.<sup class="ref-mark">7</sup>
 
 <figure class="art-figure">
 <img src="./assets/xu_state.svg" alt="The State of Xu and neighbouring kingdoms">
 <figcaption>The State of Xu and neighbouring kingdoms · Spring and Autumn / Warring States period</figcaption>
 </figure>
 
-Its most remembered king is **Xu Yanwang** (徐偃王), celebrated for his benevolent rule. Tradition presents him as a sovereign whose moral authority was recognised by numerous neighbouring states, not by the force of conquest but by his virtue. When the Zhou central power marched against him, Yanwang chose not to resist in order to spare his people's suffering. According to legend, he withdrew to the mountains and thousands of people followed him. His name, *Yan* (偃), can be associated with the idea of laying down arms, and for that reason he remained a moral reference figure for the Xu surname.
+The king who led that confederation was **Xu Yanwang** (徐偃王), celebrated for his benevolent rule. Tradition presents him as a sovereign whose moral authority was recognised by numerous neighbouring states, not by the force of conquest but by his virtue — the same authority that let him bring those thirty-six states under his leadership. When the Zhou central power marched against him, Yanwang chose not to resist in order to spare his people's suffering. According to legend, he withdrew to the mountains and thousands of people followed him. His name, *Yan* (偃), can be associated with the idea of laying down arms, and for that reason he remained a moral reference figure for the Xu surname.
 
-On the end of the kingdom, traditions differ — normal for accounts of this antiquity. The most cited version says the State of Wu conquered it in **512 BCE**.<sup class="ref-mark">7</sup> What the genealogical accounts agree on is the symbolic outcome: the descendants of the ancient kingdom kept its name as their surname.
+After Yanwang's withdrawal, the State of Xu lived on, diminished, for several more centuries. On the end of the kingdom, traditions differ — normal for accounts of this antiquity; the most cited version says the State of Wu conquered it in **512 BCE**.<sup class="ref-mark">7</sup> What the genealogical accounts agree on is the symbolic outcome: the descendants of the ancient kingdom kept its name as their surname.
 
 ---
 
@@ -95,7 +97,7 @@ In the opening poetry of our *zupu* appears this verse:
 
 **Donghai** (東海) and **Nanzhou** (南洲) are two classic identity markers of the Xu clan, appearing in temples, genealogies and hall names of different branches across China and the diaspora.
 
-**Donghai** (東海, literally "eastern sea") is the clan's *junwang*: the "place of lineage prestige". It is a concept with no exact Western equivalent. It does not necessarily indicate where a family lives, but rather from which historical region the prestige of its lineage derives. For the Xu, Donghai points to the territory associated with the ancient State of Xu — a coastal region in eastern China, in what is today southern Shandong — and to the memory of its descendants. Hence the traditional saying **天下徐氏出東海** — "all the Xu of the world come from Donghai" — and the clan's most common hall name: **Donghai Tang** (東海堂).
+**Donghai** (東海, literally "eastern sea") is the clan's *junwang*: the "place of lineage prestige". It is a concept with no exact Western equivalent. It does not necessarily indicate where a family lives, but rather from which historical region the prestige of its lineage derives. The core of the ancient State of Xu lay further south, in the Huai River valley, but at its widest extent — the confederation of thirty-six states brought together by Xu Yanwang — it reached that coastal stretch of southern Shandong, and it is that broader horizon which tradition associates with Donghai and with the memory of its descendants. Hence the traditional saying **天下徐氏出東海** — "all the Xu of the world come from Donghai" — and the clan's most common hall name: **Donghai Tang** (東海堂).
 
 **Nanzhou** (南洲, literally "southern region") refers to a specific person: **Xu Ruzi** (徐孺子), also known as Xu Zhi (徐稚), a scholar of the Eastern Han dynasty remembered for his learning, modesty and filial piety. He was from Nanchang, in southern China, hence the epithet "of the south". Tradition recounts that the governor Chen Fan kept a bed reserved exclusively for his visits. That anecdote was immortalised by Wang Bo in the *Preface to the Pavilion of Prince Teng*, one of the most celebrated texts in Chinese literature.<sup class="ref-mark">8</sup> His name entered history as **南州高士**, "the great scholar of Nanzhou".
 
@@ -111,6 +113,8 @@ Hence many Xu families use this pair of inscriptions:
 <div class="art-inscription-tr">"The legacy of Nanzhou<br>endures through generations"</div>
 </div>
 </div>
+
+One point of spelling is worth clarifying. In the literary sources about Xu Ruzi, the classical epithet is written with the character 州 (南州高士). In the clan's couplets and genealogies, however, it is common to find it with the homophonous character 洲 (南洲), as in the verse and inscriptions of our own *zupu*. This looks like a variant fixed by the oral and written tradition of the family couplets, tied to the same moral prestige of Xu Ruzi, rather than a transcription error.
 
 One points to the kingdom of origin; the other, to the model of virtue. That this same pair appears in the *zupu* of a Hakka family from Guangdong whose descendants today live in Chile shows how far this tradition has reached.
 
@@ -142,21 +146,21 @@ This site continues that second history without erasing the first. It preserves 
 <div class="art-ref-item">
 <div class="art-ref-num">2</div>
 <div class="art-ref-body">
-<strong>Confucius.</strong> <em>Lunyu</em> [論語], ch. Xue'er [學而], §9: 慎終追遠，民德歸厚矣. Full text with James Legge's translation at <a href="https://ctext.org/analects/xue-er" target="_blank">ctext.org</a>
+<strong>Zengzi</strong> [曾子], in <em>Lunyu</em> [論語], ch. Xue'er [學而], §9: 曾子曰：「慎終追遠，民德歸厚矣。」Full text with James Legge's translation at <a href="https://ctext.org/analects/xue-er" target="_blank">ctext.org</a>
 </div>
 </div>
 
 <div class="art-ref-item">
 <div class="art-ref-num">3</div>
 <div class="art-ref-body">
-<strong>Zheng Qiao</strong> [鄭樵] (1161). <em>Tongzhi·Shizu Lüe</em> [通志·氏族略]. The passage on Ruomu and the origin of the Xu surname is cited in: Huang, S. (2025). <em>Reconstructing the Huang surname and its related lineages.</em> Modern Science Research Archive. <a href="https://modernsciences.org/research-archive/health-sciences/reconstructing-the-huang-surname-and-its-related-lineages-a-comprehensive-analysis-of-molecular-genetics-and-historical-genealogies/" target="_blank">modernsciences.org</a>
+<strong>Lin Bao</strong> [林寶] (812). <em>Yuanhe Xingzuan</em> [元和姓纂], juan 2, section 九魚, entry 徐: 顓頊之後，嬴姓伯益之子，夏時受封於徐...以國為氏. <a href="https://ctext.org/wiki.pl?chapter=61784&if=en&remap=gb" target="_blank">ctext.org</a> (edition based on the Siku Quanshu). As a secondary source, see also: Zheng Qiao [鄭樵] (1161). <em>Tongzhi·Shizu Lüe</em> [通志·氏族略].
 </div>
 </div>
 
 <div class="art-ref-item">
 <div class="art-ref-num">4</div>
 <div class="art-ref-body">
-<strong>Ministry of Public Security of the PRC</strong> (2020). <em>2019年全国姓名报告</em> [2019 National Name Report]. Rankings vary slightly depending on source and census year. <a href="https://baike.baidu.com/en/item/Chinese%20Surname%20Population%20Ranking/1450594" target="_blank">baike.baidu.com</a>
+<strong>Ministry of Public Security of the PRC</strong> (2020). <em>2019年全国姓名报告</em> [2019 National Name Report]. <a href="https://www.mps.gov.cn/n2254098/n4904352/c6874655/content.html" target="_blank">mps.gov.cn</a>. Rankings vary slightly depending on source and census year.
 </div>
 </div>
 
