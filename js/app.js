@@ -60,6 +60,7 @@ const I18N = {
     sec_burial:'Entierro', sec_notes:'Notas', sec_source:'Fuente y confianza',
     sec_biography:'Biografía', sec_name_meaning:'Significado del nombre',
     f_alias:'Alias / 字', f_branch:'Rama', f_father:'Padre', f_spouses:'Esposas',
+    f_adoptive:'adoptivo (过继)', f_bio_father:'Padre biológico',
     f_civil:'Nombre civil', f_hakka:'Hakka Meixian',
     f_children:'Hijos', f_origin:'Origen', f_place:'Residencia', f_migration:'Migración',
     f_birth:'Nacimiento', f_death:'Fallecimiento',
@@ -99,6 +100,7 @@ const I18N = {
     sec_burial:'Burial', sec_notes:'Notes', sec_source:'Source & confidence',
     sec_biography:'Biography', sec_name_meaning:'Name meaning',
     f_alias:'Alias / 字', f_branch:'Branch', f_father:'Father', f_spouses:'Wife/wives',
+    f_adoptive:'adoptive (过继)', f_bio_father:'Biological father',
     f_civil:'Civil name', f_hakka:'Hakka Meixian',
     f_children:'Children', f_origin:'Origin', f_place:'Residence', f_migration:'Migration',
     f_birth:'Birth', f_death:'Death',
@@ -191,7 +193,10 @@ const BIO_TRAD_TO_SIMP = {
   '纘':'缵','義':'义','興':'兴','華':'华','訓':'训','評':'评','誨':'诲',
   '諒':'谅','謝':'谢','議':'议','貞':'贞','貴':'贵','賢':'贤','賴':'赖',
   '連':'连','達':'达','鍾':'钟','長':'长','開':'开','閩':'闽','陽':'阳',
-  '顯':'显','鶴':'鹤','齡':'龄','黃':'黄','軍':'军'
+  '顯':'显','鶴':'鹤','齡':'龄','黃':'黄','軍':'军',
+  '彥':'彦','煥':'焕','鄭':'郑','閏':'闰','陳':'陈','輝':'辉','禎':'祯','譽':'誉',
+  '鷹':'鹰','瓊':'琼','鑾':'銮','鳳':'凤','寬':'宽','寧':'宁','瑋':'玮','蘭':'兰',
+  '錦':'锦','劉':'刘','趙':'赵','馮':'冯','鄧':'邓','葉':'叶','蕭':'萧','燦':'灿'
 };
 function convertBioScript(text) {
   if(script !== 'simp' || !text) return text;
@@ -692,9 +697,12 @@ function buildPanelHTML(p) {
 
   // Familia
   const father=p.pid?byId[p.pid]:null;
+  const bioFather=p.pid_biologico?byId[p.pid_biologico]:null;
   const children=(kids[p.id]||[]).map(cid=>byId[cid]).filter(Boolean);
   h+=`<div class="pp-section"><div class="pp-section-title">${t('sec_family')}</div>`;
-  if(father) h+=`<div class="pp-field"><label>${t('f_father')}</label><p><span class="nav-chip" onclick="openPerson('${father.id}')"><span class="zh">${zhFull(father)}</span></span></p></div>`;
+  if(father) h+=`<div class="pp-field"><label>${t('f_father')}${bioFather?` · ${t('f_adoptive')}`:''}</label><p><span class="nav-chip" onclick="openPerson('${father.id}')"><span class="zh">${zhFull(father)}</span></span></p></div>`;
+  // 过继: el árbol cuelga del padre adoptivo; el biológico se anota aparte, sin doble línea
+  if(bioFather) h+=`<div class="pp-field"><label>${t('f_bio_father')}</label><p><span class="nav-chip" onclick="openPerson('${bioFather.id}')"><span class="zh">${zhFull(bioFather)}</span></span></p></div>`;
   if(p.spouses&&p.spouses.length){
     h+=`<div class="pp-field"><label>${t('f_spouses')}</label>`;
     p.spouses.forEach(s=>{const ps=parseSpouse(s);h+=`<div class="spouse-box"><span class="sp-zh">${escHtml(ps.zh||ps.raw)}</span>${ps.clan?`<span class="sp-clan"> · ${escHtml(ps.clan)}</span>`:''}${ps.type?`<br><span class="sp-clan">${escHtml(ps.type)}</span>`:''}</div>`;});
