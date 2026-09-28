@@ -36,7 +36,7 @@ const PROV_LABELS_EN = {
 };
 const I18N = {
   es:{
-    cover_subtitle:'Árbol genealógico de la familia Xu / Chi',
+    cover_subtitle:'Árbol genealógico de la familia Chi (徐/Xu)',
     cover_desc:'De Changle / Wuhua a Heshan y Chile',
     sec_tree:'Explorar el árbol familiar', sec_articles:'Escritos e historias',
     btn_lineage:'Ruta familiar', btn_lineage_desc:'Línea directa a Chile',
@@ -76,7 +76,7 @@ const I18N = {
     mig_people:'pers.',
   },
   en:{
-    cover_subtitle:'Family tree of the Xu / Chi family',
+    cover_subtitle:'The Chi (徐/Xu) family tree',
     cover_desc:'From Changle / Wuhua to Heshan and Chile',
     sec_tree:'Explore the family tree', sec_articles:'Stories & writings',
     btn_lineage:'Family lineage', btn_lineage_desc:'Direct line to Chile',
