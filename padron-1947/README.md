@@ -1,0 +1,76 @@
+# Padrón 1947 · Los electores chinos de Chile
+
+Página estática e interactiva con el padrón electoral de 1947 de ciudadanos chinos en Chile: mapas de origen (delta del río de las Perlas) y de residencia en Chile, cruce condado × ciudad, edades, oficios, apellidos con sus grafías en castellano y su pronunciación en mandarín, cantonés y hakka.
+
+No necesita servidor propio ni compilación: son archivos HTML, JS y JSON que GitHub Pages sirve tal cual.
+
+**Privacidad:** esta versión no contiene nombres completos. Cada inscripción se identifica solo por su apellido (primer carácter del nombre). Tampoco incluye folio ni archivo de escaneo.
+
+## Contenido
+
+```
+padron-1947/
+├── index.html              página completa (estilos incluidos)
+├── js/
+│   ├── runtime.js          carga los datos, calcula y redibuja (sin dependencias salvo D3)
+│   ├── calcs.js            cálculos (totales, cruces, edades, oficios, apellidos)
+│   ├── comun.js            utilidades, filtros, cifras y tablas
+│   ├── mapas.js            mapas (ruta, Chile, delta, China)
+│   ├── graficos.js         barras, matriz, histograma, mosaico de apellidos
+│   └── grafias.js          tabla de apellidos: grafías en Chile y pronunciaciones
+├── data/
+│   ├── padron.json         1197 inscripciones, sin nombres (formato columnas + filas)
+│   ├── apellidos_grafias.json   116 apellidos con simplificado, pinyin, jyutping, hakka y grafías chilenas
+│   └── mapa_*.json         límites simplificados (GeoJSON)
+├── vendor/d3.min.js        D3 v7 (licencia ISC en vendor/d3-LICENSE.txt)
+└── fuentes/                scripts en Python que generaron los datos (referencia)
+```
+
+## Instalación en el sitio
+
+El sitio es `https://rodrigochi.github.io/zupu/` (repositorio `rodrigochi/zupu`). Es una aplicación de una sola página que carga `data/zupu.json` y navega con el hash (`#article=…`).
+
+1. Copiar la carpeta `padron-1947/` completa en la raíz del sitio, al mismo nivel que `index.html` y `data/` del sitio. Debe quedar accesible en `https://rodrigochi.github.io/zupu/padron-1947/`.
+   - No mezclar su carpeta `data/` con la `data/` del sitio: la página usa rutas relativas a su propia carpeta.
+   - Si el sitio se publica desde una carpeta distinta de la raíz (por ejemplo `docs/`), copiarla allí.
+2. Enlazarla desde el artículo «Migración china a Chile» (`#article=migracion-china-chile-1980-1930`). Dos opciones, según cómo estén escritos los artículos (revisar dónde se definen; probablemente en `data/zupu.json` o en archivos Markdown/HTML que el sitio carga):
+   - **Enlace** (lo más simple): agregar al final del artículo un párrafo como
+     «Epílogo: la colectividad en 1947 — [ver el padrón electoral interactivo](padron-1947/)».
+     También se puede agregar una tarjeta en «Escritos e historias».
+   - **Incrustada** en el artículo con un iframe que ajusta su altura solo:
+     ```html
+     <iframe id="padron-1947" src="padron-1947/?incrustada=1"
+             title="Los electores chinos de Chile, 1947"
+             style="width:100%; border:0; min-height:900px" loading="lazy"></iframe>
+     <script>
+       window.addEventListener('message', (e) => {
+         const f = document.getElementById('padron-1947');
+         if (f && e.source === f.contentWindow && e.data && e.data.tipo === 'padron-1947-altura') {
+           f.style.height = e.data.altura + 'px';
+         }
+       });
+     </script>
+     ```
+     Con `?incrustada=1` (o dentro de cualquier iframe) la página oculta su navegación propia. Si el artículo se arma desde Markdown y el renderizador elimina `<iframe>` o `<script>`, usar la opción de enlace o añadir el iframe en la plantilla del artículo.
+3. Los enlaces «← Migración china a Chile» y «Zupu» de la parte superior apuntan a `../#article=migracion-china-chile-1980-1930` y `../`. Si la carpeta queda en otra ruta, ajustarlos en `index.html`.
+4. Colores: la paleta está en las variables CSS al comienzo de `index.html` (`--color-bg: #faf6f0`, etc.). Ajustarlas si el sitio usa otros tonos o tipografías.
+5. Probar localmente con un servidor (no abriendo el archivo con doble clic, porque el navegador bloquea la carga de JSON desde `file://`):
+   ```
+   cd zupu && python3 -m http.server 8000
+   # abrir http://localhost:8000/padron-1947/
+   ```
+
+## Enlaces con filtro
+
+La página guarda los filtros en la dirección, por ejemplo:
+`padron-1947/#lista=Iquique&condado=Heshan`
+
+## Fuentes y créditos
+
+- Padrón: transcripción del expediente 033-020104-0091 (elección de representantes a la Asamblea Nacional de la República de China, distrito 9 de ciudadanos en el extranjero, noviembre de 1947).
+- Grafías castellanas de los apellidos: «Cuadro genealógico de la colectividad china», en Elsa Kam-Ching Zambrano, *Historia de la colectividad china en Chile*, pp. 54–57.
+- Hakka (dialecto sixian): diccionario hakka del Ministerio de Educación de Taiwán, datos abiertos de g0v/moedict-data-hakka. Mandarín: pypinyin. Cantonés: pycantonese (jyutping). Simplificado: OpenCC.
+- Mapas: límites de China (DataV/Aliyun, vía lyhmyd1211/GeoMapData_CN), regiones de Chile (caracena/chile-geojson), continentes y países vecinos (Natural Earth, vía world-atlas). Conviene revisar las condiciones de uso de cada fuente antes de publicar.
+- Gráficos: D3 v7 (ISC).
+
+Los criterios de normalización (sedes, condados de 1947, oficios, apellidos) están en las notas al pie de la página.

@@ -82,7 +82,7 @@ html,body{height:100%;font-family:'Noto Serif TC','Songti SC','Georgia',serif;ba
 /* Sección de artículos */
 .cover-articles-title{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;text-align:center;margin-bottom:14px;font-family:'Segoe UI',sans-serif}
 .cover-articles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
-.abtn{padding:14px 12px;border-radius:12px;border:2px solid var(--border);background:var(--paper2);cursor:pointer;text-align:left;transition:all .18s;display:flex;align-items:flex-start;gap:10px}
+.abtn{text-decoration:none;color:inherit;padding:14px 12px;border-radius:12px;border:2px solid var(--border);background:var(--paper2);cursor:pointer;text-align:left;transition:all .18s;display:flex;align-items:flex-start;gap:10px}
 .abtn:hover{border-color:var(--gold);background:var(--gold-bg);transform:translateY(-2px);box-shadow:var(--shadow)}
 .abtn .aicon{font-size:20px;flex-shrink:0;margin-top:2px}
 .abtn .atxt .albl{font-size:12px;font-weight:600;color:var(--ink);font-family:'Segoe UI',sans-serif;line-height:1.4}

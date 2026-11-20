@@ -30,6 +30,18 @@ Los hakka de la región de Guǎngdōng fueron especialmente activos en la emigra
 
 徐兆璋 (Xú Zhàozhāng), nuestro bisabuelo, llegó a Chile desde Héshān (鶴山) a principios del siglo XX. Aquí irán notas sobre su historia específica.
 
+## Epílogo: la colectividad en 1947
+
+En noviembre de 1947, los ciudadanos chinos residentes en Chile se inscribieron para votar en la elección de la Asamblea Nacional de la República de China. El padrón (expediente 033-020104-0091) reúne **1197 inscripciones** repartidas en listas locales de Arica a Santiago, y retrata a la generación que había llegado en las décadas anteriores:
+
+- Venían casi todos de un puñado de condados cantoneses del delta del río de las Perlas: **Zhongshan** (中山) aporta el 40 % y **Heshan** (鶴山), la tierra de nuestra familia, el 23 %, seguido de Dongguan (東莞).
+- Era una comunidad madura: la edad mediana era de **52 años**.
+- Tres de cada cuatro se declaraban **comerciantes** (商).
+- En el padrón aparecen cinco inscritos con el apellido **徐**, tres de ellos de Heshan, en Santiago e Iquique.
+
+> **[Ver el padrón electoral interactivo de 1947 →](padron-1947/)**
+> Mapas de origen y de residencia, edades, oficios y apellidos, con sus grafías en Chile y su pronunciación en mandarín, cantonés y hakka. La página no publica nombres completos: cada inscripción se identifica solo por su apellido.
+
 ## Fuentes y referencias
 
 Aquí irán las fuentes consultadas: registros históricos, investigaciones académicas y documentos familiares.

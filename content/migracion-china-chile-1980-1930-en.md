@@ -30,6 +30,18 @@ The Hakka of the Guǎngdōng region were especially active in emigrating to Lati
 
 徐兆璋 (Xú Zhàozhāng), our great-grandfather, arrived in Chile from Héshān (鶴山) in the early twentieth century. Notes on his specific story — to come.
 
+## Epilogue: the community in 1947
+
+In November 1947, Chinese citizens living in Chile registered to vote in the election of the National Assembly of the Republic of China. The electoral roll (file 033-020104-0091) holds **1,197 entries** across local lists from Arica to Santiago, and portrays the generation that had arrived in the preceding decades:
+
+- Almost all came from a handful of Cantonese counties in the Pearl River Delta: **Zhongshan** (中山) accounts for 40% and **Heshan** (鶴山), our family's homeland, for 23%, followed by Dongguan (東莞).
+- It was a mature community: the median age was **52**.
+- Three in four declared themselves **merchants** (商).
+- Five people on the roll carry the surname **徐**, three of them from Heshan, in Santiago and Iquique.
+
+> **[Explore the interactive 1947 electoral roll →](padron-1947/)** *(in Spanish)*
+> Maps of origin and residence in Chile, ages, occupations and surnames, with their Chilean spellings and their Mandarin, Cantonese and Hakka pronunciations. The page publishes no full names: each entry is identified only by surname.
+
 ## Sources and references
 
 Sources consulted: historical records, academic research and family documents — to come.

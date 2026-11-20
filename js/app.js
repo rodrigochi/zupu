@@ -381,6 +381,15 @@ function buildCoverArticles() {
   container.innerHTML = ARTICLES.map(a => {
     const lbl  = lang==='en' ? (a.buttonLabel_en||a.title_en||a.title) : (a.buttonLabel||a.title);
     const desc = lang==='en' ? (a.desc_en||a.subtitle_en||a.subtitle) : a.subtitle;
+    // Entradas con "url": páginas propias (p. ej. padron-1947/), no artículos Markdown
+    if (a.url) return `
+    <a class="abtn" href="${escHtml(a.url)}">
+      <div class="aicon">${a.icon||'📄'}</div>
+      <div class="atxt">
+        <div class="albl">${escHtml(lbl)}</div>
+        <div class="adesc">${escHtml(desc||'')}</div>
+      </div>
+    </a>`;
     return `
     <button class="abtn" onclick="startArticle('${a.id}')">
       <div class="aicon">${a.icon||'📄'}</div>
@@ -815,6 +824,7 @@ let currentArticleId = null;
 async function showArticle(id) {
   const art = ARTICLES && ARTICLES.find(a=>a.id===id);
   if(!art){showToast('Artículo no encontrado'); return;}
+  if(art.url){location.href=art.url; return;}
 
   view = 'article';
   currentArticleId = id;

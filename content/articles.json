@@ -53,6 +53,18 @@
     "tags": ["China", "Chile", "migración", "historia"]
   },
   {
+    "id": "padron-1947",
+    "url": "padron-1947/",
+    "title": "Los electores chinos de Chile, 1947",
+    "title_en": "The Chinese voters of Chile, 1947",
+    "subtitle": "Padrón electoral interactivo: orígenes, ciudades, oficios y apellidos",
+    "subtitle_en": "Interactive electoral roll: origins, cities, trades and surnames (in Spanish)",
+    "buttonLabel": "Padrón electoral de 1947",
+    "buttonLabel_en": "1947 electoral roll",
+    "icon": "🗳️",
+    "tags": ["padrón", "1947", "Chile", "apellidos"]
+  },
+  {
     "id": "los-chi-en-chile",
     "title": "Los Chi en Chile",
     "title_en": "The Chi in Chile",
