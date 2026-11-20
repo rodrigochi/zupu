@@ -74,3 +74,10 @@ La página guarda los filtros en la dirección, por ejemplo:
 - Gráficos: D3 v7 (ISC).
 
 Los criterios de normalización (sedes, condados de 1947, oficios, apellidos) están en las notas al pie de la página.
+
+## Idiomas y escritura (versión 2)
+
+- **Español / inglés y tradicional / simplificado**, con los mismos botones de bandera que Zupu. La preferencia se guarda en `localStorage` con las mismas claves que el resto del sitio (`zupu-lang`, `zupu-script`), así que se comparte en las dos direcciones. También se puede forzar con la dirección: `?lang=en&zh=simp`.
+- Textos largos: dos versiones en `index.html` con `data-l="es"` y `data-l="en"`. Textos cortos: atributo `data-en="…"`. Textos de los gráficos: `L('español', 'English')` y `V(valor)` para los valores de los datos (en `js/i18n.js`).
+- Simplificado: `js/i18n.js` trae la tabla de pares tradicional→simplificado de todos los caracteres de la página, generada con OpenCC (`t2s`); los apellidos usan la columna `simplificado` de `apellidos_grafias.json`. Lo marcado con `data-trad` queda en tradicional (notas sobre caracteres manuscritos, columna «Tradicional»). Si se agregan caracteres nuevos, hay que regenerar la tabla.
+- Mosaico de apellidos con selector de pronunciación: mandarín, cantonés, hakka o grafía chilena (`?pron=hakka` para enlazarlo directo). Un clic en un apellido abre sus grafías.

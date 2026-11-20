@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-zh="trad">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Los electores chinos de Chile, 1947 · Padrón electoral</title>
+<title data-en="The Chinese voters of Chile, 1947 · 族譜 徐氏">Los electores chinos de Chile, 1947 · 族譜 徐氏</title>
 <meta name="description" content="Visualización interactiva del padrón de 1947 de ciudadanos chinos en Chile: de dónde venían, dónde vivían, sus edades, oficios y apellidos.">
 <meta name="theme-color" content="#faf6f0">
 <meta property="og:title" content="Los electores chinos de Chile, 1947 · 族譜 徐氏">
@@ -16,81 +16,136 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<script>
+  // Antes de pintar: idioma y escritura guardados por Zupu, y modo incrustado.
+  (function () {
+    var h = document.documentElement, q = new URLSearchParams(location.search), l = 'es', z = 'trad';
+    try { l = localStorage.getItem('zupu-lang') || l; z = localStorage.getItem('zupu-script') || z; } catch (e) {}
+    l = q.get('lang') || l; z = q.get('zh') || z;
+    h.lang = l === 'en' ? 'en' : 'es'; h.setAttribute('data-zh', z === 'simp' ? 'simp' : 'trad');
+    if (window.parent !== window || /[?&]incrustada=1/.test(location.search)) h.classList.add('incrustada');
+  })();
+</script>
 <style>
 :root {
   color-scheme: light;
-  /* Paleta de Zupu (../css/style.css): papel, tinta, rojo, oro y azul */
+  /* Paleta de Zupu (../css/style.css) */
   --color-bg: #faf6f0;          /* --paper */
   --color-panel: #fff9f2;       /* --paper2 */
+  --color-paper3: #f5ede0;      /* --paper3 */
   --color-fg: #1a0a00;          /* --ink */
+  --color-fg2: #3d2010;         /* --ink2 */
   --color-fg-muted: #6b5744;    /* --muted */
+  --color-dim: #a08060;         /* --dim */
   --color-border-line: #e8d8c0; /* --border */
+  --color-border2: #d4c0a0;     /* --border2 */
   --color-accent: #8b1a1a;      /* --red */
+  --color-accent2: #b52020;     /* --red2 */
+  --color-red-bg: #fdf0f0;      /* --red-bg */
+  --color-seal: #cc2020;        /* --seal */
   --color-gold: #c8941a;        /* --gold */
   --color-gold2: #e8b830;       /* --gold2 */
-  --serie-1: #8b1a1a;           /* --red: color principal de los datos; Zhongshan */
-  --serie-2: #c8941a;           /* --gold: Heshan */
-  --serie-3: #1a4080;           /* --blue: Dongguan */
+  --color-gold-bg: #fdf8ec;     /* --gold-bg */
+  --serie-1: #8b1a1a;           /* rojo: color principal de los datos; Zhongshan */
+  --serie-2: #c8941a;           /* oro: Heshan */
+  --serie-3: #1a4080;           /* azul: Dongguan */
+  --shadow: 0 2px 12px rgba(100, 60, 20, .12);
   --fuente-sans: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, "Noto Sans TC", "PingFang TC", sans-serif;
-  --fuente-serif: "Noto Serif TC", "Songti SC", Georgia, serif;
+  --fuente-serif: "Noto Serif TC", "Songti TC", "Songti SC", Georgia, serif;
   --cds-font-size-caption: 12.5px;
   --cds-font-size-body: 15px;
   --cds-font-weight-medium: 600;
-  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 44px;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 52px;
   --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 18px;
-  --cds-radius: 10px;
-  --cds-chart-muted: #d4c0a0;     /* --border2 */
-  --cds-chart-grid: #f5ede0;      /* --paper3 */
-  --cds-chart-axis: #e8d8c0;      /* --border */
-  --cds-chart-reference: #a08060; /* --dim */
+  --cds-radius: 12px;
+  --cds-chart-muted: #d4c0a0;
+  --cds-chart-grid: #f5ede0;
+  --cds-chart-axis: #e8d8c0;
+  --cds-chart-reference: #a08060;
   --cds-text-secondary: #6b5744;
   --cds-surface-popover: #fff9f2;
   --cds-border: #e8d8c0;
   --cds-shadow-popover: 0 4px 24px rgba(100, 60, 20, .18);
 }
+html[data-zh="simp"] { --fuente-serif: "Noto Serif SC", "Noto Serif TC", "Songti SC", Georgia, serif; }
+/* Idioma: el HTML trae las dos versiones de los textos largos */
+html:not([lang="en"]) [data-l="en"], html[lang="en"] [data-l="es"] { display: none !important; }
+
+* { box-sizing: border-box; }
 html, body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--fuente-sans); font-size: 15px; -webkit-font-smoothing: antialiased; }
-.pagina { max-width: 1180px; margin: 0 auto; padding: 0 22px 40px; }
-.nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; margin: 0 -22px 22px; padding: 10px 22px; border-bottom: 1px solid var(--color-border-line); background: var(--color-panel); }
-.nav a { color: var(--color-fg-muted); text-decoration: none; }
-.nav a:hover { color: var(--color-accent); }
-.nav .nav-sitio { font-family: var(--fuente-serif); font-size: 16px; color: var(--color-accent); letter-spacing: 2px; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-thumb { background: #d4c0a0; border-radius: 3px; }
-@media (max-width: 600px) { .pagina { padding: 0 16px 40px; } .nav { margin: 0 -16px 18px; padding: 10px 16px; } }
-.pie { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--color-border-line); font-size: 12.5px; color: var(--color-fg-muted); line-height: 1.55; }
-.pie a { color: inherit; }
-.pc-cargando { background: #fff3e6; border: 1px solid #f1cfa8; border-radius: 10px; padding: 10px 14px; }
-.dash-select { font: inherit; font-size: 13px; padding: 6px 28px 6px 10px; border: 1px solid var(--color-border-line); border-radius: 8px; background-color: var(--color-panel); color: var(--color-fg); }
-/* Incrustada en un iframe: sin márgenes ni navegación propia */
-html.incrustada .nav, html.incrustada .pie-volver { display: none; }
-html.incrustada .pagina { padding: 0 2px 12px; }
-.pc { --pc-water: color-mix(in oklab, var(--color-panel) 92%, #3d7fb8 8%); --pc-land: color-mix(in oklab, var(--color-fg) 5%, var(--color-panel)); font-family: var(--fuente-sans); color: var(--color-fg); }
-.pc * { box-sizing: border-box; }
-.pc-head { margin: 0 0 var(--cds-gap-lg); max-width: 62rem; }
-.pc-kicker { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); letter-spacing: .06em; text-transform: uppercase; margin: 0 0 var(--cds-gap-xs); }
-.pc-title { font-family: var(--fuente-serif); font-weight: 400; font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1.08; margin: 0 0 var(--cds-gap-sm); }
-.pc-title .pc-zh { font-size: .55em; color: var(--color-fg-muted); margin-left: .4em; white-space: nowrap; }
-.pc-lede { font-size: 1.08rem; line-height: 1.55; margin: 0; max-width: 54rem; }
-.pc-lede b, .pc-p b { font-variant-numeric: tabular-nums; font-weight: var(--cds-font-weight-medium); }
-.pc-bar { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); align-items: center; padding: var(--cds-pad-sm) 0; margin-bottom: var(--cds-gap-md); background: var(--color-bg); border-bottom: 1px solid var(--color-border-line); }
-.pc-bar label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: flex; align-items: center; gap: var(--cds-gap-xs); }
-.pc-bar .dash-select { min-width: 11rem; }
-.pc-btn { font: inherit; font-size: var(--cds-font-size-caption); padding: 6px 12px; border-radius: var(--cds-radius); border: 1px solid var(--color-border-line); background-color: var(--color-panel); color: var(--color-fg); cursor: pointer; }
-.pc-btn:hover { border-color: var(--color-fg-muted); }
-.pc-btn[aria-pressed='true'] { background-color: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+::-webkit-scrollbar-thumb { background: var(--color-border2); border-radius: 3px; }
+.zh { font-family: var(--fuente-serif); }
+a { color: var(--color-accent); }
+
+/* ── Barra superior (como la de Zupu) ── */
+.topbar { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 6px 16px; background: var(--color-panel); border-bottom: 2px solid var(--color-border-line); flex-wrap: wrap; }
+.tb-titulo { font-family: var(--fuente-serif); font-size: 18px; color: var(--color-accent); letter-spacing: 4px; text-decoration: none; white-space: nowrap; }
+.tb-titulo:hover { color: var(--color-accent2); }
+.tb-volver { font-size: 13px; color: var(--color-fg-muted); text-decoration: none; padding: 5px 12px; border: 1.5px solid var(--color-border-line); border-radius: 999px; white-space: nowrap; transition: all .15s; }
+.tb-volver:hover { border-color: var(--color-accent); color: var(--color-accent); background: var(--color-red-bg); }
+.tb-espacio { flex: 1; }
+.lang-controls { display: flex; gap: 6px; align-items: center; }
+.lc-group { display: flex; border: 1.5px solid var(--color-border2); border-radius: 14px; overflow: hidden; }
+.lc-btn { background: none; border: none; padding: 5px 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .15s; opacity: .7; }
+.lc-btn:hover { background: var(--color-border2); opacity: 1; }
+.lc-btn.active { background: var(--color-gold-bg); opacity: 1; box-shadow: 0 0 0 1px var(--color-gold2) inset; }
+.lc-group .lc-btn:not(:last-child) { border-right: 1px solid var(--color-border2); }
+.flag-img { display: block; border-radius: 2px; width: 24px; height: auto; pointer-events: none; }
+
+.pagina { max-width: 1180px; margin: 0 auto; padding: 0 22px 40px; }
+
+/* ── Portada ── */
+.hero { position: relative; isolation: isolate; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 30px; align-items: start; padding: 40px 0 30px; }
+.hero::before { content: ''; position: absolute; inset: 0 -22px; z-index: -1;
+  background: radial-gradient(ellipse 60% 90% at 92% 0%, rgba(232, 184, 48, .16), transparent 70%), radial-gradient(ellipse 50% 70% at 0% 100%, rgba(139, 26, 26, .06), transparent 70%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); mask-image: linear-gradient(to bottom, #000 55%, transparent); }
+.hero-sello { writing-mode: vertical-rl; font-family: var(--fuente-serif); font-size: 30px; font-weight: 600; line-height: 1.08; letter-spacing: 4px; color: var(--color-seal);
+  border: 3px solid var(--color-seal); border-radius: 6px; padding: 12px 9px; transform: rotate(-4deg); margin-top: 6px;
+  box-shadow: inset 0 0 0 3px var(--color-bg), inset 0 0 0 4.5px var(--color-seal); background: var(--color-bg); opacity: .92; }
+.pc-kicker { font-size: var(--cds-font-size-caption); color: var(--color-gold); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; font-weight: 600; }
+.pc-title { font-family: var(--fuente-serif); font-weight: 600; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; margin: 0 0 10px; color: var(--color-fg); letter-spacing: -.01em; }
+.hero-zh { font-family: var(--fuente-serif); font-size: clamp(1.1rem, 2.6vw, 1.55rem); color: var(--color-accent); letter-spacing: .32em; margin: 0 0 18px; }
+.pc-lede { font-size: 1.1rem; line-height: 1.65; margin: 0; max-width: 52rem; color: var(--color-fg2); }
+.pc-lede b, .pc-p b { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--color-accent); }
+
+/* ── Índice de secciones ── */
+.indice { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 26px; padding: 0; list-style: none; }
+.indice a { display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px 4px 4px; border: 1.5px solid var(--color-border-line); border-radius: 999px; background: var(--color-panel); color: var(--color-fg2); text-decoration: none; font-size: 13px; transition: all .15s; white-space: nowrap; }
+.indice a:hover { border-color: var(--color-accent); background: var(--color-red-bg); transform: translateY(-1px); }
+.indice .n { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--color-accent); color: #fff; font-family: var(--fuente-serif); font-size: 12px; }
+
+/* ── Filtros fijos ── */
+.pc-bar { position: sticky; top: 0; z-index: 6; display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); align-items: center; padding: 10px 0; margin-bottom: var(--cds-gap-md);
+  background: color-mix(in oklab, var(--color-bg) 90%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border-line); }
+.pc-bar label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: flex; align-items: center; gap: 6px; }
+.dash-select { font: inherit; font-size: 13px; padding: 6px 28px 6px 10px; border: 1.5px solid var(--color-border-line); border-radius: 10px; background-color: var(--color-panel); color: var(--color-fg); min-width: 11rem; }
+.pc-btn { font: inherit; font-size: var(--cds-font-size-caption); padding: 6px 13px; border-radius: 999px; border: 1.5px solid var(--color-border-line); background-color: var(--color-panel); color: var(--color-fg); cursor: pointer; transition: all .15s; }
+.pc-btn:hover, .pc-search:focus, .dash-select:focus { border-color: var(--color-accent); outline: none; }
+.pc-btn[aria-pressed='true'] { background-color: var(--color-accent); border-color: var(--color-accent); color: #fff; }
 .pc-status { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-left: auto; }
-.pc-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--cds-gap-sm); margin-bottom: var(--cds-gap-xl); }
-.pc-kpi { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); }
+.pc-status.pc-status-on { color: var(--color-accent); font-weight: 600; }
+
+/* ── Cifras ── */
+.pc-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: var(--cds-gap-xl); }
+.pc-kpi { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 14px 16px; position: relative; overflow: hidden; transition: box-shadow .2s, transform .2s; }
+.pc-kpi::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--color-gold2); opacity: .8; }
+.pc-kpi:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
 .pc-kpi-l { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 4px; }
-.pc-kpi-v { font-family: var(--fuente-serif); font-weight: 400; font-size: 2rem; line-height: 1.1; font-variant-numeric: tabular-nums; min-height: 2.2rem; }
+.pc-kpi-v { font-family: var(--fuente-serif); font-weight: 700; font-size: 2.1rem; line-height: 1.1; font-variant-numeric: tabular-nums; min-height: 2.3rem; color: var(--color-accent); }
 .pc-kpi-s { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: 2px; min-height: 1.1em; }
+
+/* ── Secciones ── */
+.pc { font-family: var(--fuente-sans); color: var(--color-fg); --pc-water: color-mix(in oklab, var(--color-panel) 90%, #3d7fb8 10%); --pc-land: color-mix(in oklab, var(--color-fg) 5%, var(--color-panel)); }
 .pc-sec { margin: 0 0 var(--cds-gap-xl); }
-.pc-h2 { font-family: var(--fuente-serif); font-weight: 400; font-size: 1.6rem; margin: 0 0 var(--cds-gap-xs); }
-.pc-sub { color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-md); max-width: 50rem; line-height: 1.5; }
+.pc-h2 { font-family: var(--fuente-serif); font-weight: 600; font-size: 1.65rem; margin: 0 0 8px; padding-bottom: 8px; border-bottom: 1px solid var(--color-border-line); display: flex; align-items: center; gap: 12px; }
+.sec-n { flex: none; display: inline-grid; place-items: center; width: 34px; height: 34px; border: 2px solid var(--color-seal); border-radius: 5px; color: var(--color-seal); font-size: 18px; font-weight: 600; transform: rotate(-4deg); box-shadow: inset 0 0 0 2px var(--color-bg), inset 0 0 0 3px var(--color-seal); }
+.pc-sub { color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-md); max-width: 52rem; line-height: 1.6; }
 .pc-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); position: relative; min-width: 0; }
-.pc-h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0 0 4px; }
-.pc-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 0; line-height: 1.45; }
+.pc-h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0 0 4px; color: var(--color-fg2); }
+.pc-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 0; line-height: 1.5; }
 .pc-grid2 { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--cds-gap-md); }
 .pc-grid2b { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--cds-gap-md); }
 @media (max-width: 860px) { .pc-grid2, .pc-grid2b { grid-template-columns: minmax(0, 1fr); } }
@@ -98,147 +153,244 @@ html.incrustada .pagina { padding: 0 2px 12px; }
 .pc-chart svg { display: block; width: 100%; height: auto; overflow: hidden; }
 .pc-tall { min-height: 560px; }
 .pc-p { line-height: 1.6; margin: 0 0 var(--cds-gap-sm); max-width: 52rem; }
-.pc-finds { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--cds-gap-sm); margin-top: var(--cds-gap-md); }
-.pc-find { border-left: 3px solid var(--color-border-line); padding: 2px 0 2px var(--cds-pad-md); line-height: 1.5; font-size: .95rem; }
+.pc-finds { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; margin-top: var(--cds-gap-md); }
+.pc-find { border-left: 3px solid var(--color-gold2); background: var(--color-gold-bg); border-radius: 0 10px 10px 0; padding: 8px 12px; line-height: 1.55; font-size: .95rem; margin: 0; color: var(--color-fg2); }
+.pc-find b { color: var(--color-accent); }
 .pc-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 var(--cds-gap-sm); min-height: 1.2em; }
 .pc-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
 .pc-toggle { display: inline-flex; gap: 4px; margin-bottom: var(--cds-gap-sm); }
 .pc-rows { display: flex; flex-direction: column; gap: 3px; }
 .pc-row { display: grid; grid-template-columns: minmax(7.5rem, 11rem) minmax(0, 1fr) 6.2rem; align-items: center; gap: 10px; padding: 4px 6px; border-radius: 6px; cursor: pointer; font-size: .92rem; }
-.pc-row:hover { background: color-mix(in oklab, var(--color-fg) 5%, transparent); }
-.pc-row[aria-selected='true'] { background: color-mix(in oklab, var(--color-fg) 9%, transparent); }
+.pc-row:hover { background: color-mix(in oklab, var(--color-accent) 6%, transparent); }
+.pc-row[aria-selected='true'] { background: color-mix(in oklab, var(--color-accent) 11%, transparent); }
 .pc-row.pc-dim { opacity: .45; }
-.pc-row-n { text-align: right; font-variant-numeric: tabular-nums; }
+.pc-row-n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .pc-row-n small { color: var(--color-fg-muted); margin-left: 4px; white-space: nowrap; }
-.pc-row-n { white-space: nowrap; }
 .pc-row-name small { display: block; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.2; }
 .pc-track { height: 12px; background: color-mix(in oklab, var(--color-fg) 6%, transparent); border-radius: 4px; overflow: hidden; }
-.pc-fill { height: 100%; border-radius: 4px; }
+.pc-fill { height: 100%; border-radius: 4px; transition: width .35s ease; }
 .pc-sub-row { font-size: .85rem; padding-left: 22px; }
-.pc-tip { position: absolute; pointer-events: none; z-index: 10; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: 8px; padding: 8px 10px; font-size: var(--cds-font-size-caption); line-height: 1.45; max-width: 260px; color: var(--color-fg); }
-.pc-tip b { font-weight: var(--cds-font-weight-medium); }
+.pc-tip { position: absolute; pointer-events: none; z-index: 10; background: var(--cds-surface-popover); border: 1px solid var(--color-border2); box-shadow: var(--cds-shadow-popover); border-radius: 10px; padding: 9px 11px; font-size: var(--cds-font-size-caption); line-height: 1.5; max-width: 280px; color: var(--color-fg); }
+.pc-tip b { font-weight: 700; color: var(--color-accent); font-size: 13.5px; }
 .pc-tip .pc-tip-m { color: var(--cds-text-secondary); }
 .pc-axis text { fill: var(--cds-text-secondary); font-size: 11px; font-family: var(--fuente-sans); }
 .pc-axis line, .pc-axis path { stroke: var(--cds-chart-axis); }
-.pc-table-wrap { overflow: auto; max-height: 520px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+
+/* ── Tablas ── */
+.pc-table-wrap { overflow: auto; max-height: 520px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); }
 .pc-table { border-collapse: collapse; width: 100%; font-size: .88rem; }
-.pc-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: 8px 10px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.pc-table th { position: sticky; top: 0; background: var(--color-paper3); text-align: left; font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: 9px 10px; border-bottom: 1px solid var(--color-border2); white-space: nowrap; z-index: 1; }
 .pc-table td { padding: 6px 10px; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.pc-table tbody tr:hover td { background: color-mix(in oklab, var(--color-gold2) 9%, transparent); }
 .pc-table td.pc-num { text-align: right; font-variant-numeric: tabular-nums; }
-.pc-table td.pc-zh { font-size: 1rem; white-space: nowrap; }
-.pc-search { font: inherit; padding: 7px 10px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background-color: var(--color-panel); color: var(--color-fg); min-width: 16rem; margin-bottom: var(--cds-gap-sm); }
-.pc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--cds-gap-sm); min-height: 1em; }
-.pc-chip { font-size: var(--cds-font-size-caption); border: 1px dashed var(--color-border-line); border-radius: 999px; padding: 3px 10px; color: var(--color-fg-muted); }
-.pc-details { margin-top: var(--cds-gap-xl); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-md); }
-.pc-details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
-.pc-details li { margin-bottom: 6px; line-height: 1.5; }
-.pc-fail { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); padding: 2rem 0; text-align: center; }
-.pc-table td.pc-big { font-size: 1.35rem; font-family: var(--fuente-serif), Noto Serif TC, Songti TC, serif; }
+.pc-table td.pc-zh { font-size: 1rem; white-space: nowrap; font-family: var(--fuente-serif); }
+.pc-table td.pc-big { font-size: 1.4rem; color: var(--color-accent); }
 .pc-table td.pc-graf { min-width: 14rem; max-width: 28rem; }
+.pc-search { font: inherit; padding: 8px 12px; border: 1.5px solid var(--color-border-line); border-radius: 999px; background-color: var(--color-panel); color: var(--color-fg); min-width: 16rem; margin-bottom: var(--cds-gap-sm); }
+.pc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--cds-gap-sm); min-height: 1em; }
+.pc-chip { font-size: var(--cds-font-size-caption); border: 1px dashed var(--color-border2); border-radius: 999px; padding: 3px 10px; color: var(--color-fg-muted); }
 .pc-muted { color: var(--color-fg-muted); }
-.pc-tag { display: inline-block; margin-left: 6px; font-size: var(--cds-font-size-caption); border: 1px dashed var(--color-border-line); border-radius: 999px; padding: 0 7px; color: var(--color-fg-muted); }
+.pc-tag { display: inline-block; margin-left: 6px; font-size: var(--cds-font-size-caption); border: 1px dashed var(--color-border2); border-radius: 999px; padding: 0 7px; color: var(--color-fg-muted); }
 .pc-nota { display: block; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: 2px; line-height: 1.35; }
 .pc-mark { color: var(--color-fg-muted); margin-left: 2px; }
 .pc-tools { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); align-items: center; margin-bottom: var(--cds-gap-xs); }
 .pc-tools .pc-search { margin-bottom: 0; }
 .pc-check { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: inline-flex; gap: 6px; align-items: center; }
+.pc-check input { accent-color: var(--color-accent); }
 .pc-pairs { display: flex; flex-wrap: wrap; gap: 6px 10px; margin: var(--cds-gap-sm) 0 var(--cds-gap-md); }
-.pc-pair { font-size: .9rem; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 4px 10px; background: var(--color-panel); }
-.pc-pair b { font-weight: var(--cds-font-weight-medium); }
-/* Toques de Zupu: títulos con línea, cifras en rojo, notas en oro */
-.pc-kicker { color: var(--color-gold); }
-.pc-h2 { padding-bottom: 6px; border-bottom: 1px solid var(--color-border-line); }
-.pc-kpi-v { color: var(--color-accent); }
-.pc-find { border-left-color: var(--color-gold2); }
-.pc-details summary { color: var(--color-accent); }
-.pc-btn:hover, .pc-search:focus, .dash-select:focus { border-color: var(--color-accent); outline: none; }
-.pc-btn[aria-pressed='true'] { background-color: var(--color-accent); border-color: var(--color-accent); color: #fff; }
-@media print { .pc-bar { position: static; } .pc-table-wrap { max-height: none; overflow: visible; } }
+.pc-pair { font-size: .92rem; border: 1px solid var(--color-border-line); border-radius: 999px; padding: 4px 12px; background: var(--color-panel); font-family: var(--fuente-serif); }
+.pc-pair b { font-family: var(--fuente-sans); font-weight: 700; color: var(--color-accent); }
+.pc-fail { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); padding: 2rem 0; text-align: center; }
+.pc-cargando { background: var(--color-gold-bg); border: 1.5px dashed var(--color-border2); border-radius: 10px; padding: 10px 14px; }
+
+/* ── Selector de pronunciación ── */
+.pc-pron { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.pc-pron button { font: inherit; display: inline-flex; flex-direction: column; align-items: center; gap: 1px; min-width: 88px; padding: 7px 14px 6px; border-radius: 12px; border: 1.5px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg2); cursor: pointer; transition: all .15s; }
+.pc-pron button .zh { font-size: 17px; letter-spacing: 2px; line-height: 1.1; }
+.pc-pron button small { font-size: 11px; color: var(--color-fg-muted); }
+.pc-pron button:hover { border-color: var(--color-accent); transform: translateY(-1px); }
+.pc-pron button[aria-pressed='true'] { background: var(--color-accent); border-color: var(--color-accent); color: #fff; box-shadow: var(--shadow); }
+.pc-pron button[aria-pressed='true'] small { color: rgba(255, 255, 255, .8); }
+.pc-mosaico g { cursor: pointer; outline: none; }
+.pc-mosaico g rect { transition: stroke-width .12s; }
+.pc-mosaico g:hover rect, .pc-mosaico g:focus rect { stroke: var(--color-fg); stroke-width: 1.5; }
+.pc-mosaico .pc-rom { font-size: 11.5px; fill: var(--color-fg); }
+/* La tabla de grafías resalta la columna de la pronunciación elegida */
+.pc-pron-tabla[data-col="mandarin"] :is(td, th):nth-child(3),
+.pc-pron-tabla[data-col="canton"] :is(td, th):nth-child(4),
+.pc-pron-tabla[data-col="hakka"] :is(td, th):nth-child(5),
+.pc-pron-tabla[data-col="chile"] :is(td, th):nth-child(6) { background: color-mix(in oklab, var(--color-gold2) 14%, var(--color-panel)); }
+
+/* ── 徐 en el padrón ── */
+.xu-card { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: center; margin-top: 16px; padding: 18px 20px; border: 1.5px solid var(--color-gold2); border-radius: var(--cds-radius); background: linear-gradient(135deg, var(--color-gold-bg), var(--color-panel)); }
+.xu-card:empty { display: none; }
+.xu-sello { width: 76px; height: 76px; border-radius: 50%; border: 3px solid var(--color-seal); display: grid; place-items: center; position: relative; font-family: var(--fuente-serif); font-size: 36px; color: var(--color-seal); }
+.xu-sello::before { content: ''; position: absolute; inset: 4px; border-radius: 50%; border: 1.5px solid var(--color-seal); opacity: .4; }
+.xu-t { font-family: var(--fuente-serif); font-size: 1.15rem; font-weight: 600; margin: 0 0 4px; }
+.xu-p { margin: 0 0 10px; line-height: 1.55; color: var(--color-fg2); font-size: .95rem; }
+.xu-p b { color: var(--color-accent); }
+.xu-pron { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.xu-pron span { font-size: 12.5px; border: 1px solid var(--color-border2); border-radius: 999px; padding: 3px 10px; background: var(--color-panel); }
+.xu-pron span.xu-match { border-color: var(--color-accent); color: var(--color-accent); font-weight: 700; background: var(--color-red-bg); }
+.xu-acc { display: flex; flex-wrap: wrap; gap: 8px; }
+.xu-acc a, .xu-acc button { font: inherit; font-size: 13px; padding: 6px 14px; border-radius: 999px; border: 1.5px solid var(--color-accent); background: var(--color-accent); color: #fff; cursor: pointer; text-decoration: none; transition: all .15s; }
+.xu-acc a { background: transparent; color: var(--color-accent); }
+.xu-acc a:hover, .xu-acc button:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+@media (max-width: 560px) { .xu-card { grid-template-columns: 1fr; justify-items: start; } }
+
+/* ── Notas y pie ── */
+.orn { display: flex; align-items: center; gap: 14px; margin: 8px 0 22px; color: var(--color-gold); font-size: 22px; }
+.orn::before, .orn::after { content: ''; flex: 1; height: 1px; background: var(--color-border2); }
+.pc-details { border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 12px 18px; background: var(--color-panel); }
+.pc-details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); color: var(--color-accent); }
+.pc-details li { margin-bottom: 8px; line-height: 1.55; color: var(--color-fg2); }
+.pie { margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--color-border-line); font-size: 12.5px; color: var(--color-fg-muted); line-height: 1.6; }
+.pie a { color: inherit; }
+.pie a:hover { color: var(--color-accent); }
+
+/* Incrustada en un iframe: sin navegación propia */
+html.incrustada .topbar, html.incrustada .pie-volver, html.incrustada .indice { display: none; }
+html.incrustada .pagina { padding: 0 2px 12px; }
+
+@media (max-width: 700px) {
+  .pagina { padding: 0 16px 40px; }
+  .hero { grid-template-columns: 1fr; gap: 14px; padding-top: 26px; }
+  .hero::before { inset: 0 -16px; }
+  .hero-sello { writing-mode: horizontal-tb; justify-self: start; font-size: 20px; padding: 5px 10px; letter-spacing: 3px; }
+  .indice { flex-wrap: nowrap; overflow-x: auto; margin-right: -16px; padding-right: 16px; scrollbar-width: none; }
+  .tb-volver { order: 3; }
+  .pc-h2 { font-size: 1.35rem; }
+  .sec-n { width: 30px; height: 30px; font-size: 16px; }
+  .pc-bar { gap: 6px; padding: 8px 0; }
+  .pc-bar label { flex: 1 1 40%; min-width: 0; }
+  .pc-bar label > span { display: none; }
+  .dash-select { min-width: 0; width: 100%; padding-right: 22px; }
+  #limpiar { padding: 5px 10px; }
+  .pc-status { margin-left: 0; flex: 1 1 auto; font-size: 11.5px; }
+}
+@media print { .pc-bar { position: static; } .pc-table-wrap { max-height: none; overflow: visible; } .topbar, .indice { display: none; } }
 </style>
-<script>if (window.parent !== window || /[?&]incrustada=1/.test(location.search)) document.documentElement.classList.add('incrustada');</script>
 </head>
 <body>
+<header class="topbar">
+  <a class="tb-titulo" href="../" title="Zupu">族譜 · 徐氏</a>
+  <a class="tb-volver" href="../#article=migracion-china-chile-1980-1930" data-en="← Chinese–Chile migration">← Migración china-Chile</a>
+  <div class="tb-espacio"></div>
+  <div class="lang-controls">
+    <div class="lc-group">
+      <button class="lc-btn" id="btn-es" type="button" onclick="I18N.setLang('es')" title="Español"><img class="flag-img" src="https://flagcdn.com/w40/es.png" width="24" alt="ES"></button>
+      <button class="lc-btn" id="btn-en" type="button" onclick="I18N.setLang('en')" title="English"><img class="flag-img" src="https://flagcdn.com/w40/us.png" width="24" alt="EN"></button>
+    </div>
+    <div class="lc-group">
+      <button class="lc-btn" id="btn-trad" type="button" onclick="I18N.setScript('trad')" title="繁體"><img class="flag-img" src="https://flagcdn.com/w40/tw.png" width="24" alt="繁"></button>
+      <button class="lc-btn" id="btn-simp" type="button" onclick="I18N.setScript('simp')" title="简体"><img class="flag-img" src="https://flagcdn.com/w40/cn.png" width="24" alt="简"></button>
+    </div>
+  </div>
+</header>
+
 <div class="pagina">
-  <nav class="nav">
-    <a href="../#article=migracion-china-chile-1980-1930">← Migración china-Chile</a>
-    <a class="nav-sitio" href="../" title="Volver a la portada">族譜 · 徐氏</a>
-  </nav>
-  <div class='pc' id='padron'>
+<div class='pc' id='padron'>
   <p class='pc-cargando' hidden></p>
-  <header class='pc-head' id='cabecera'>
-    <p class='pc-kicker'>Expediente 033-020104-0091 · Elección de la Asamblea Nacional de la República de China, 1947</p>
-    <h1 class='pc-title'>Los electores chinos de Chile <span class='pc-zh'>旅智華僑選舉人名冊</span></h1>
-    <p class='pc-lede'>El padrón reúne <b data-draw='k_inscritos'>—</b> inscripciones (listas locales: <b data-draw='k_listas'>—</b>). La edad mediana era de <b data-draw='k_mediana2'>—</b> años, el <b data-draw='k_com2'>—</b> % figura como comerciante y el condado de origen más frecuente es <b data-draw='k_top'>—</b>, con el <b data-draw='k_toppct'>—</b> % de las inscripciones.</p>
+
+  <header class='hero' id='cabecera'>
+    <div class="hero-sello" aria-hidden="true">一九四七</div>
+    <div>
+      <p class='pc-kicker' data-en="File 033-020104-0091 · Election of the National Assembly of the Republic of China, 1947">Expediente 033-020104-0091 · Elección de la Asamblea Nacional de la República de China, 1947</p>
+      <h1 class='pc-title' data-en="The Chinese voters of Chile">Los electores chinos de Chile</h1>
+      <p class='hero-zh'>旅智華僑選舉人名冊</p>
+      <p class='pc-lede' data-l="es">El padrón reúne <b data-draw='k_inscritos'>—</b> inscripciones (listas locales: <b data-draw='k_listas'>—</b>). La edad mediana era de <b data-draw='k_mediana2'>—</b> años, el <b data-draw='k_com2'>—</b> % figura como comerciante y el condado de origen más frecuente es <b data-draw='k_top'>—</b>, con el <b data-draw='k_toppct'>—</b> % de las inscripciones.</p>
+      <p class='pc-lede' data-l="en">The roll holds <b data-draw='k_inscritos'>—</b> entries across <b data-draw='k_listas'>—</b> local lists. The median age was <b data-draw='k_mediana2'>—</b>, <b data-draw='k_com2'>—</b>% are listed as merchants, and the most common county of origin is <b data-draw='k_top'>—</b>, with <b data-draw='k_toppct'>—</b>% of the entries.</p>
+    </div>
   </header>
 
+  <nav aria-label="Secciones" data-en-aria="Sections">
+    <ul class="indice">
+      <li><a href="#ruta"><span class="n">一</span><span data-en="Route">Ruta</span></a></li>
+      <li><a href="#chile"><span class="n">二</span>Chile</a></li>
+      <li><a href="#china"><span class="n">三</span>China</a></li>
+      <li><a href="#cruce"><span class="n">四</span><span data-en="Cities × counties">Ciudades × condados</span></a></li>
+      <li><a href="#edades"><span class="n">五</span><span data-en="Ages">Edades</span></a></li>
+      <li><a href="#oficios"><span class="n">六</span><span data-en="Trades">Oficios</span></a></li>
+      <li><a href="#apellidos"><span class="n">七</span><span data-en="Surnames">Apellidos</span></a></li>
+      <li><a href="#grafias"><span class="n">八</span><span data-en="Spellings">Grafías</span></a></li>
+      <li><a href="#mujeres"><span class="n">九</span><span data-en="Women">Mujeres</span></a></li>
+      <li><a href="#explorar"><span class="n">十</span><span data-en="Explore">Explorar</span></a></li>
+    </ul>
+  </nav>
+
   <div class='pc-bar' id='filtros'>
-    <label>Lista en Chile <select class='dash-select' data-draw='f_sede' aria-label='Lista en Chile'></select></label>
-    <label>Condado de origen <select class='dash-select' data-draw='f_condado' aria-label='Condado de origen'></select></label>
-    <button class='pc-btn' type='button' id='limpiar'>Quitar filtros</button>
+    <label><span data-en="List in Chile">Lista en Chile</span> <select class='dash-select' data-draw='f_sede' aria-label='Lista en Chile' data-en-aria='List in Chile'></select></label>
+    <label><span data-en="County of origin">Condado de origen</span> <select class='dash-select' data-draw='f_condado' aria-label='Condado de origen' data-en-aria='County of origin'></select></label>
+    <button class='pc-btn' type='button' id='limpiar' data-en="Clear filters">Quitar filtros</button>
     <span class='pc-status' data-draw='estado_filtro'>—</span>
   </div>
 
   <div class='pc-kpis' id='cifras'>
-    <div class='pc-kpi'><p class='pc-kpi-l'>Inscripciones</p><div class='pc-kpi-v' data-draw='k1'>—</div><div class='pc-kpi-s'>de <span data-draw='k1t'>—</span> en el padrón</div></div>
-    <div class='pc-kpi'><p class='pc-kpi-l'>Edad mediana</p><div class='pc-kpi-v' data-draw='k2'>—</div><div class='pc-kpi-s'>entre <span data-draw='k2a'>—</span> y <span data-draw='k2b'>—</span> años</div></div>
-    <div class='pc-kpi'><p class='pc-kpi-l'>Comerciantes (商, 商人)</p><div class='pc-kpi-v' data-draw='k3'>—</div><div class='pc-kpi-s'>% de las inscripciones</div></div>
-    <div class='pc-kpi'><p class='pc-kpi-l'>Mujeres</p><div class='pc-kpi-v' data-draw='k4'>—</div><div class='pc-kpi-s'>inscritas con 女</div></div>
-    <div class='pc-kpi'><p class='pc-kpi-l'>Desde Guangdong</p><div class='pc-kpi-v' data-draw='k5'>—</div><div class='pc-kpi-s'>% de quienes tienen condado legible</div></div>
-    <div class='pc-kpi'><p class='pc-kpi-l'>Condados de origen</p><div class='pc-kpi-v' data-draw='k6'>—</div><div class='pc-kpi-s'>distintos en la selección</div></div>
+    <div class='pc-kpi'><p class='pc-kpi-l' data-en="Entries">Inscripciones</p><div class='pc-kpi-v' data-draw='k1'>—</div><div class='pc-kpi-s'><span data-l="es">de <span data-draw='k1t'>—</span> en el padrón</span><span data-l="en">of <span data-draw='k1t'>—</span> in the roll</span></div></div>
+    <div class='pc-kpi'><p class='pc-kpi-l' data-en="Median age">Edad mediana</p><div class='pc-kpi-v' data-draw='k2'>—</div><div class='pc-kpi-s'><span data-l="es">entre <span data-draw='k2a'>—</span> y <span data-draw='k2b'>—</span> años</span><span data-l="en">range <span data-draw='k2a'>—</span>–<span data-draw='k2b'>—</span> years</span></div></div>
+    <div class='pc-kpi'><p class='pc-kpi-l' data-en="Merchants (商, 商人)">Comerciantes (商, 商人)</p><div class='pc-kpi-v' data-draw='k3'>—</div><div class='pc-kpi-s' data-en="% of entries">% de las inscripciones</div></div>
+    <div class='pc-kpi'><p class='pc-kpi-l' data-en="Women">Mujeres</p><div class='pc-kpi-v' data-draw='k4'>—</div><div class='pc-kpi-s' data-en="registered as 女">inscritas con 女</div></div>
+    <div class='pc-kpi'><p class='pc-kpi-l' data-en="From Guangdong">Desde Guangdong</p><div class='pc-kpi-v' data-draw='k5'>—</div><div class='pc-kpi-s' data-en="% of those with a legible county">% de quienes tienen condado legible</div></div>
+    <div class='pc-kpi'><p class='pc-kpi-l' data-en="Counties of origin">Condados de origen</p><div class='pc-kpi-v' data-draw='k6'>—</div><div class='pc-kpi-s' data-en="distinct in the selection">distintos en la selección</div></div>
   </div>
 
   <section class='pc-sec' id='ruta'>
-    <h2 class='pc-h2'>Del delta del río de las Perlas al Norte Grande</h2>
-    <p class='pc-sub'>Casi todos venían de un puñado de condados cantoneses alrededor de Cantón, Hong Kong y Macao. El norte de Chile queda prácticamente en las antípodas de esa región. El grosor de cada línea es el número de inscritos en cada lista; el trazado es ilustrativo, no una ruta de barco.</p>
+    <h2 class='pc-h2'><span class="sec-n">一</span><span data-en="From the Pearl River Delta to Chile's Norte Grande">Del delta del río de las Perlas al Norte Grande</span></h2>
+    <p class='pc-sub' data-l="es">Casi todos venían de un puñado de condados cantoneses alrededor de Cantón, Hong Kong y Macao. El norte de Chile queda prácticamente en las antípodas de esa región. El grosor de cada línea es el número de inscritos en cada lista; el trazado es ilustrativo, no una ruta de barco.</p>
+    <p class='pc-sub' data-l="en">Almost all came from a handful of Cantonese counties around Canton, Hong Kong and Macau. Northern Chile lies almost at the antipodes of that region. Each line’s width is the number of voters on each list; the path is illustrative, not a shipping route.</p>
     <div class='pc-card'><div class='pc-chart' data-draw='mapa_ruta' id='grafico-ruta' style='min-height:170px'>—</div></div>
   </section>
 
   <section class='pc-sec' id='chile'>
-    <h2 class='pc-h2'>Dónde vivían en Chile</h2>
-    <p class='pc-sub'>Cada lista corresponde a la asociación china de una ciudad. El color de cada provincia indica cuántos inscritos tenía; los círculos, cuántos había en cada localidad. Haz clic en un círculo o en una barra para filtrar toda la página.</p>
+    <h2 class='pc-h2'><span class="sec-n">二</span><span data-en="Where they lived in Chile">Dónde vivían en Chile</span></h2>
+    <p class='pc-sub' data-l="es">Cada lista corresponde a la asociación china de una ciudad. El color de cada provincia indica cuántos inscritos tenía; los círculos, cuántos había en cada localidad. Haz clic en un círculo o en una barra para filtrar toda la página.</p>
+    <p class='pc-sub' data-l="en">Each list corresponds to the Chinese association of a city. Each province’s colour shows how many voters it had; the circles, how many lived in each town. Click a circle or a bar to filter the whole page.</p>
     <div class='pc-grid2'>
       <div class='pc-card' id='tarjeta-mapa-chile'>
-        <h3 class='pc-h3'>Inscritos por provincia (1947) y localidad</h3>
+        <h3 class='pc-h3' data-en="Voters by province (1947) and town">Inscritos por provincia (1947) y localidad</h3>
         <div class='pc-legend' data-draw='leyenda_chile'></div>
         <div class='pc-chart pc-tall' data-draw='mapa_chile' id='grafico-mapa-chile'>—</div>
         <div class='pc-chips' data-draw='sin_ubicar'></div>
-        <p class='pc-note'>Provincias de 1947 dibujadas sobre las regiones actuales (Tarapacá incluía Arica). María Elena, Chuquicamata, Calama y Ovalle son lecturas fonéticas de la columna de domicilio. La cruz marca el antípoda de Zhongshan.</p>
+        <p class='pc-note' data-l="es">Provincias de 1947 dibujadas sobre las regiones actuales (Tarapacá incluía Arica). María Elena, Chuquicamata, Calama y Ovalle son lecturas fonéticas de la columna de domicilio. Los círculos con borde punteado y «(?)» son ubicaciones por hipótesis. La cruz marca el antípoda de Zhongshan.</p>
+        <p class='pc-note' data-l="en">1947 provinces drawn over present-day regions (Tarapacá included Arica). María Elena, Chuquicamata, Calama and Ovalle are phonetic readings of the address column. Circles with a dotted border and “(?)” are hypothetical locations. The cross marks the antipode of Zhongshan.</p>
       </div>
       <div class='pc-card' id='tarjeta-listas'>
-        <h3 class='pc-h3'>Inscritos por lista, de norte a sur</h3>
-        <p class='pc-note' style='margin:0 0 var(--cds-gap-sm)'>La sede de cada lista está documentada en el expediente o propuesta por cotejo fonético.</p>
+        <h3 class='pc-h3' data-en="Voters by list, north to south">Inscritos por lista, de norte a sur</h3>
+        <p class='pc-note' style='margin:0 0 var(--cds-gap-sm)' data-en="Each list’s seat is either documented in the file or proposed by phonetic comparison.">La sede de cada lista está documentada en el expediente o propuesta por cotejo fonético.</p>
         <div class='pc-rows' data-draw='barras_lista' id='grafico-listas' style='min-height:420px'></div>
       </div>
     </div>
   </section>
 
   <section class='pc-sec' id='china'>
-    <h2 class='pc-h2'>De dónde venían en China</h2>
-    <p class='pc-sub'>El padrón anota el 籍貫, el lugar de procedencia familiar. Los condados se muestran con sus límites aproximados de 1947, reconstruidos a partir de distritos actuales. Haz clic en un condado para filtrar.</p>
+    <h2 class='pc-h2'><span class="sec-n">三</span><span data-en="Where they came from in China">De dónde venían en China</span></h2>
+    <p class='pc-sub' data-l="es">El padrón anota el 籍貫, el lugar de procedencia familiar. Los condados se muestran con sus límites aproximados de 1947, reconstruidos a partir de distritos actuales. Haz clic en un condado para filtrar.</p>
+    <p class='pc-sub' data-l="en">The roll records the 籍貫, the family’s place of origin. Counties are shown with their approximate 1947 boundaries, rebuilt from present-day districts. Click a county to filter.</p>
     <div class='pc-grid2b'>
       <div class='pc-card' id='tarjeta-delta'>
-        <h3 class='pc-h3'>Inscritos por condado de origen</h3>
+        <h3 class='pc-h3' data-en="Voters by county of origin">Inscritos por condado de origen</h3>
         <div class='pc-legend' data-draw='leyenda_delta'></div>
         <div class='pc-chart' data-draw='mapa_delta' id='grafico-delta' style='min-height:360px'>—</div>
-        <p class='pc-note'>Zhongshan incluye el actual Zhuhai; Bao’an, el actual Shenzhen; Nanhai incluía Foshan, y Xinhui, Jiangmen. Hong Kong y Macao en gris.</p>
+        <p class='pc-note' data-en="Zhongshan includes present-day Zhuhai; Bao’an, present-day Shenzhen; Nanhai included Foshan, and Xinhui, Jiangmen. Hong Kong and Macau in grey.">Zhongshan incluye el actual Zhuhai; Bao’an, el actual Shenzhen; Nanhai incluía Foshan, y Xinhui, Jiangmen. Hong Kong y Macao en gris.</p>
       </div>
       <div class='pc-card' id='tarjeta-condados'>
-        <h3 class='pc-h3'>Condados, con su nombre cantonés</h3>
+        <h3 class='pc-h3' data-en="Counties, with their Cantonese names">Condados, con su nombre cantonés</h3>
         <div class='pc-rows' data-draw='barras_condado' id='grafico-condados' style='min-height:420px'></div>
       </div>
     </div>
     <div class='pc-grid2' style='margin-top:var(--cds-gap-md)'>
       <div class='pc-card' id='tarjeta-china'>
-        <h3 class='pc-h3'>Fuera del delta</h3>
-        <p class='pc-note' style='margin:0 0 var(--cds-gap-sm)'>Provincias con algún inscrito. Los puntos marcan cada lugar de origen fuera del delta del río de las Perlas.</p>
+        <h3 class='pc-h3' data-en="Beyond the delta">Fuera del delta</h3>
+        <p class='pc-note' style='margin:0 0 var(--cds-gap-sm)' data-en="Provinces with at least one voter. Dots mark each place of origin outside the Pearl River Delta.">Provincias con algún inscrito. Los puntos marcan cada lugar de origen fuera del delta del río de las Perlas.</p>
         <div class='pc-chart' data-draw='mapa_china' id='grafico-china' style='min-height:300px'>—</div>
       </div>
       <div class='pc-card' id='tarjeta-fuera'>
-        <h3 class='pc-h3'>Inscritos de otras provincias</h3>
-        <p class='pc-note' style='margin:0 0 var(--cds-gap-sm)'>En Santiago aparecen funcionarios (政) de provincias del norte y del interior, inscritos junto a mujeres con apellido compuesto de casada; y un grupo de Qingtian (Zhejiang).</p>
+        <h3 class='pc-h3' data-en="Voters from other provinces">Inscritos de otras provincias</h3>
+        <p class='pc-note' style='margin:0 0 var(--cds-gap-sm)' data-l="es">En Santiago aparecen funcionarios (政) de provincias del norte y del interior, inscritos junto a mujeres con apellido compuesto de casada; y un grupo de Qingtian (Zhejiang).</p>
+        <p class='pc-note' style='margin:0 0 var(--cds-gap-sm)' data-l="en">In Santiago there are officials (政) from northern and inland provinces, registered alongside women with a compound married surname; and a group from Qingtian (Zhejiang).</p>
         <div class='pc-table-wrap' style='max-height:340px'>
           <table class='pc-table' id='tabla-fuera'>
-            <thead><tr><th>Apellido</th><th>Romanización</th><th>Sexo</th><th>Edad</th><th>Origen</th><th>Provincia</th><th>Oficio</th><th>Lista</th></tr></thead>
+            <thead><tr><th data-en="Surname">Apellido</th><th data-en="Romanization">Romanización</th><th data-en="Sex">Sexo</th><th data-en="Age">Edad</th><th data-en="Origin">Origen</th><th data-en="Province">Provincia</th><th data-en="Occupation">Oficio</th><th data-en="List">Lista</th></tr></thead>
             <tbody data-draw='tabla_fuera'></tbody>
           </table>
         </div>
@@ -247,64 +399,82 @@ html.incrustada .pagina { padding: 0 2px 12px; }
   </section>
 
   <section class='pc-sec' id='cruce'>
-    <h2 class='pc-h2'>Cada ciudad, sus condados</h2>
-    <p class='pc-sub'>La migración seguía redes de parentesco y paisanaje: cada lista chilena tiene una mezcla de condados propia. Cada celda muestra qué parte de una lista venía de cada condado. Haz clic en una celda para filtrar por ambos.</p>
+    <h2 class='pc-h2'><span class="sec-n">四</span><span data-en="Each city, its counties">Cada ciudad, sus condados</span></h2>
+    <p class='pc-sub' data-l="es">La migración seguía redes de parentesco y paisanaje: cada lista chilena tiene una mezcla de condados propia. Cada celda muestra qué parte de una lista venía de cada condado. Haz clic en una celda para filtrar por ambos.</p>
+    <p class='pc-sub' data-l="en">Migration followed kinship and home-town networks: each Chilean list has its own mix of counties. Each cell shows what share of a list came from each county. Click a cell to filter by both.</p>
     <div class='pc-card' id='tarjeta-cruce'>
-      <div class='pc-toggle' role='group' aria-label='Medida'>
-        <button class='pc-btn' type='button' data-modo='pct' aria-pressed='true'>% de la lista</button>
-        <button class='pc-btn' type='button' data-modo='n' aria-pressed='false'>Número de inscritos</button>
+      <div class='pc-toggle' role='group' aria-label='Medida' data-en-aria='Measure'>
+        <button class='pc-btn' type='button' data-modo='pct' aria-pressed='true' data-en="% of list">% de la lista</button>
+        <button class='pc-btn' type='button' data-modo='n' aria-pressed='false' data-en="Number of voters">Número de inscritos</button>
       </div>
       <div class='pc-chart' data-draw='cruce' id='grafico-cruce' style='min-height:380px'>—</div>
       <div class='pc-finds' id='hallazgos'>
-        <p class='pc-find'>Heshan aporta el <b data-draw='h1'>—</b> % de la lista de Iquique y el <b data-draw='h2'>—</b> % de la de Santiago, pero solo <b data-draw='h3'>—</b> de las <b data-draw='h4'>—</b> inscripciones de Antofagasta.</p>
-        <p class='pc-find'>En las listas de Arica, Tocopilla, Taltal, Chañaral, Copiapó y Coquimbo, el <b data-draw='h5'>—</b> % venía de Zhongshan.</p>
-        <p class='pc-find'>Dongguan pesa más en Antofagasta (<b data-draw='h6'>—</b> %) y en la lista sin identificar 古華埠 (<b data-draw='h7'>—</b> %).</p>
+        <p class='pc-find' data-l="es">Heshan aporta el <b data-draw='h1'>—</b> % de la lista de Iquique y el <b data-draw='h2'>—</b> % de la de Santiago, pero solo <b data-draw='h3'>—</b> de las <b data-draw='h4'>—</b> inscripciones de Antofagasta.</p>
+        <p class='pc-find' data-l="en">Heshan provides <b data-draw='h1'>—</b>% of the Iquique list and <b data-draw='h2'>—</b>% of Santiago’s, but only <b data-draw='h3'>—</b> of Antofagasta’s <b data-draw='h4'>—</b> entries.</p>
+        <p class='pc-find' data-l="es">En las listas de Arica, Tocopilla, Taltal, Chañaral, Copiapó y Coquimbo, el <b data-draw='h5'>—</b> % venía de Zhongshan.</p>
+        <p class='pc-find' data-l="en">On the Arica, Tocopilla, Taltal, Chañaral, Copiapó and Coquimbo lists, <b data-draw='h5'>—</b>% came from Zhongshan.</p>
+        <p class='pc-find' data-l="es">Dongguan pesa más en Antofagasta (<b data-draw='h6'>—</b> %) y en la lista 古華埠, ubicada por hipótesis en Pueblo Hundido (<b data-draw='h7'>—</b> %).</p>
+        <p class='pc-find' data-l="en">Dongguan weighs more in Antofagasta (<b data-draw='h6'>—</b>%) and in the 古華埠 list, hypothetically placed in Pueblo Hundido (<b data-draw='h7'>—</b>%).</p>
       </div>
     </div>
   </section>
 
   <section class='pc-sec' id='edades'>
-    <h2 class='pc-h2'>Una comunidad madura</h2>
-    <p class='pc-sub'>La mayoría había nacido en las décadas de 1880 y 1890. Casi no hay jóvenes: el padrón retrata a una generación de inmigrantes establecida hacía tiempo, no a recién llegados.</p>
+    <h2 class='pc-h2'><span class="sec-n">五</span><span data-en="A mature community">Una comunidad madura</span></h2>
+    <p class='pc-sub' data-l="es">La mayoría había nacido en las décadas de 1880 y 1890. Casi no hay jóvenes: el padrón retrata a una generación de inmigrantes establecida hacía tiempo, no a recién llegados.</p>
+    <p class='pc-sub' data-l="en">Most were born in the 1880s and 1890s. There are almost no young people: the roll portrays a generation of long-settled immigrants, not newcomers.</p>
     <div class='pc-grid2'>
       <div class='pc-card' id='tarjeta-edades'>
-        <h3 class='pc-h3'>Edad declarada, en tramos de cinco años</h3>
+        <h3 class='pc-h3' data-en="Declared age, in five-year bands">Edad declarada, en tramos de cinco años</h3>
         <div class='pc-chart' data-draw='hist_edad' id='grafico-edades' style='min-height:300px'>—</div>
-        <p class='pc-note'>Año de nacimiento aproximado = 1947 menos la edad declarada (la edad china tradicional puede sumar uno o dos años).</p>
+        <p class='pc-note' data-en="Approximate year of birth = 1947 minus the declared age (traditional Chinese age reckoning may add one or two years).">Año de nacimiento aproximado = 1947 menos la edad declarada (la edad china tradicional puede sumar uno o dos años).</p>
       </div>
       <div class='pc-card' id='tarjeta-edad-lista'>
-        <h3 class='pc-h3'>Edades en cada lista</h3>
-        <div class='pc-legend'><span>cada punto es una persona · barra: mitad central (percentil 25–75) · trazo: mediana</span></div>
+        <h3 class='pc-h3' data-en="Ages on each list">Edades en cada lista</h3>
+        <div class='pc-legend'><span data-en="each dot is a person · bar: middle half (25th–75th percentile) · line: median">cada punto es una persona · barra: mitad central (percentil 25–75) · trazo: mediana</span></div>
         <div class='pc-chart' data-draw='edad_lista' id='grafico-edad-lista' style='min-height:320px'>—</div>
       </div>
     </div>
   </section>
 
   <section class='pc-sec' id='oficios'>
-    <h2 class='pc-h2'>Una colonia de comerciantes</h2>
-    <p class='pc-sub'>Casi todos se declaran comerciantes (商, 商人): almaceneros, tenderos y socios de casas de comercio. Las categorías agrupan las grafías del padrón; las que no encajan con seguridad quedan como lecturas por confirmar.</p>
+    <h2 class='pc-h2'><span class="sec-n">六</span><span data-en="A colony of merchants">Una colonia de comerciantes</span></h2>
+    <p class='pc-sub' data-l="es">Casi todos se declaran comerciantes (商, 商人): almaceneros, tenderos y socios de casas de comercio. Las categorías agrupan las grafías del padrón; las que no encajan con seguridad quedan como lecturas por confirmar.</p>
+    <p class='pc-sub' data-l="en">Almost all declare themselves merchants (商, 商人): grocers, shopkeepers and partners in trading houses. The categories group the roll’s spellings; those that do not fit with certainty are left as readings to be confirmed.</p>
     <div class='pc-card' id='tarjeta-oficios'>
       <div class='pc-rows' data-draw='oficios' id='grafico-oficios' style='min-height:300px'></div>
-      <p class='pc-note'>«Lectura por confirmar» reúne caracteres como 育, 企, 賃 o 壽, que aparecen en bloques seguidos de la misma hoja y podrían ser abreviaturas o grafías cursivas de 商; conviene revisarlos en el escaneo.</p>
+      <p class='pc-note' data-l="es">«Lectura por confirmar» reúne caracteres como 育, 企, 賃 o 壽, que aparecen en bloques seguidos de la misma hoja y podrían ser abreviaturas o grafías cursivas de 商; conviene revisarlos en el escaneo.</p>
+      <p class='pc-note' data-l="en">“Reading to be confirmed” gathers characters such as 育, 企, 賃 or 壽, which appear in consecutive blocks on the same sheet and could be abbreviations or cursive forms of 商; they should be checked against the scan.</p>
     </div>
   </section>
 
   <section class='pc-sec' id='apellidos'>
-    <h2 class='pc-h2'>Apellidos y linajes</h2>
-    <p class='pc-sub'>Los apellidos más frecuentes, con su romanización cantonesa habitual en Hong Kong; al pasar el cursor aparecen también las grafías que se usaron en Chile. El color indica si el apellido se concentra sobre todo en Zhongshan, Heshan, Dongguan u otro condado, y la intensidad, cuánto se concentra: muchos linajes venían casi enteros de un mismo condado.</p>
+    <h2 class='pc-h2'><span class="sec-n">七</span><span data-en="Surnames and lineages">Apellidos y linajes</span></h2>
+    <p class='pc-sub' data-l="es">Los apellidos más frecuentes. Elige cómo leerlos: en mandarín, en cantonés (la romanización habitual en Hong Kong), en hakka o con la grafía que se usó en Chile. El color indica si el apellido se concentra sobre todo en Zhongshan, Heshan, Dongguan u otro condado, y la intensidad, cuánto se concentra: muchos linajes venían casi enteros de un mismo condado. Haz clic en un apellido para ver todas sus grafías.</p>
+    <p class='pc-sub' data-l="en">The most frequent surnames. Choose how to read them: in Mandarin, in Cantonese (the usual Hong Kong romanization), in Hakka, or as they were spelled in Chile. Colour shows whether a surname concentrates mainly in Zhongshan, Heshan, Dongguan or another county, and its intensity how concentrated it is: many lineages came almost entirely from a single county. Click a surname to see all its spellings.</p>
     <div class='pc-card' id='tarjeta-apellidos'>
+      <div class='pc-pron' role='group' aria-label='Pronunciación' data-en-aria='Pronunciation'>
+        <button type='button' data-pron='mandarin'><span class='zh'>普通話</span><small data-en="Mandarin">Mandarín</small></button>
+        <button type='button' data-pron='canton'><span class='zh'>廣東話</span><small data-en="Cantonese">Cantonés</small></button>
+        <button type='button' data-pron='hakka'><span class='zh'>客家話</span><small>Hakka</small></button>
+        <button type='button' data-pron='chile'><span class='zh'>智利</span><small data-en="In Chile">En Chile</small></button>
+      </div>
       <div class='pc-legend' data-draw='leyenda_condados'></div>
       <div class='pc-chart' data-draw='apellidos' id='grafico-apellidos' style='min-height:440px'>—</div>
-      <p class='pc-finds' style='display:block'>
-        <span class='pc-find' style='display:block'>De los <b data-draw='h8'>—</b> 鄭 (Cheng), <b data-draw='h9'>—</b> eran de Zhongshan; de los <b data-draw='h10'>—</b> 賴 (Lai), <b data-draw='h11'>—</b> eran de Heshan.</span>
-      </p>
+      <div class='pc-finds'>
+        <p class='pc-find' data-l="es">De los <b data-draw='h8'>—</b> 鄭 (Cheng), <b data-draw='h9'>—</b> eran de Zhongshan; de los <b data-draw='h10'>—</b> 賴 (Lai), <b data-draw='h11'>—</b> eran de Heshan.</p>
+        <p class='pc-find' data-l="en">Of the <b data-draw='h8'>—</b> 鄭 (Cheng), <b data-draw='h9'>—</b> were from Zhongshan; of the <b data-draw='h10'>—</b> 賴 (Lai), <b data-draw='h11'>—</b> were from Heshan.</p>
+      </div>
     </div>
+    <div class='xu-card' data-draw='familia_xu' id='familia-xu'></div>
   </section>
 
   <section class='pc-sec' id='grafias'>
-    <h2 class='pc-h2'>Cómo se escribían en Chile</h2>
-    <p class='pc-sub'>Cada apellido del padrón con su forma simplificada, su lectura en mandarín (pinyin), en cantonés (jyutping) y en hakka, y las grafías castellanas con que aparece en el «Cuadro genealógico de la colectividad china» de Elsa Kam-Ching Zambrano (Historia de la colectividad china en Chile, pp. 54–57). La columna «Fila» remite a la numeración de ese cuadro.</p>
-    <p class='pc-p'>Una misma grafía chilena puede corresponder a caracteres distintos, así que el apellido en castellano no basta para saber el carácter original ni para suponer parentesco:</p>
+    <h2 class='pc-h2'><span class="sec-n">八</span><span data-en="How they were spelled in Chile">Cómo se escribían en Chile</span></h2>
+    <p class='pc-sub' data-l="es">Cada apellido del padrón con su forma simplificada, su lectura en mandarín (pinyin), en cantonés (jyutping) y en hakka, y las grafías castellanas con que aparece en el «Cuadro genealógico de la colectividad china» de Elsa Kam-Ching Zambrano (Historia de la colectividad china en Chile, pp. 54–57). La columna «Fila» remite a la numeración de ese cuadro.</p>
+    <p class='pc-sub' data-l="en">Each surname in the roll with its simplified form, its Mandarin (pinyin), Cantonese (jyutping) and Hakka readings, and the Spanish spellings under which it appears in the “Cuadro genealógico de la colectividad china” by Elsa Kam-Ching Zambrano (Historia de la colectividad china en Chile, pp. 54–57). The “Row” column refers to that chart’s numbering.</p>
+    <p class='pc-p' data-l="es">Una misma grafía chilena puede corresponder a caracteres distintos, así que el apellido en castellano no basta para saber el carácter original ni para suponer parentesco:</p>
+    <p class='pc-p' data-l="en">A single Chilean spelling may correspond to different characters, so the Spanish surname alone is not enough to know the original character or to assume kinship:</p>
     <div class='pc-pairs'>
       <span class='pc-pair'><b>Ching</b> · 陳 / 程</span>
       <span class='pc-pair'><b>Choy</b> · 蔡 / 張</span>
@@ -314,62 +484,81 @@ html.incrustada .pagina { padding: 0 2px 12px; }
       <span class='pc-pair'><b>Fong</b> · 馮 / 方</span>
     </div>
     <div class='pc-tools'>
-      <input class='pc-search' type='search' id='buscar-apellido' placeholder='Buscar: Wong, 黄, huáng, vong…' aria-label='Buscar apellido'>
-      <label class='pc-check'><input type='checkbox' id='solo-chile'> Solo con grafía chilena documentada</label>
+      <input class='pc-search' type='search' id='buscar-apellido' placeholder='Buscar: Wong, 黄, huáng, vong…' data-en-ph='Search: Wong, 黄, huáng, vong…' aria-label='Buscar apellido' data-en-aria='Search surname'>
+      <label class='pc-check'><input type='checkbox' id='solo-chile'> <span data-en="Only with a documented Chilean spelling">Solo con grafía chilena documentada</span></label>
       <span class='pc-note' data-draw='cuenta_grafias' style='margin:0'>—</span>
     </div>
-    <div class='pc-table-wrap' style='max-height:620px'>
+    <div class='pc-table-wrap pc-pron-tabla' style='max-height:620px'>
       <table class='pc-table' id='tabla-grafias'>
-        <thead><tr><th>Tradicional</th><th>Simplificado</th><th>Mandarín (pinyin)</th><th>Cantonés (jyutping)</th><th>Hakka (sixian)</th><th>Grafías en Chile</th><th>Fila</th><th>Inscritos</th></tr></thead>
+        <thead><tr><th data-en="Traditional">Tradicional</th><th data-en="Simplified">Simplificado</th><th data-en="Mandarin (pinyin)">Mandarín (pinyin)</th><th data-en="Cantonese (jyutping)">Cantonés (jyutping)</th><th>Hakka (sixian)</th><th data-en="Spellings in Chile">Grafías en Chile</th><th data-en="Row">Fila</th><th data-en="Voters">Inscritos</th></tr></thead>
         <tbody data-draw='tabla_grafias'></tbody>
       </table>
     </div>
-    <p class='pc-note'>Hakka: dialecto sixian, cercano al de Meixian (嘉應), en la romanización del diccionario hakka del Ministerio de Educación de Taiwán; los números volados marcan el tono. <sup>c</sup> lectura deducida de palabras compuestas; <sup>g</sup> lectura general del carácter, sin acepción de apellido en el diccionario. Los signos «?» y «/» en las grafías chilenas son lecturas dudosas del cuadro manuscrito. «Indirecta»: el cuadro usa una variante del carácter (鐘 por 鍾, 邱 por 丘); «provisional»: depende de confirmar la lectura del carácter en el cuadro. Las pronunciaciones son las actuales de referencia y pueden diferir de las variantes locales que hablaban los inscritos.</p>
+    <p class='pc-note' data-trad data-l="es">Hakka: dialecto sixian, cercano al de Meixian (嘉應), en la romanización del diccionario hakka del Ministerio de Educación de Taiwán; los números volados marcan el tono. <sup>c</sup> lectura deducida de palabras compuestas; <sup>g</sup> lectura general del carácter, sin acepción de apellido en el diccionario. Los signos «?» y «/» en las grafías chilenas son lecturas dudosas del cuadro manuscrito. «Indirecta»: el cuadro usa una variante del carácter (鐘 por 鍾, 邱 por 丘); «provisional»: depende de confirmar la lectura del carácter en el cuadro. Las pronunciaciones son las actuales de referencia y pueden diferir de las variantes locales que hablaban los inscritos.</p>
+    <p class='pc-note' data-trad data-l="en">Hakka: Sixian dialect, close to that of Meixian (嘉應), in the romanization of the Hakka dictionary of Taiwan’s Ministry of Education; superscript numbers mark the tone. <sup>c</sup> reading deduced from compound words; <sup>g</sup> general reading of the character, with no surname sense in the dictionary. The signs “?” and “/” in the Chilean spellings are doubtful readings of the handwritten chart. “Indirect”: the chart uses a variant of the character (鐘 for 鍾, 邱 for 丘); “provisional”: depends on confirming the reading of the character in the chart. Pronunciations are present-day reference readings and may differ from the local varieties the voters spoke.</p>
   </section>
 
   <section class='pc-sec' id='mujeres'>
-    <h2 class='pc-h2'>Las mujeres del padrón</h2>
-    <p class='pc-sub'>Son pocas, y casi todas inscritas en Santiago. Varias aparecen junto a funcionarios inscritos en la misma hoja y anteponen el apellido del marido al propio, como era costumbre.</p>
+    <h2 class='pc-h2'><span class="sec-n">九</span><span data-en="The women of the roll">Las mujeres del padrón</span></h2>
+    <p class='pc-sub' data-l="es">Son pocas, y casi todas inscritas en Santiago. Varias aparecen junto a funcionarios inscritos en la misma hoja y anteponen el apellido del marido al propio, como era costumbre.</p>
+    <p class='pc-sub' data-l="en">They are few, and almost all registered in Santiago. Several appear alongside officials registered on the same sheet and put their husband’s surname before their own, as was customary.</p>
     <div class='pc-table-wrap' style='max-height:420px'>
       <table class='pc-table' id='tabla-mujeres'>
-        <thead><tr><th>Apellido</th><th>Romanización</th><th>Edad</th><th>Origen</th><th>Condado</th><th>Oficio</th><th>Lista</th></tr></thead>
+        <thead><tr><th data-en="Surname">Apellido</th><th data-en="Romanization">Romanización</th><th data-en="Age">Edad</th><th data-en="Origin">Origen</th><th data-en="County">Condado</th><th data-en="Occupation">Oficio</th><th data-en="List">Lista</th></tr></thead>
         <tbody data-draw='tabla_mujeres'></tbody>
       </table>
     </div>
   </section>
 
   <section class='pc-sec' id='explorar'>
-    <h2 class='pc-h2'>Explorar las inscripciones</h2>
-    <p class='pc-sub'>Todas las inscripciones que pasan los filtros de arriba, identificadas solo por su apellido. Busca por apellido, lugar u oficio, en caracteres o en romanización.</p>
-    <input class='pc-search' type='search' id='buscar' placeholder='Buscar: 鄭, Cheng, 中山, Iquique…' aria-label='Buscar en el padrón'>
+    <h2 class='pc-h2'><span class="sec-n">十</span><span data-en="Explore the entries">Explorar las inscripciones</span></h2>
+    <p class='pc-sub' data-l="es">Todas las inscripciones que pasan los filtros de arriba, identificadas solo por su apellido. Busca por apellido, lugar u oficio, en caracteres o en romanización.</p>
+    <p class='pc-sub' data-l="en">All entries that pass the filters above, identified only by surname. Search by surname, place or occupation, in characters or romanization.</p>
+    <input class='pc-search' type='search' id='buscar' placeholder='Buscar: 鄭, Cheng, 中山, Iquique…' data-en-ph='Search: 鄭, Cheng, 中山, Iquique…' aria-label='Buscar en el padrón' data-en-aria='Search the roll'>
     <p class='pc-note' data-draw='cuenta_tabla' style='margin:0 0 var(--cds-gap-xs)'>—</p>
     <div class='pc-table-wrap'>
       <table class='pc-table' id='tabla-padron'>
-        <thead><tr><th>Apellido</th><th>Romanización</th><th>Sexo</th><th>Edad</th><th>Origen</th><th>Condado</th><th>Oficio</th><th>Categoría</th><th>Lista</th><th>Localidad</th></tr></thead>
+        <thead><tr><th data-en="Surname">Apellido</th><th data-en="Romanization">Romanización</th><th data-en="Sex">Sexo</th><th data-en="Age">Edad</th><th data-en="Origin">Origen</th><th data-en="County">Condado</th><th data-en="Occupation">Oficio</th><th data-en="Category">Categoría</th><th data-en="List">Lista</th><th data-en="Town">Localidad</th></tr></thead>
         <tbody data-draw='tabla_padron'></tbody>
       </table>
     </div>
   </section>
 
+  <div class="orn" aria-hidden="true">❦</div>
+
   <details class='pc-details' id='notas'>
-    <summary>Notas sobre los datos y el método</summary>
-    <ul>
+    <summary data-en="Notes on the data and method">Notas sobre los datos y el método</summary>
+    <ul data-l="es">
       <li>Fuente: transcripción del expediente 033-020104-0091 (padrón de la elección de representantes a la Asamblea Nacional, distrito 9 de ciudadanos en el extranjero, noviembre de 1947). Se cuentan las hojas «Electores» y «Otras listas»; los traslados pueden repetir a una persona. Las listas con nombres completos se conservan aparte y no se publican aquí.</li>
-      <li>Santiago, Iquique y Antofagasta son sedes documentadas. Arica, Tocopilla, Taltal, Copiapó y Coquimbo son equivalencias propuestas por cotejo; Chañaral es tentativa; 古華埠 y 華思拿埠 siguen sin identificar y no aparecen en el mapa.</li>
+      <li>Santiago, Iquique y Antofagasta son sedes documentadas. Arica, Tocopilla, Taltal, Copiapó y Coquimbo son equivalencias propuestas por cotejo; Chañaral es tentativa.</li>
+      <li data-trad>古華埠 y 華思拿埠 se ubican por hipótesis en Pueblo Hundido (interior de Chañaral, junto a Potrerillos y El Salado) y en Vallenar. Base: el cuadro de distribución de la encuesta de 1965 (Kam-Ching Zambrano, pp. 122–123). Con esa asignación, cada lugar de Atacama conserva en 1965 una proporción de nacidos en China parecida al promedio nacional (846 de 1197, 71 %); Pueblo Hundido, Inca de Oro y El Salado suman 22 frente a 28, y Vallenar, 15 frente a 15. A favor de Pueblo Hundido: la lista de Chañaral anota cuatro traslados «a 古埠» y el 36 % de 古華埠 viene de Dongguan, como en Copiapó; el nombre chino, en cambio, no calza con la fonética. A favor de Vallenar: 華 transcribe «Va» (阿華夜 = Ovalle) y 拿, «nar»; el segundo carácter podría ser 恩 (yan, la «ll» chilena) leído como 思. Alternativas consideradas: Huasco («Guasco») para 古華埠 y Huara, menos coherente con los traslados y el origen de los inscritos.</li>
       <li>El origen es el 籍貫 declarado (procedencia familiar), no necesariamente el lugar de nacimiento. Se unificaron nombres antiguos y variantes: 香山 → Zhongshan, 新安 → Bao’an, 臺山 → Taishan, 斗門 → Zhongshan, 肇慶 → Gaoyao, 水步 → Taishan. Las casillas con otro dato desplazado (por ejemplo, un oficio en la columna de origen) cuentan como «sin dato».</li>
       <li>Los límites de los condados se reconstruyeron uniendo distritos actuales; son aproximados. Los de Chile usan las regiones actuales agrupadas como las provincias de 1947.</li>
       <li>Para proteger la privacidad de las familias, esta versión no publica nombres completos: cada inscripción se identifica solo por su apellido, tomado del primer carácter del nombre (歐陽 se trata como apellido doble). La romanización cantonesa es la forma más común en Hong Kong; las grafías chilenas de la época pueden variar.</li>
       <li>La edad es la declarada; la edad china tradicional suele sumar uno o dos años a la occidental. En la lista de Arica no se registró el sexo.</li>
+      <li>Escritura simplificada: conversión automática carácter por carácter (OpenCC); los apellidos usan la forma simplificada de la tabla de grafías. Las notas sobre caracteres manuscritos se dejan en tradicional.</li>
+    </ul>
+    <ul data-l="en">
+      <li>Source: transcription of file 033-020104-0091 (roll for the election of representatives to the National Assembly, 9th district of citizens abroad, November 1947). The “Electores” and “Otras listas” sheets are counted; transfers may repeat a person. The lists with full names are kept separately and are not published here.</li>
+      <li>Santiago, Iquique and Antofagasta are documented seats. Arica, Tocopilla, Taltal, Copiapó and Coquimbo are equivalences proposed by comparison; Chañaral is tentative.</li>
+      <li data-trad>古華埠 and 華思拿埠 are placed, as a hypothesis, in Pueblo Hundido (inland from Chañaral, next to Potrerillos and El Salado) and in Vallenar. Basis: the distribution table of the 1965 survey (Kam-Ching Zambrano, pp. 122–123). With this assignment, each place in Atacama keeps in 1965 a share of China-born residents similar to the national average (846 of 1197, 71%); Pueblo Hundido, Inca de Oro and El Salado add up to 22 against 28, and Vallenar, 15 against 15. In favour of Pueblo Hundido: the Chañaral list records four transfers “to 古埠”, and 36% of 古華埠 comes from Dongguan, as in Copiapó; the Chinese name, however, does not fit phonetically. In favour of Vallenar: 華 transcribes “Va” (阿華夜 = Ovalle) and 拿, “nar”; the second character could be 恩 (yan, the Chilean “ll”) read as 思. Alternatives considered: Huasco (“Guasco”) for 古華埠, and Huara, less consistent with the transfers and the voters’ origins.</li>
+      <li>Origin is the declared 籍貫 (family place of origin), not necessarily the birthplace. Old names and variants were unified: 香山 → Zhongshan, 新安 → Bao’an, 臺山 → Taishan, 斗門 → Zhongshan, 肇慶 → Gaoyao, 水步 → Taishan. Cells holding other displaced data (for example, an occupation in the origin column) count as “no data”.</li>
+      <li>County boundaries were rebuilt by merging present-day districts; they are approximate. Chile’s use present-day regions grouped as the 1947 provinces.</li>
+      <li>To protect the families’ privacy, this version publishes no full names: each entry is identified only by its surname, taken from the first character of the name (歐陽 is treated as a double surname). The Cantonese romanization is the most common Hong Kong form; Chilean spellings of the time may vary.</li>
+      <li>Age is as declared; traditional Chinese age reckoning usually adds one or two years to the Western one. Sex was not recorded on the Arica list.</li>
+      <li>Simplified script: automatic character-by-character conversion (OpenCC); surnames use the simplified form from the spellings table. Notes about handwritten characters are kept in traditional script.</li>
     </ul>
   </details>
 </div>
 
   <footer class="pie">
-    <p>Datos: transcripción del padrón electoral de ciudadanos chinos en Chile, 1947 (expediente 033-020104-0091). Grafías castellanas de los apellidos: «Cuadro genealógico de la colectividad china», en Elsa Kam-Ching Zambrano, <i>Historia de la colectividad china en Chile</i>, pp. 54–57. Pronunciación hakka: diccionario hakka del Ministerio de Educación de Taiwán (datos abiertos de g0v/moedict). Mapas: límites administrativos de China (DataV, vía GeoMapData_CN), regiones de Chile (caracena/chile-geojson) y Natural Earth. Gráficos hechos con D3.</p>
-    <p class="pie-volver"><a href="../#article=migracion-china-chile-1980-1930">← Volver al artículo</a></p>
+    <p data-l="es">Datos: transcripción del padrón electoral de ciudadanos chinos en Chile, 1947 (expediente 033-020104-0091). Grafías castellanas de los apellidos: «Cuadro genealógico de la colectividad china», en Elsa Kam-Ching Zambrano, <i>Historia de la colectividad china en Chile</i>, pp. 54–57. Pronunciación hakka: diccionario hakka del Ministerio de Educación de Taiwán (datos abiertos de g0v/moedict). Mapas: límites administrativos de China (DataV, vía GeoMapData_CN), regiones de Chile (caracena/chile-geojson) y Natural Earth. Gráficos hechos con D3.</p>
+    <p data-l="en">Data: transcription of the 1947 electoral roll of Chinese citizens in Chile (file 033-020104-0091). Spanish spellings of the surnames: “Cuadro genealógico de la colectividad china”, in Elsa Kam-Ching Zambrano, <i>Historia de la colectividad china en Chile</i>, pp. 54–57. Hakka pronunciation: Hakka dictionary of Taiwan’s Ministry of Education (g0v/moedict open data). Maps: administrative boundaries of China (DataV, via GeoMapData_CN), regions of Chile (caracena/chile-geojson) and Natural Earth. Charts made with D3.</p>
+    <p class="pie-volver"><a href="../#article=migracion-china-chile-1980-1930" data-en="← Back to the article">← Volver al artículo</a> · <a href="../" data-en="Family tree 族譜">Árbol familiar 族譜</a></p>
   </footer>
 </div>
 <script src="vendor/d3.min.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/runtime.js"></script>
 <script src="js/calcs.js"></script>
 <script src="js/comun.js"></script>

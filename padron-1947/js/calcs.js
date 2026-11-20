@@ -38,7 +38,7 @@ dash.calc('por_lista', {
   description: 'Inscripciones por lista (sede) en Chile, de norte a sur, con el filtro de condado aplicado.',
   fn: (electores) => {
     const p = dash.params();
-    const orden = ['Arica', 'Iquique', 'Tocopilla', 'Antofagasta', 'Taltal', 'Chañaral', 'Copiapó', 'Coquimbo', 'Santiago', '古華埠', '華思拿埠'];
+    const orden = ['Arica', 'Iquique', 'Tocopilla', 'Antofagasta', 'Taltal', 'Chañaral', 'Pueblo Hundido', 'Copiapó', 'Vallenar', 'Coquimbo', 'Santiago'];
     const r = electores.filter((e) => !p.condado || e.origen_condado === p.condado);
     return orden.map((sede) => {
       const de = electores.filter((e) => e.sede === sede);
@@ -58,7 +58,7 @@ dash.calc('por_localidad', {
     const m = new Map();
     r.forEach((e) => {
       const k = e.localidad;
-      if (!m.has(k)) m.set(k, { localidad: k, sede: e.sede, lat: Number(e.lat), lon: Number(e.lon), nota: e.localidad_nota || '', n: 0 });
+      if (!m.has(k)) m.set(k, { localidad: k, sede: e.sede, lat: Number(e.lat), lon: Number(e.lon), nota: e.localidad_nota || '', estado: e.sede_estado || '', grafia: e.sede_grafia || '', n: 0 });
       m.get(k).n += 1;
     });
     return [...m.values()].sort((a, b) => b.lat - a.lat);
@@ -68,7 +68,7 @@ dash.calc('por_localidad', {
 dash.calc('por_provincia', {
   inputs: ['electores'],
   title: 'Inscritos por provincia chilena',
-  description: 'Inscripciones por provincia de 1947, con el filtro de condado aplicado. Excluye las listas sin identificar.',
+  description: 'Inscripciones por provincia de 1947, con el filtro de condado aplicado. Incluye las dos listas ubicadas por hipótesis.',
   fn: (electores) => {
     const p = dash.params();
     const provs = ['Tarapacá', 'Antofagasta', 'Atacama', 'Coquimbo', 'Santiago'];
@@ -98,7 +98,7 @@ dash.calc('cruce', {
   title: 'Condado de origen por lista',
   description: 'Inscripciones por lista y condado (los ocho condados mayores, el resto como Otros), con su parte dentro de cada lista. Sin filtros.',
   fn: (electores) => {
-    const listas = ['Arica', 'Iquique', 'Tocopilla', 'Antofagasta', 'Taltal', 'Chañaral', 'Copiapó', 'Coquimbo', 'Santiago', '古華埠', '華思拿埠'];
+    const listas = ['Arica', 'Iquique', 'Tocopilla', 'Antofagasta', 'Taltal', 'Chañaral', 'Pueblo Hundido', 'Copiapó', 'Vallenar', 'Coquimbo', 'Santiago'];
     const tot = {};
     electores.forEach((e) => { if (e.origen_condado) tot[e.origen_condado] = (tot[e.origen_condado] || 0) + 1; });
     const mayores = Object.entries(tot).sort((a, b) => b[1] - a[1]).slice(0, 8).map((d) => d[0]);
@@ -133,7 +133,7 @@ dash.calc('hallazgos', {
       antofagasta_n: de('Antofagasta').length,
       zhongshan_menores_pct: pct(cnt(menores, 'Zhongshan'), menores.length),
       dongguan_antofagasta_pct: pct(cnt(de('Antofagasta'), 'Dongguan'), de('Antofagasta').length),
-      dongguan_guhua_pct: pct(cnt(de('古華埠'), 'Dongguan'), de('古華埠').length),
+      dongguan_guhua_pct: pct(cnt(de('Pueblo Hundido'), 'Dongguan'), de('Pueblo Hundido').length),
       zheng_n: ape('鄭').length,
       zheng_zhongshan: cnt(ape('鄭'), 'Zhongshan'),
       lai_n: ape('賴').length,
@@ -164,7 +164,7 @@ dash.calc('edad_por_lista', {
   description: 'Mediana y percentiles 25 y 75 de la edad en cada lista, con el filtro de condado aplicado.',
   fn: (electores) => {
     const p = dash.params();
-    const listas = ['Arica', 'Iquique', 'Tocopilla', 'Antofagasta', 'Taltal', 'Chañaral', 'Copiapó', 'Coquimbo', 'Santiago', '古華埠', '華思拿埠'];
+    const listas = ['Arica', 'Iquique', 'Tocopilla', 'Antofagasta', 'Taltal', 'Chañaral', 'Pueblo Hundido', 'Copiapó', 'Vallenar', 'Coquimbo', 'Santiago'];
     const q = (s, f) => { if (!s.length) return null; const i = (s.length - 1) * f; const lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); };
     return listas.map((sede) => {
       const s = electores.filter((e) => e.sede === sede && (!p.condado || e.origen_condado === p.condado) && Number(e.edad) > 0).map((e) => Number(e.edad)).sort((a, b) => a - b);

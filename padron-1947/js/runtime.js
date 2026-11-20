@@ -24,7 +24,7 @@
     const fn = dibujos[nombre];
     if (!fn) return;
     document.querySelectorAll(`[data-draw="${nombre}"]`).forEach((el) => {
-      try { fn(el); anchos.set(el, el.clientWidth); } catch (e) { console.error('Gráfico', nombre, e); }
+      try { fn(el); anchos.set(el, el.clientWidth); I18N.convertir(el); } catch (e) { console.error('Gráfico', nombre, e); }
     });
   }
   function todo() { Object.keys(dibujos).forEach(ejecutar); avisarAltura(); }
@@ -55,6 +55,7 @@
       programar();
     },
     resetParams() { this.setParams({ sede: '', condado: '' }); },
+    redibujarTodo() { if (cargado) todo(); },
     calc(id, def) { calculos[id] = def; },
     loader() {},
     onData(fn) { fn(); },
@@ -100,6 +101,7 @@
   });
 
   window.addEventListener('DOMContentLoaded', () => {
+    I18N.iniciar();
     Promise.all(Object.entries(ARCHIVOS).map(([id, url]) => fetch(url).then((r) => {
       if (!r.ok) throw new Error(`${url}: ${r.status}`);
       return r.json();
@@ -115,7 +117,7 @@
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(todo);
     }).catch((e) => {
       console.error(e);
-      document.querySelectorAll('.pc-cargando').forEach((el) => { el.hidden = false; el.textContent = 'No se pudieron cargar los datos. La página debe abrirse desde un servidor (por ejemplo GitHub Pages), no como archivo local.'; });
+      document.querySelectorAll('.pc-cargando').forEach((el) => { el.hidden = false; el.textContent = L('No se pudieron cargar los datos. La página debe abrirse desde un servidor (por ejemplo GitHub Pages), no como archivo local.', 'The data could not be loaded. Open the page from a web server (e.g. GitHub Pages), not as a local file.'); });
     });
   });
 })();

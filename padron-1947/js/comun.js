@@ -1,6 +1,6 @@
 // Utilidades compartidas, barra de filtros, cifras y tablas. (Versión web: sin nombres de personas.)
 window.CH = (function () {
-  const ORDEN = ['Arica', 'Iquique', 'Tocopilla', 'Antofagasta', 'Taltal', 'Chañaral', 'Copiapó', 'Coquimbo', 'Santiago', '古華埠', '華思拿埠'];
+  const ORDEN = ['Arica', 'Iquique', 'Tocopilla', 'Antofagasta', 'Taltal', 'Chañaral', 'Pueblo Hundido', 'Copiapó', 'Vallenar', 'Coquimbo', 'Santiago'];
   const CONDADOS = ['Zhongshan', 'Heshan', 'Dongguan'];
   const CH = {
     ORDEN, CONDADOS,
@@ -14,7 +14,7 @@ window.CH = (function () {
       const ds = ids.map((id) => dash.data(id));
       if (ds.every((d) => d.status === 'ok')) return ds.map((d) => d.data);
       if (ds.some((d) => d.status === 'error' || d.status === 'missing')) {
-        el.replaceChildren(); const p = document.createElement('div'); p.className = 'pc-fail'; p.textContent = 'No se pudo cargar'; el.appendChild(p);
+        el.replaceChildren(); const p = document.createElement('div'); p.className = 'pc-fail'; p.textContent = L('No se pudo cargar', 'Could not load'); el.appendChild(p);
       } else if (!el.firstChild || el.firstChild.nodeType !== 3) { el.replaceChildren('—'); }
       return null;
     },
@@ -31,7 +31,7 @@ window.CH = (function () {
       return {
         show(ev, lines) {
           t.replaceChildren();
-          lines.forEach((l, i) => { const d = document.createElement('div'); if (i === 0) { const b = document.createElement('b'); b.textContent = l; d.appendChild(b); } else { d.textContent = l; if (i > 1) d.className = 'pc-tip-m'; } t.appendChild(d); });
+          lines.filter((l) => l !== '' && l !== null && l !== undefined).forEach((l, i) => { l = I18N.zh(l); const d = document.createElement('div'); if (i === 0) { const b = document.createElement('b'); b.textContent = l; d.appendChild(b); } else { d.textContent = l; if (i > 1) d.className = 'pc-tip-m'; } t.appendChild(d); });
           t.hidden = false;
           const r = el.getBoundingClientRect();
           let x = ev.clientX - r.left + 14, y = ev.clientY - r.top + 14;
@@ -65,7 +65,7 @@ document.querySelectorAll('[data-modo]').forEach((b) => b.addEventListener('clic
 dash.draw('f_sede', (sel) => {
   const g = dash.data('por_lista');
   const filas = g.status === 'ok' ? g.data : [];
-  sel.replaceChildren(new Option('Todas las listas', ''), ...filas.map((r) => new Option(r.sede === r.grafia ? `${r.sede} (sin identificar)` : `${r.sede} · ${r.grafia}`, r.sede)));
+  sel.replaceChildren(new Option(L('Todas las listas', 'All lists'), ''), ...filas.map((r) => new Option(`${r.sede} · ${r.grafia}${r.estado === 'Hipótesis' ? L(' (hipótesis)', ' (hypothesis)') : ''}`, r.sede)));
   sel.value = dash.params().sede || '';
   sel.onchange = () => dash.setParams({ sede: sel.value || '' });
 });
@@ -75,7 +75,7 @@ dash.draw('f_condado', (sel) => {
   const cuenta = {};
   if (g.status === 'ok') g.data.forEach((e) => { if (e.origen_condado) cuenta[e.origen_condado] = { n: ((cuenta[e.origen_condado] || {}).n || 0) + 1, zh: e.origen_zh }; });
   const ops = Object.entries(cuenta).sort((a, b) => b[1].n - a[1].n);
-  sel.replaceChildren(new Option('Todos los condados', ''), ...ops.map(([c, v]) => new Option(`${v.zh} ${c}`, c)));
+  sel.replaceChildren(new Option(L('Todos los condados', 'All counties'), ''), ...ops.map(([c, v]) => new Option(`${v.zh} ${c}`, c)));
   sel.value = dash.params().condado || '';
   sel.onchange = () => dash.setParams({ condado: sel.value || '' });
 });
@@ -83,9 +83,10 @@ dash.draw('f_condado', (sel) => {
 dash.draw('estado_filtro', (el) => {
   const p = dash.params();
   const partes = [];
-  if (p.sede) partes.push(`lista ${p.sede}`);
-  if (p.condado) partes.push(`condado ${p.condado}`);
-  el.textContent = partes.length ? `Filtrando por ${partes.join(' y ')}` : 'Sin filtros: todo el padrón';
+  if (p.sede) partes.push(L(`lista ${p.sede}`, `list ${p.sede}`));
+  if (p.condado) partes.push(L(`condado ${p.condado}`, `county ${p.condado}`));
+  el.textContent = partes.length ? L(`Filtrando por ${partes.join(' y ')}`, `Filtered by ${partes.join(' and ')}`) : L('Sin filtros: todo el padrón', 'No filters: the whole roll');
+  el.classList.toggle('pc-status-on', partes.length > 0);
 });
 
 // ---- Cifras ----
@@ -116,7 +117,7 @@ function filasTabla(tbody, filas, cols) {
     const tr = d3.select(this);
     tr.selectAll('td').data(cols.map((c) => ({ c, v: d[c.k] }))).join('td')
       .attr('class', (x) => x.c.cls || null)
-      .text((x) => (x.v === null || x.v === undefined || x.v === '' ? '' : x.v));
+      .text((x) => (x.v === null || x.v === undefined || x.v === '' ? '' : V(x.v)));
   }).order();
 }
 
@@ -139,7 +140,7 @@ function filasPadron() {
   const q = CH.busqueda;
   const campos = ['apellido', 'apellido_canton', 'apellido_pinyin', 'origen_zh', 'origen_condado', 'origen_canton', 'ocupacion_resuelto', 'ocupacion_cat', 'sede', 'localidad'];
   return g.data.filter((e) => (!p.sede || e.sede === p.sede) && (!p.condado || e.origen_condado === p.condado) &&
-    (!q || campos.some((c) => e[c] && String(e[c]).toLowerCase().includes(q))));
+    (!q || campos.some((c) => e[c] && [String(e[c]).toLowerCase(), I18N.zh(String(e[c])), String(V(e[c])).toLowerCase()].some((s) => s.includes(q)))));
 }
 dash.draw('tabla_padron', (tb) => {
   const f = filasPadron();
@@ -148,5 +149,5 @@ dash.draw('tabla_padron', (tb) => {
 });
 dash.draw('cuenta_tabla', (el) => {
   const f = filasPadron();
-  el.textContent = f ? `${f.length} inscripciones` : '—';
+  el.textContent = f ? L(`${f.length} inscripciones`, `${f.length} entries`) : '—';
 });
