@@ -231,7 +231,7 @@ dash.calc('fuera_gd', {
   fn: (electores) => {
     const p = dash.params();
     return electores.filter((e) => e.origen_provincia && e.origen_provincia !== 'Guangdong' && (!p.sede || e.sede === p.sede) && (!p.condado || e.origen_condado === p.condado))
-      .map((e) => ({ id: e.id, apellido: e.apellido, apellido_canton: e.apellido_canton, sexo: e.sexo, edad: e.edad, origen_zh: e.origen_zh, origen_condado: e.origen_condado, origen_provincia: e.origen_provincia, ocupacion_resuelto: e.ocupacion_resuelto, sede: e.sede }));
+      .map((e) => ({ id: e.id, nombre: e.nombre, nombre_dudoso: e.nombre_dudoso, img: e.img, apellido: e.apellido, apellido_canton: e.apellido_canton, sexo: e.sexo, edad: e.edad, origen_zh: e.origen_zh, origen_condado: e.origen_condado, origen_provincia: e.origen_provincia, ocupacion_resuelto: e.ocupacion_resuelto, sede: e.sede }));
   },
 });
 
@@ -242,6 +242,6 @@ dash.calc('mujeres', {
   fn: (electores) => {
     const p = dash.params();
     return electores.filter((e) => e.sexo === 'Mujer' && (!p.sede || e.sede === p.sede) && (!p.condado || e.origen_condado === p.condado))
-      .map((e) => ({ id: e.id, apellido: e.apellido, apellido_canton: e.apellido_canton, edad: e.edad, origen_zh: e.origen_zh, origen_condado: e.origen_condado, ocupacion_resuelto: e.ocupacion_resuelto, sede: e.sede }));
+      .map((e) => ({ id: e.id, nombre: e.nombre, nombre_dudoso: e.nombre_dudoso, img: e.img, apellido: e.apellido, apellido_canton: e.apellido_canton, edad: e.edad, origen_zh: e.origen_zh, origen_condado: e.origen_condado, ocupacion_resuelto: e.ocupacion_resuelto, sede: e.sede }));
   },
 });

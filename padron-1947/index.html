@@ -269,6 +269,27 @@ html.incrustada .pagina { padding: 0 2px 12px; }
   #limpiar { padding: 5px 10px; }
   .pc-status { margin-left: 0; flex: 1 1 auto; font-size: 11.5px; }
 }
+/* ── Fuente, nombres y audio ── */
+.hero-fuente { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 16px 0 0; padding: 7px 14px; border: 1.5px solid var(--color-border2); border-radius: 999px; background: var(--color-panel); font-size: 13px; color: var(--color-fg2); }
+.hero-fuente b { color: var(--color-accent); font-family: var(--fuente-serif); }
+.hero-fuente a { font-weight: 600; text-decoration: none; }
+.hero-fuente a:hover { text-decoration: underline; }
+.pc-table td.pc-nombre { font-size: 1.05rem; letter-spacing: .04em; }
+.pc-dudoso { color: var(--color-gold); font-weight: 700; margin-left: 2px; cursor: help; }
+a.pc-fuente { color: var(--color-accent); white-space: nowrap; text-decoration: none; border-bottom: 1px dotted var(--color-accent); font-size: 12.5px; }
+a.pc-fuente:hover { border-bottom-style: solid; }
+.pc-contacto { margin: 10px 0 12px; padding: 9px 14px; border: 1.5px dashed var(--color-border2); border-radius: 10px; background: var(--color-gold-bg); font-size: 13px; color: var(--color-fg2); line-height: 1.5; }
+.pc-contacto a { font-weight: 600; }
+.pc-oir { display: inline-grid; place-items: center; width: 24px; height: 24px; margin-left: 6px; padding: 0; vertical-align: -6px; border-radius: 50%; border: 1.5px solid var(--color-border2); background: var(--color-panel); color: var(--color-accent); cursor: pointer; transition: all .15s; }
+.pc-oir:hover { border-color: var(--color-accent); background: var(--color-red-bg); transform: scale(1.08); }
+.pc-oir.sonando { background: var(--color-accent); border-color: var(--color-accent); color: #fff; animation: latido .8s ease-in-out infinite; }
+@keyframes latido { 50% { box-shadow: 0 0 0 5px color-mix(in oklab, var(--color-accent) 22%, transparent); } }
+.xu-pron .pc-oir { width: 20px; height: 20px; margin-left: 5px; vertical-align: -5px; }
+.pc-mosaico g.sonando rect { stroke: var(--color-accent); stroke-width: 3; }
+.pc-pron-ayuda { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: -4px 0 10px; display: flex; align-items: center; gap: 6px; }
+.pc-pron-ayuda svg { color: var(--color-accent); }
+.pc-toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; z-index: 50; max-width: min(92vw, 460px); padding: 10px 16px; border-radius: 12px; background: var(--color-fg); color: var(--color-bg); font-size: 13px; line-height: 1.45; box-shadow: var(--cds-shadow-popover); transition: all .25s; }
+.pc-toast.visible { opacity: 1; transform: translate(-50%, 0); }
 @media print { .pc-bar { position: static; } .pc-table-wrap { max-height: none; overflow: visible; } .topbar, .indice { display: none; } }
 </style>
 </head>
@@ -302,6 +323,7 @@ html.incrustada .pagina { padding: 0 2px 12px; }
       <p class='hero-zh'>旅智華僑選舉人名冊</p>
       <p class='pc-lede' data-l="es">El padrón reúne <b data-draw='k_inscritos'>—</b> inscripciones (listas locales: <b data-draw='k_listas'>—</b>). La edad mediana era de <b data-draw='k_mediana2'>—</b> años, el <b data-draw='k_com2'>—</b> % figura como comerciante y el condado de origen más frecuente es <b data-draw='k_top'>—</b>, con el <b data-draw='k_toppct'>—</b> % de las inscripciones.</p>
       <p class='pc-lede' data-l="en">The roll holds <b data-draw='k_inscritos'>—</b> entries across <b data-draw='k_listas'>—</b> local lists. The median age was <b data-draw='k_mediana2'>—</b>, <b data-draw='k_com2'>—</b>% are listed as merchants, and the most common county of origin is <b data-draw='k_top'>—</b>, with <b data-draw='k_toppct'>—</b>% of the entries.</p>
+      <p class='hero-fuente'><span data-en="Source:">Fuente:</span> <b>國史館</b> <span data-en="(Academia Historica, Taiwan) · file 033-020104-0091">(Academia Historica, Taiwán) · expediente 033-020104-0091</span> <a data-expediente href='https://ahonline.drnh.gov.tw/index.php?act=Display/image/15151534kwNOIgk' data-en="See the original →">Ver el original →</a></p>
     </div>
   </header>
 
@@ -392,7 +414,7 @@ html.incrustada .pagina { padding: 0 2px 12px; }
         <p class='pc-note' style='margin:0 0 var(--cds-gap-sm)' data-l="en">In Santiago there are officials (政) from northern and inland provinces, registered alongside women with a compound married surname; and a group from Qingtian (Zhejiang).</p>
         <div class='pc-table-wrap' style='max-height:340px'>
           <table class='pc-table' id='tabla-fuera'>
-            <thead><tr><th data-en="Surname">Apellido</th><th data-en="Romanization">Romanización</th><th data-en="Sex">Sexo</th><th data-en="Age">Edad</th><th data-en="Origin">Origen</th><th data-en="Province">Provincia</th><th data-en="Occupation">Oficio</th><th data-en="List">Lista</th></tr></thead>
+            <thead><tr><th data-en="Name">Nombre</th><th data-en="Sex">Sexo</th><th data-en="Age">Edad</th><th data-en="Origin">Origen</th><th data-en="Province">Provincia</th><th data-en="Occupation">Oficio</th><th data-en="List">Lista</th><th data-en="Source">Fuente</th></tr></thead>
             <tbody data-draw='tabla_fuera'></tbody>
           </table>
         </div>
@@ -452,8 +474,8 @@ html.incrustada .pagina { padding: 0 2px 12px; }
 
   <section class='pc-sec' id='apellidos'>
     <h2 class='pc-h2'><span class="sec-n">七</span><span data-en="Surnames and lineages">Apellidos y linajes</span></h2>
-    <p class='pc-sub' data-l="es">Los apellidos más frecuentes. Elige cómo leerlos: en mandarín, en cantonés (la romanización habitual en Hong Kong), en hakka o con la grafía que se usó en Chile. El color indica si el apellido se concentra sobre todo en Zhongshan, Heshan, Dongguan u otro condado, y la intensidad, cuánto se concentra: muchos linajes venían casi enteros de un mismo condado. Haz clic en un apellido para ver todas sus grafías.</p>
-    <p class='pc-sub' data-l="en">The most frequent surnames. Choose how to read them: in Mandarin, in Cantonese (the usual Hong Kong romanization), in Hakka, or as they were spelled in Chile. Colour shows whether a surname concentrates mainly in Zhongshan, Heshan, Dongguan or another county, and its intensity how concentrated it is: many lineages came almost entirely from a single county. Click a surname to see all its spellings.</p>
+    <p class='pc-sub' data-l="es">Los apellidos más frecuentes. Elige cómo leerlos: en mandarín, en cantonés (la romanización habitual en Hong Kong), en hakka o con la grafía que se usó en Chile. El color indica si el apellido se concentra sobre todo en Zhongshan, Heshan, Dongguan u otro condado, y la intensidad, cuánto se concentra: muchos linajes venían casi enteros de un mismo condado. Haz clic en un apellido para escucharlo.</p>
+    <p class='pc-sub' data-l="en">The most frequent surnames. Choose how to read them: in Mandarin, in Cantonese (the usual Hong Kong romanization), in Hakka, or as they were spelled in Chile. Colour shows whether a surname concentrates mainly in Zhongshan, Heshan, Dongguan or another county, and its intensity how concentrated it is: many lineages came almost entirely from a single county. Click a surname to hear it.</p>
     <div class='pc-card' id='tarjeta-apellidos'>
       <div class='pc-pron' role='group' aria-label='Pronunciación' data-en-aria='Pronunciation'>
         <button type='button' data-pron='mandarin'><span class='zh'>普通話</span><small data-en="Mandarin">Mandarín</small></button>
@@ -461,6 +483,7 @@ html.incrustada .pagina { padding: 0 2px 12px; }
         <button type='button' data-pron='hakka'><span class='zh'>客家話</span><small>Hakka</small></button>
         <button type='button' data-pron='chile'><span class='zh'>智利</span><small data-en="In Chile">En Chile</small></button>
       </div>
+      <p class='pc-pron-ayuda'><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.6 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-en="Click a surname to hear it in the chosen language; double-click to see its spellings.">Haz clic en un apellido para escucharlo en la lengua elegida; doble clic para ver sus grafías.</span></p>
       <div class='pc-legend' data-draw='leyenda_condados'></div>
       <div class='pc-chart' data-draw='apellidos' id='grafico-apellidos' style='min-height:440px'>—</div>
       <div class='pc-finds'>
@@ -506,7 +529,7 @@ html.incrustada .pagina { padding: 0 2px 12px; }
     <p class='pc-sub' data-l="en">They are few, and almost all registered in Santiago. Several appear alongside officials registered on the same sheet and put their husband’s surname before their own, as was customary.</p>
     <div class='pc-table-wrap' style='max-height:420px'>
       <table class='pc-table' id='tabla-mujeres'>
-        <thead><tr><th data-en="Surname">Apellido</th><th data-en="Romanization">Romanización</th><th data-en="Age">Edad</th><th data-en="Origin">Origen</th><th data-en="County">Condado</th><th data-en="Occupation">Oficio</th><th data-en="List">Lista</th></tr></thead>
+        <thead><tr><th data-en="Name">Nombre</th><th data-en="Age">Edad</th><th data-en="Origin">Origen</th><th data-en="County">Condado</th><th data-en="Occupation">Oficio</th><th data-en="List">Lista</th><th data-en="Source">Fuente</th></tr></thead>
         <tbody data-draw='tabla_mujeres'></tbody>
       </table>
     </div>
@@ -514,13 +537,15 @@ html.incrustada .pagina { padding: 0 2px 12px; }
 
   <section class='pc-sec' id='explorar'>
     <h2 class='pc-h2'><span class="sec-n">十</span><span data-en="Explore the entries">Explorar las inscripciones</span></h2>
-    <p class='pc-sub' data-l="es">Todas las inscripciones que pasan los filtros de arriba, identificadas solo por su apellido. Busca por apellido, lugar u oficio, en caracteres o en romanización.</p>
-    <p class='pc-sub' data-l="en">All entries that pass the filters above, identified only by surname. Search by surname, place or occupation, in characters or romanization.</p>
-    <input class='pc-search' type='search' id='buscar' placeholder='Buscar: 鄭, Cheng, 中山, Iquique…' data-en-ph='Search: 鄭, Cheng, 中山, Iquique…' aria-label='Buscar en el padrón' data-en-aria='Search the roll'>
+    <p class='pc-sub' data-l="es">Todas las inscripciones que pasan los filtros de arriba, con el nombre en caracteres tal como figura en el manuscrito, sin romanizar. Un <sup class='pc-dudoso'>?</sup> marca los nombres con algún carácter de lectura dudosa y □, un carácter ilegible. La columna «Fuente» abre la imagen del escaneo en el archivo del 國史館. Busca por nombre, apellido, lugar u oficio.</p>
+    <p class='pc-sub' data-l="en">All entries that pass the filters above, with the name in characters exactly as written in the manuscript, not romanized. A <sup class='pc-dudoso'>?</sup> marks names with an uncertain character and □ an illegible one. The “Source” column opens the scanned page at the 國史館 archive. Search by name, surname, place or occupation.</p>
+    <p class='pc-contacto' data-l="es">¿Eres familiar de alguien de esta lista? Si quieres corregir una lectura o que retiremos un nombre, <a data-contacto href='https://github.com/rodrigochi/zupu/issues/new'>escríbenos aquí</a> y lo haremos.</p>
+    <p class='pc-contacto' data-l="en">Are you related to someone on this list? If you would like a reading corrected or a name removed, <a data-contacto href='https://github.com/rodrigochi/zupu/issues/new'>write to us here</a> and we will do it.</p>
+    <input class='pc-search' type='search' id='buscar' placeholder='Buscar: 林宗藝, 鄭, 中山, Iquique…' data-en-ph='Search: 林宗藝, 鄭, 中山, Iquique…' aria-label='Buscar en el padrón' data-en-aria='Search the roll'>
     <p class='pc-note' data-draw='cuenta_tabla' style='margin:0 0 var(--cds-gap-xs)'>—</p>
     <div class='pc-table-wrap'>
       <table class='pc-table' id='tabla-padron'>
-        <thead><tr><th data-en="Surname">Apellido</th><th data-en="Romanization">Romanización</th><th data-en="Sex">Sexo</th><th data-en="Age">Edad</th><th data-en="Origin">Origen</th><th data-en="County">Condado</th><th data-en="Occupation">Oficio</th><th data-en="Category">Categoría</th><th data-en="List">Lista</th><th data-en="Town">Localidad</th></tr></thead>
+        <thead><tr><th data-en="Name">Nombre</th><th data-en="Sex">Sexo</th><th data-en="Age">Edad</th><th data-en="Origin">Origen</th><th data-en="County">Condado</th><th data-en="Occupation">Oficio</th><th data-en="Category">Categoría</th><th data-en="List">Lista</th><th data-en="Town">Localidad</th><th data-en="Source">Fuente</th></tr></thead>
         <tbody data-draw='tabla_padron'></tbody>
       </table>
     </div>
@@ -531,22 +556,24 @@ html.incrustada .pagina { padding: 0 2px 12px; }
   <details class='pc-details' id='notas'>
     <summary data-en="Notes on the data and method">Notas sobre los datos y el método</summary>
     <ul data-l="es">
-      <li>Fuente: transcripción del expediente 033-020104-0091 (padrón de la elección de representantes a la Asamblea Nacional, distrito 9 de ciudadanos en el extranjero, noviembre de 1947). Se cuentan las hojas «Electores» y «Otras listas»; los traslados pueden repetir a una persona. Las listas con nombres completos se conservan aparte y no se publican aquí.</li>
+      <li>Fuente: transcripción del expediente 033-020104-0091 (padrón de la elección de representantes a la Asamblea Nacional, distrito 9 de ciudadanos en el extranjero, noviembre de 1947), conservado en el Archivo Histórico del 國史館 (Academia Historica, Taiwán): <a data-expediente href='https://ahonline.drnh.gov.tw/index.php?act=Display/image/15151534kwNOIgk'>典藏號 033-020104-0091</a>. La columna «Fuente» indica el número de imagen (el mismo del archivo 033-020104-0091-NNN.jpg) y abre esa página en el visor. Se cuentan las hojas «Electores» y «Otras listas»; los traslados pueden repetir a una persona.</li>
       <li>Santiago, Iquique y Antofagasta son sedes documentadas. Arica, Tocopilla, Taltal, Copiapó y Coquimbo son equivalencias propuestas por cotejo; Chañaral es tentativa.</li>
       <li data-trad>古華埠 y 華思拿埠 se ubican por hipótesis en Pueblo Hundido (interior de Chañaral, junto a Potrerillos y El Salado) y en Vallenar. Base: el cuadro de distribución de la encuesta de 1965 (Kam-Ching Zambrano, pp. 122–123). Con esa asignación, cada lugar de Atacama conserva en 1965 una proporción de nacidos en China parecida al promedio nacional (846 de 1197, 71 %); Pueblo Hundido, Inca de Oro y El Salado suman 22 frente a 28, y Vallenar, 15 frente a 15. A favor de Pueblo Hundido: la lista de Chañaral anota cuatro traslados «a 古埠» y el 36 % de 古華埠 viene de Dongguan, como en Copiapó; el nombre chino, en cambio, no calza con la fonética. A favor de Vallenar: 華 transcribe «Va» (阿華夜 = Ovalle) y 拿, «nar»; el segundo carácter podría ser 恩 (yan, la «ll» chilena) leído como 思. Alternativas consideradas: Huasco («Guasco») para 古華埠 y Huara, menos coherente con los traslados y el origen de los inscritos.</li>
       <li>El origen es el 籍貫 declarado (procedencia familiar), no necesariamente el lugar de nacimiento. Se unificaron nombres antiguos y variantes: 香山 → Zhongshan, 新安 → Bao’an, 臺山 → Taishan, 斗門 → Zhongshan, 肇慶 → Gaoyao, 水步 → Taishan. Las casillas con otro dato desplazado (por ejemplo, un oficio en la columna de origen) cuentan como «sin dato».</li>
       <li>Los límites de los condados se reconstruyeron uniendo distritos actuales; son aproximados. Los de Chile usan las regiones actuales agrupadas como las provincias de 1947.</li>
-      <li>Para proteger la privacidad de las familias, esta versión no publica nombres completos: cada inscripción se identifica solo por su apellido, tomado del primer carácter del nombre (歐陽 se trata como apellido doble). La romanización cantonesa es la forma más común en Hong Kong; las grafías chilenas de la época pueden variar.</li>
+      <li data-trad>Los nombres se transcriben en caracteres tal como están en el manuscrito, sin romanizarlos ni pasarlos a simplificado; □ indica un carácter ilegible y <sup class='pc-dudoso'>?</sup>, una lectura dudosa (28 de 1197). Ante cualquier duda, manda la imagen original. Si eres familiar y quieres corregir o retirar un nombre, <a data-contacto href='https://github.com/rodrigochi/zupu/issues/new'>escríbenos</a>. El apellido se toma del primer carácter del nombre (歐陽 se trata como apellido doble).</li>
+      <li>Pronunciación: las grabaciones en hakka (dialecto sixian) son del 《臺灣客家語常用詞辭典》 del Ministerio de Educación de Taiwán, obtenidas vía <a href='https://www.moedict.tw/' target='_blank' rel='noopener'>moedict.tw (萌典)</a> y publicadas sin modificar; hay grabación para 99 de los 116 apellidos. El mandarín, el cantonés y la grafía chilena usan la voz sintética de tu dispositivo, así que suenan distinto según el navegador; si no hay voz en cantonés, se puede instalar «Chino (Hong Kong)» en la configuración del sistema. 曾, 翟 y 任 se leen como «姓X» (apellido X) para que la voz use la lectura de apellido.</li>
       <li>La edad es la declarada; la edad china tradicional suele sumar uno o dos años a la occidental. En la lista de Arica no se registró el sexo.</li>
       <li>Escritura simplificada: conversión automática carácter por carácter (OpenCC); los apellidos usan la forma simplificada de la tabla de grafías. Las notas sobre caracteres manuscritos se dejan en tradicional.</li>
     </ul>
     <ul data-l="en">
-      <li>Source: transcription of file 033-020104-0091 (roll for the election of representatives to the National Assembly, 9th district of citizens abroad, November 1947). The “Electores” and “Otras listas” sheets are counted; transfers may repeat a person. The lists with full names are kept separately and are not published here.</li>
+      <li>Source: transcription of file 033-020104-0091 (roll for the election of representatives to the National Assembly, 9th district of citizens abroad, November 1947), held at the Archives of the 國史館 (Academia Historica, Taiwan): <a data-expediente href='https://ahonline.drnh.gov.tw/index.php?act=Display/image/15151534kwNOIgk'>典藏號 033-020104-0091</a>. The “Source” column gives the image number (the same as in the file name 033-020104-0091-NNN.jpg) and opens that page in the viewer. The “Electores” and “Otras listas” sheets are counted; transfers may repeat a person.</li>
       <li>Santiago, Iquique and Antofagasta are documented seats. Arica, Tocopilla, Taltal, Copiapó and Coquimbo are equivalences proposed by comparison; Chañaral is tentative.</li>
       <li data-trad>古華埠 and 華思拿埠 are placed, as a hypothesis, in Pueblo Hundido (inland from Chañaral, next to Potrerillos and El Salado) and in Vallenar. Basis: the distribution table of the 1965 survey (Kam-Ching Zambrano, pp. 122–123). With this assignment, each place in Atacama keeps in 1965 a share of China-born residents similar to the national average (846 of 1197, 71%); Pueblo Hundido, Inca de Oro and El Salado add up to 22 against 28, and Vallenar, 15 against 15. In favour of Pueblo Hundido: the Chañaral list records four transfers “to 古埠”, and 36% of 古華埠 comes from Dongguan, as in Copiapó; the Chinese name, however, does not fit phonetically. In favour of Vallenar: 華 transcribes “Va” (阿華夜 = Ovalle) and 拿, “nar”; the second character could be 恩 (yan, the Chilean “ll”) read as 思. Alternatives considered: Huasco (“Guasco”) for 古華埠, and Huara, less consistent with the transfers and the voters’ origins.</li>
       <li>Origin is the declared 籍貫 (family place of origin), not necessarily the birthplace. Old names and variants were unified: 香山 → Zhongshan, 新安 → Bao’an, 臺山 → Taishan, 斗門 → Zhongshan, 肇慶 → Gaoyao, 水步 → Taishan. Cells holding other displaced data (for example, an occupation in the origin column) count as “no data”.</li>
       <li>County boundaries were rebuilt by merging present-day districts; they are approximate. Chile’s use present-day regions grouped as the 1947 provinces.</li>
-      <li>To protect the families’ privacy, this version publishes no full names: each entry is identified only by its surname, taken from the first character of the name (歐陽 is treated as a double surname). The Cantonese romanization is the most common Hong Kong form; Chilean spellings of the time may vary.</li>
+      <li data-trad>Names are transcribed in characters exactly as in the manuscript, neither romanized nor converted to simplified script; □ marks an illegible character and <sup class='pc-dudoso'>?</sup> an uncertain reading (28 of 1197). When in doubt, the original image prevails. If you are a relative and want a name corrected or removed, <a data-contacto href='https://github.com/rodrigochi/zupu/issues/new'>write to us</a>. The surname is taken from the first character of the name (歐陽 is treated as a double surname).</li>
+      <li>Pronunciation: the Hakka (Sixian) recordings come from the Taiwan Ministry of Education’s 《臺灣客家語常用詞辭典》, obtained via <a href='https://www.moedict.tw/' target='_blank' rel='noopener'>moedict.tw (萌典)</a> and published unmodified; 99 of the 116 surnames have a recording. Mandarin, Cantonese and the Chilean spelling use your device’s synthetic voice, so they sound different from browser to browser; if there is no Cantonese voice, “Chinese (Hong Kong)” can be installed in the system settings. 曾, 翟 and 任 are read as “姓X” (surname X) so the voice uses the surname reading.</li>
       <li>Age is as declared; traditional Chinese age reckoning usually adds one or two years to the Western one. Sex was not recorded on the Arica list.</li>
       <li>Simplified script: automatic character-by-character conversion (OpenCC); surnames use the simplified form from the spellings table. Notes about handwritten characters are kept in traditional script.</li>
     </ul>
@@ -554,18 +581,20 @@ html.incrustada .pagina { padding: 0 2px 12px; }
 </div>
 
   <footer class="pie">
-    <p data-l="es">Datos: transcripción del padrón electoral de ciudadanos chinos en Chile, 1947 (expediente 033-020104-0091). Grafías castellanas de los apellidos: «Cuadro genealógico de la colectividad china», en Elsa Kam-Ching Zambrano, <i>Historia de la colectividad china en Chile</i>, pp. 54–57. Pronunciación hakka: diccionario hakka del Ministerio de Educación de Taiwán (datos abiertos de g0v/moedict). Mapas: límites administrativos de China (DataV, vía GeoMapData_CN), regiones de Chile (caracena/chile-geojson) y Natural Earth. Gráficos hechos con D3.</p>
-    <p data-l="en">Data: transcription of the 1947 electoral roll of Chinese citizens in Chile (file 033-020104-0091). Spanish spellings of the surnames: “Cuadro genealógico de la colectividad china”, in Elsa Kam-Ching Zambrano, <i>Historia de la colectividad china en Chile</i>, pp. 54–57. Hakka pronunciation: Hakka dictionary of Taiwan’s Ministry of Education (g0v/moedict open data). Maps: administrative boundaries of China (DataV, via GeoMapData_CN), regions of Chile (caracena/chile-geojson) and Natural Earth. Charts made with D3.</p>
-    <p class="pie-volver"><a href="../#article=migracion-china-chile-1980-1930" data-en="← Back to the article">← Volver al artículo</a> · <a href="../" data-en="Family tree 族譜">Árbol familiar 族譜</a></p>
+    <p data-l="es">Datos: transcripción del padrón electoral de ciudadanos chinos en Chile, 1947 (國史館, <a data-expediente href='https://ahonline.drnh.gov.tw/index.php?act=Display/image/15151534kwNOIgk'>expediente 033-020104-0091</a>). Grafías castellanas de los apellidos: «Cuadro genealógico de la colectividad china», en Elsa Kam-Ching Zambrano, <i>Historia de la colectividad china en Chile</i>, pp. 54–57. Pronunciación y grabaciones hakka: 《臺灣客家語常用詞辭典》, Ministerio de Educación de Taiwán (vía g0v/moedict). Mapas: límites administrativos de China (DataV, vía GeoMapData_CN), regiones de Chile (caracena/chile-geojson) y Natural Earth. Gráficos hechos con D3.</p>
+    <p data-l="en">Data: transcription of the 1947 electoral roll of Chinese citizens in Chile (國史館, <a data-expediente href='https://ahonline.drnh.gov.tw/index.php?act=Display/image/15151534kwNOIgk'>file 033-020104-0091</a>). Spanish spellings of the surnames: “Cuadro genealógico de la colectividad china”, in Elsa Kam-Ching Zambrano, <i>Historia de la colectividad china en Chile</i>, pp. 54–57. Hakka readings and recordings: 《臺灣客家語常用詞辭典》, Taiwan Ministry of Education (via g0v/moedict). Maps: administrative boundaries of China (DataV, via GeoMapData_CN), regions of Chile (caracena/chile-geojson) and Natural Earth. Charts made with D3.</p>
+    <p class="pie-volver"><a href="../#article=migracion-china-chile-1980-1930" data-en="← Back to the article">← Volver al artículo</a> · <a href="../" data-en="Family tree 族譜">Árbol familiar 族譜</a> · <a data-contacto href="https://github.com/rodrigochi/zupu/issues/new" data-en="Corrections or removal of a name">Correcciones o retiro de un nombre</a></p>
   </footer>
 </div>
 <script src="vendor/d3.min.js"></script>
+<script src="js/config.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/runtime.js"></script>
 <script src="js/calcs.js"></script>
 <script src="js/comun.js"></script>
 <script src="js/mapas.js"></script>
 <script src="js/graficos.js"></script>
+<script src="js/audio.js"></script>
 <script src="js/grafias.js"></script>
 <!-- Visit statistics: GoatCounter (no cookies), igual que en la portada de Zupu -->
 <script data-goatcounter="https://rodrigochi.goatcounter.com/count"

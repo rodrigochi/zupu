@@ -1,0 +1,398 @@
+{
+"黃": {
+"hakka": "audio/hakka/9ec3.mp3",
+"hakka_id": "13591"
+},
+"鄭": {
+"hakka": "audio/hakka/912d.mp3",
+"hakka_id": "00986"
+},
+"陳": {
+"hakka": "audio/hakka/9673.mp3",
+"hakka_id": "01253"
+},
+"周": {
+"hakka": "audio/hakka/5468.mp3",
+"hakka_id": "14893"
+},
+"葉": {
+"hakka": "audio/hakka/8449.mp3",
+"hakka_id": "05792"
+},
+"李": {
+"hakka": "audio/hakka/674e.mp3",
+"hakka_id": "07478"
+},
+"梁": {
+"hakka": "audio/hakka/6881.mp3",
+"hakka_id": "07733"
+},
+"張": {
+"hakka": "audio/hakka/5f35.mp3",
+"hakka_id": "14826"
+},
+"謝": {
+"hakka": "audio/hakka/8b1d.mp3",
+"hakka_id": "10568"
+},
+"林": {
+"hakka": "audio/hakka/6797.mp3",
+"hakka_id": "07661"
+},
+"何": {
+"hakka": "audio/hakka/4f55.mp3",
+"hakka_id": "05452"
+},
+"劉": {
+"hakka": "audio/hakka/5289.mp3",
+"hakka_id": "07806"
+},
+"賴": {
+"hakka": "audio/hakka/8cf4.mp3",
+"hakka_id": "07349"
+},
+"吳": {
+"hakka": "audio/hakka/5433.mp3",
+"hakka_id": "09116"
+},
+"袁": {
+"hakka": "audio/hakka/8881.mp3",
+"hakka_id": "05946"
+},
+"馬": {
+"hakka": "audio/hakka/99ac.mp3",
+"hakka_id": "08188"
+},
+"楊": {
+"hakka": "audio/hakka/694a.mp3",
+"hakka_id": "06185"
+},
+"鄧": {
+"hakka": "audio/hakka/9127.mp3",
+"hakka_id": "12632"
+},
+"余": {
+"hakka": "audio/hakka/4f59.mp3",
+"hakka_id": "05679"
+},
+"嚴": {
+"hakka": "audio/hakka/56b4.mp3",
+"hakka_id": "09355"
+},
+"邱": {
+"hakka": "audio/hakka/90b1.mp3",
+"hakka_id": "05409"
+},
+"馮": {
+"hakka": "audio/hakka/99ae.mp3",
+"hakka_id": "10510"
+},
+"阮": {
+"hakka": "audio/hakka/962e.mp3",
+"hakka_id": "09614"
+},
+"孫": {
+"hakka": "audio/hakka/5b6b.mp3",
+"hakka_id": "12328"
+},
+"程": {
+"hakka": "audio/hakka/7a0b.mp3",
+"hakka_id": "00982"
+},
+"蔡": {
+"hakka": "audio/hakka/8521.mp3",
+"hakka_id": "00946"
+},
+"潘": {
+"hakka": "audio/hakka/6f58.mp3",
+"hakka_id": "10009"
+},
+"伍": {
+"hakka": "audio/hakka/4f0d.mp3",
+"hakka_id": "09157"
+},
+"甘": {
+"hakka": "audio/hakka/7518.mp3",
+"hakka_id": "03491"
+},
+"曹": {
+"hakka": "audio/hakka/66f9.mp3",
+"hakka_id": "01303"
+},
+"鄒": {
+"hakka": "audio/hakka/9112.mp3",
+"hakka_id": "14398"
+},
+"曾": {
+"hakka": "audio/hakka/66fe.mp3",
+"hakka_id": "14360"
+},
+"黎": {
+"hakka": "audio/hakka/9ece.mp3",
+"hakka_id": "07344"
+},
+"尹": {
+"hakka": "audio/hakka/5c39.mp3",
+"hakka_id": "06347"
+},
+"雷": {
+"hakka": "audio/hakka/96f7.mp3",
+"hakka_id": "08091"
+},
+"胡": {
+"hakka": "audio/hakka/80e1.mp3",
+"hakka_id": "03099"
+},
+"徐": {
+"hakka": "audio/hakka/5f90.mp3",
+"hakka_id": "10540"
+},
+"范": {
+"hakka": "audio/hakka/8303.mp3",
+"hakka_id": "02781"
+},
+"高": {
+"hakka": "audio/hakka/9ad8.mp3",
+"hakka_id": "04292"
+},
+"唐": {
+"hakka": "audio/hakka/5510.mp3",
+"hakka_id": "13149"
+},
+"古": {
+"hakka": "audio/hakka/53e4.mp3",
+"hakka_id": "04610"
+},
+"廖": {
+"hakka": "audio/hakka/5ed6.mp3",
+"hakka_id": "07582"
+},
+"彭": {
+"hakka": "audio/hakka/5f6d.mp3",
+"hakka_id": "10046"
+},
+"歐": {
+"hakka": "audio/hakka/6b50.mp3",
+"hakka_id": "02637"
+},
+"朱": {
+"hakka": "audio/hakka/6731.mp3",
+"hakka_id": "14891"
+},
+"呂": {
+"hakka": "audio/hakka/5442.mp3",
+"hakka_id": "07456"
+},
+"沈": {
+"hakka": "audio/hakka/6c88.mp3",
+"hakka_id": "11760"
+},
+"溫": {
+"hakka": "audio/hakka/6eab.mp3",
+"hakka_id": "13726"
+},
+"丘": {
+"hakka": "audio/hakka/4e18.mp3",
+"hakka_id": "05403"
+},
+"王": {
+"hakka": "audio/hakka/738b.mp3",
+"hakka_id": "13588"
+},
+"郭": {
+"hakka": "audio/hakka/90ed.mp3",
+"hakka_id": "04423"
+},
+"董": {
+"hakka": "audio/hakka/8463.mp3",
+"hakka_id": "02607"
+},
+"衛": {
+"hakka": "audio/hakka/885b.mp3",
+"hakka_id": "13522"
+},
+"趙": {
+"hakka": "audio/hakka/8d99.mp3",
+"hakka_id": "01091"
+},
+"麥": {
+"hakka": "audio/hakka/9ea5.mp3",
+"hakka_id": "08250"
+},
+"文": {
+"hakka": "audio/hakka/6587.mp3",
+"hakka_id": "13735"
+},
+"陸": {
+"hakka": "audio/hakka/9678.mp3",
+"hakka_id": "07824"
+},
+"江": {
+"hakka": "audio/hakka/6c5f.mp3",
+"hakka_id": "04505"
+},
+"詹": {
+"hakka": "audio/hakka/8a79.mp3",
+"hakka_id": "14261"
+},
+"秦": {
+"hakka": "audio/hakka/79e6.mp3",
+"hakka_id": "10780"
+},
+"戴": {
+"hakka": "audio/hakka/6234.mp3",
+"hakka_id": "01989"
+},
+"杜": {
+"hakka": "audio/hakka/675c.mp3",
+"hakka_id": "13199"
+},
+"湯": {
+"hakka": "audio/hakka/6e6f.mp3",
+"hakka_id": "13143"
+},
+"孟": {
+"hakka": "audio/hakka/5b5f.mp3",
+"hakka_id": "08386"
+},
+"傅": {
+"hakka": "audio/hakka/5085.mp3",
+"hakka_id": "03177"
+},
+"蔣": {
+"hakka": "audio/hakka/8523.mp3",
+"hakka_id": "06589"
+},
+"盧": {
+"hakka": "audio/hakka/76e7.mp3",
+"hakka_id": "08055"
+},
+"侯": {
+"hakka": "audio/hakka/4faf.mp3",
+"hakka_id": "05105"
+},
+"毛": {
+"hakka": "audio/hakka/6bdb.mp3",
+"hakka_id": "08625"
+},
+"連": {
+"hakka": "audio/hakka/9023.mp3",
+"hakka_id": "07616"
+},
+"招": {
+"hakka": "audio/hakka/62db.mp3",
+"hakka_id": "14370"
+},
+"莊": {
+"hakka": "audio/hakka/838a.mp3",
+"hakka_id": "14828"
+},
+"巫": {
+"hakka": "audio/hakka/5deb.mp3",
+"hakka_id": "08843"
+},
+"尤": {
+"hakka": "audio/hakka/5c24.mp3",
+"hakka_id": "06267"
+},
+"駱": {
+"hakka": "audio/hakka/99f1.mp3",
+"hakka_id": "07993"
+},
+"丙": {
+"hakka": "audio/hakka/4e19.mp3",
+"hakka_id": "00467"
+},
+"羽": {
+"hakka": "audio/hakka/7fbd.mp3",
+"hakka_id": "05717"
+},
+"利": {
+"hakka": "audio/hakka/5229.mp3",
+"hakka_id": "07486"
+},
+"練": {
+"hakka": "audio/hakka/7df4.mp3",
+"hakka_id": "07652"
+},
+"容": {
+"hakka": "audio/hakka/5bb9.mp3",
+"hakka_id": "06379"
+},
+"潤": {
+"hakka": "audio/hakka/6f64.mp3",
+"hakka_id": "06372"
+},
+"莫": {
+"hakka": "audio/hakka/83ab.mp3",
+"hakka_id": "08796"
+},
+"蕭": {
+"hakka": "audio/hakka/856d.mp3",
+"hakka_id": "11420"
+},
+"許": {
+"hakka": "audio/hakka/8a31.mp3",
+"hakka_id": "05198"
+},
+"祁": {
+"hakka": "audio/hakka/7941.mp3",
+"hakka_id": "06730"
+},
+"岑": {
+"hakka": "audio/hakka/5c91.mp3",
+"hakka_id": "01048"
+},
+"房": {
+"hakka": "audio/hakka/623f.mp3",
+"hakka_id": "10325"
+},
+"翁": {
+"hakka": "audio/hakka/7fc1.mp3",
+"hakka_id": "13765"
+},
+"任": {
+"hakka": "audio/hakka/4efb.mp3",
+"hakka_id": "06079"
+},
+"錢": {
+"hakka": "audio/hakka/9322.mp3",
+"hakka_id": "10709"
+},
+"陶": {
+"hakka": "audio/hakka/9676.mp3",
+"hakka_id": "13041"
+},
+"管": {
+"hakka": "audio/hakka/7ba1.mp3",
+"hakka_id": "04493"
+},
+"梅": {
+"hakka": "audio/hakka/6885.mp3",
+"hakka_id": "08810"
+},
+"孔": {
+"hakka": "audio/hakka/5b54.mp3",
+"hakka_id": "07299"
+},
+"宋": {
+"hakka": "audio/hakka/5b8b.mp3",
+"hakka_id": "12382"
+},
+"勉": {
+"hakka": "audio/hakka/52c9.mp3",
+"hakka_id": "08534"
+},
+"巨": {
+"hakka": "audio/hakka/5de8.mp3",
+"hakka_id": "06708"
+},
+"候": {
+"hakka": "audio/hakka/5019.mp3",
+"hakka_id": "05146"
+},
+"方": {
+"hakka": "audio/hakka/65b9.mp3",
+"hakka_id": "03020"
+}
+}

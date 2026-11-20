@@ -18,6 +18,7 @@
     mapa_chile: 'data/mapa_chile.json',
     mapa_delta: 'data/mapa_delta.json',
     mapa_china: 'data/mapa_china.json',
+    audio: 'data/audio.json',
   };
 
   function ejecutar(nombre) {

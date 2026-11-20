@@ -4,7 +4,7 @@ Página estática e interactiva con el padrón electoral de 1947 de ciudadanos c
 
 No necesita servidor propio ni compilación: son archivos HTML, JS y JSON que GitHub Pages sirve tal cual.
 
-**Privacidad:** esta versión no contiene nombres completos. Cada inscripción se identifica solo por su apellido (primer carácter del nombre). Tampoco incluye folio ni archivo de escaneo.
+**Nombres (versión 3):** se publica el nombre de cada inscrito en caracteres, tal como figura en el manuscrito, sin romanizarlo ni pasarlo a simplificado. Las lecturas dudosas llevan «?» (28 de 1197). Cada fila enlaza a su imagen en el visor del 國史館 (`js/config.js`, tabla `paginas`: número de imagen → código del visor; la imagen n del visor es el archivo 033-020104-0091-n.jpg). La página invita a los familiares a pedir correcciones o el retiro de un nombre (`contacto` en `js/config.js`, hoy una issue de GitHub). Para volver a una versión solo con apellidos: `python3 fuentes/web_export.py <out> data --sin-nombres` (las tablas esperan la columna `nombre`).
 
 ## Contenido
 
@@ -81,3 +81,9 @@ Los criterios de normalización (sedes, condados de 1947, oficios, apellidos) es
 - Textos largos: dos versiones en `index.html` con `data-l="es"` y `data-l="en"`. Textos cortos: atributo `data-en="…"`. Textos de los gráficos: `L('español', 'English')` y `V(valor)` para los valores de los datos (en `js/i18n.js`).
 - Simplificado: `js/i18n.js` trae la tabla de pares tradicional→simplificado de todos los caracteres de la página, generada con OpenCC (`t2s`); los apellidos usan la columna `simplificado` de `apellidos_grafias.json`. Lo marcado con `data-trad` queda en tradicional (notas sobre caracteres manuscritos, columna «Tradicional»). Si se agregan caracteres nuevos, hay que regenerar la tabla.
 - Mosaico de apellidos con selector de pronunciación: mandarín, cantonés, hakka o grafía chilena (`?pron=hakka` para enlazarlo directo). Un clic en un apellido abre sus grafías.
+
+## Pronunciación (versión 3)
+
+- `js/audio.js`: botón 🔊 en la tabla de grafías y en el recuadro de 徐; en el mosaico, un clic reproduce el apellido en la lengua elegida (doble clic: sus grafías).
+- Hakka: grabaciones (dialecto sixian) del 《臺灣客家語常用詞辭典》 del Ministerio de Educación de Taiwán, descargadas vía moedict.tw sin modificar, en `audio/hakka/<código Unicode>.mp3`; índice en `data/audio.json`. Se eligió la entrada cuya lectura sixian coincide exactamente con la de `apellidos_grafias.json`; 99 de 116 apellidos tienen grabación. Origen: `https://www.moedict.tw/h/<carácter>.json` (campo `=`) y `https://r2-assets.moedict.tw/audio/h/1-<id>.mp3` (1 = sixian).
+- Mandarín, cantonés y grafía chilena: voz sintética del dispositivo (Web Speech API: zh-CN, zh-HK, es). 曾, 翟 y 任 se dicen «姓X» para forzar la lectura de apellido.

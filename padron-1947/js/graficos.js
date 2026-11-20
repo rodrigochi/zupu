@@ -163,7 +163,7 @@ dash.draw('edad_lista', (el) => {
     svg.append('g').selectAll('circle').data(pts).join('circle')
       .attr('cx', (e) => x(Number(e.edad) + (rnd() - 0.5) * 0.8)).attr('cy', () => yc + (rnd() - 0.5) * (rowH - 9)).attr('r', 2.3)
       .style('fill', dash.colors[0]).style('fill-opacity', dim ? 0.15 : 0.55)
-      .on('mousemove', (ev, e) => tip.show(ev, [L(`${e.apellido || '□'} · ${e.edad} años`, `${e.apellido || '□'} · age ${e.edad}`), `${e.origen_zh || '—'} ${e.origen_condado || ''}`, `${e.ocupacion_resuelto || L('sin oficio', 'no occupation')} · ${e.localidad}`]))
+      .on('mousemove', (ev, e) => tip.show(ev, [{ trad: `${e.nombre || '□'}${e.nombre_dudoso ? ' (?)' : ''} · ${L(`${e.edad} años`, `age ${e.edad}`)}` }, `${e.origen_zh || '—'} ${e.origen_condado || ''}`, `${e.ocupacion_resuelto || L('sin oficio', 'no occupation')} · ${e.localidad}`]))
       .on('mouseleave', () => tip.hide());
     svg.append('line').attr('x1', x(s.mediana)).attr('x2', x(s.mediana)).attr('y1', yc - 10).attr('y2', yc + 10).style('stroke', 'var(--color-fg)').style('stroke-width', 2.2).style('opacity', dim ? 0.4 : 1);
     svg.append('text').attr('x', W - m.r + 6).attr('y', yc + 4).text(Math.round(s.mediana)).style('font-size', '11px').style('fill', 'var(--cds-text-secondary)').style('font-variant-numeric', 'tabular-nums');
@@ -248,7 +248,7 @@ dash.draw('apellidos', (el) => {
       `${marca('chile')}${L('En Chile', 'In Chile')}: ${g.grafias_chile || L('sin correspondencia en el cuadro', 'no match in the chart')}`,
       L(`${r.pct_principal} % de ${r.condado_principal || '—'}`, `${r.pct_principal}% from ${r.condado_principal || '—'}`),
       r.desglose,
-      L('Clic: ver sus grafías', 'Click: see its spellings'),
+      L(`Clic: escuchar en ${PRON[CH.pron].es.toLowerCase()} · doble clic: ver sus grafías`, `Click: listen in ${PRON[CH.pron].en} · double-click: see its spellings`),
     ];
   };
   const g = svg.selectAll('g').data(root.leaves()).join('g').attr('transform', (n) => `translate(${n.x0},${n.y0})`)
@@ -256,8 +256,12 @@ dash.draw('apellidos', (el) => {
     .attr('aria-label', (n) => `${n.data.apellido} ${modo.de(n.data, G[n.data.apellido]) || ''}, ${n.data.n}`)
     .on('mousemove', (ev, n) => tip.show(ev, lineas(n.data)))
     .on('mouseleave', () => tip.hide())
-    .on('click', (ev, n) => irAGrafia(n.data.apellido))
-    .on('keydown', (ev, n) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); irAGrafia(n.data.apellido); } });
+    .on('click', function (ev, n) { PRONUNCIA.tocar(n.data.apellido, CH.pron, this, (G[n.data.apellido] || {}).grafias_chile); })
+    .on('dblclick', (ev, n) => irAGrafia(n.data.apellido))
+    .on('keydown', function (ev, n) {
+      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); PRONUNCIA.tocar(n.data.apellido, CH.pron, this, (G[n.data.apellido] || {}).grafias_chile); }
+      if (ev.key === 'g') irAGrafia(n.data.apellido);
+    });
   g.append('rect').attr('width', (n) => n.x1 - n.x0).attr('height', (n) => n.y1 - n.y0).attr('rx', 5)
     .style('fill', (n) => CH.mix(CH.colorCondado(n.data.condado_principal), 14 + 0.5 * n.data.pct_principal));
   g.each(function (n) {

@@ -40,7 +40,7 @@ In November 1947, Chinese citizens living in Chile registered to vote in the ele
 - Five people on the roll carry the surname **徐**, three of them from Heshan, in Santiago and Iquique.
 
 > **[An X-ray of the Chinese in Chile, 1947: explore the interactive roll →](padron-1947/)**
-> Maps of origin and residence in Chile, ages, occupations and surnames, with their Chilean spellings and their Mandarin, Cantonese and Hakka pronunciations. The page publishes no full names: each entry is identified only by surname.
+> Maps of origin and residence in Chile, ages, occupations and surnames, with their Chilean spellings and their Mandarin, Cantonese and Hakka pronunciations (with audio). It includes each voter's name, in characters as written in the original, linked to the scanned page at the 國史館 archive (Taiwan). Relatives who want a name corrected or removed can write to us from the page itself.
 
 ## Sources and references
 

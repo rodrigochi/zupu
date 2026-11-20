@@ -1,4 +1,4 @@
-// Utilidades compartidas, barra de filtros, cifras y tablas. (Versión web: sin nombres de personas.)
+// Utilidades compartidas, barra de filtros, cifras y tablas. (Versión web con nombres y enlaces al expediente.)
 window.CH = (function () {
   const ORDEN = ['Arica', 'Iquique', 'Tocopilla', 'Antofagasta', 'Taltal', 'Chañaral', 'Pueblo Hundido', 'Copiapó', 'Vallenar', 'Coquimbo', 'Santiago'];
   const CONDADOS = ['Zhongshan', 'Heshan', 'Dongguan'];
@@ -31,7 +31,7 @@ window.CH = (function () {
       return {
         show(ev, lines) {
           t.replaceChildren();
-          lines.filter((l) => l !== '' && l !== null && l !== undefined).forEach((l, i) => { l = I18N.zh(l); const d = document.createElement('div'); if (i === 0) { const b = document.createElement('b'); b.textContent = l; d.appendChild(b); } else { d.textContent = l; if (i > 1) d.className = 'pc-tip-m'; } t.appendChild(d); });
+          lines.filter((l) => l !== '' && l !== null && l !== undefined).forEach((l, i) => { l = typeof l === 'object' ? l.trad : I18N.zh(l); const d = document.createElement('div'); if (i === 0) { const b = document.createElement('b'); b.textContent = l; d.appendChild(b); } else { d.textContent = l; if (i > 1) d.className = 'pc-tip-m'; } t.appendChild(d); });
           t.hidden = false;
           const r = el.getBoundingClientRect();
           let x = ev.clientX - r.left + 14, y = ev.clientY - r.top + 14;
@@ -42,6 +42,12 @@ window.CH = (function () {
         },
         hide() { t.hidden = true; },
       };
+    },
+    // Enlace a una imagen del expediente en el visor del 國史館 (código de página tras «#»).
+    urlImagen(img) {
+      const c = window.PADRON_CONFIG || {};
+      const cod = img && c.paginas ? c.paginas[Number(img)] : null;
+      return (c.urlExpediente || '') + (cod ? '#' + cod : '');
     },
     alternar(nombre, valor) { const p = dash.params(); dash.setParams({ [nombre]: p[nombre] === valor ? '' : valor }); },
     num(v) { return v === null || v === undefined || v === '' ? '—' : String(v); },
@@ -115,22 +121,42 @@ function filasTabla(tbody, filas, cols) {
   const nuevas = sel.enter().append('tr');
   nuevas.merge(sel).attr('data-key', (d) => d.id).each(function (d) {
     const tr = d3.select(this);
-    tr.selectAll('td').data(cols.map((c) => ({ c, v: d[c.k] }))).join('td')
+    tr.selectAll('td').data(cols.map((c) => ({ c, v: d[c.k], d }))).join('td')
       .attr('class', (x) => x.c.cls || null)
-      .text((x) => (x.v === null || x.v === undefined || x.v === '' ? '' : V(x.v)));
+      .each(function (x) {
+        const td = this; td.replaceChildren(); td.removeAttribute('data-trad');
+        const vacio = x.v === null || x.v === undefined || x.v === '';
+        if (x.c.k === 'img') {
+          if (vacio) return;
+          const a = document.createElement('a'); a.href = CH.urlImagen(x.v); a.target = '_blank'; a.rel = 'noopener';
+          a.className = 'pc-fuente'; a.textContent = `img. ${x.v}`;
+          a.title = L(`Ver la imagen ${x.v} del expediente 033-020104-0091 en el 國史館`, `See image ${x.v} of file 033-020104-0091 at the 國史館 archive`);
+          td.appendChild(a); return;
+        }
+        if (x.c.k === 'nombre') {
+          td.setAttribute('data-trad', ''); // tal como en el manuscrito
+          td.textContent = vacio ? '□' : x.v;
+          if (x.d.nombre_dudoso) {
+            const s = document.createElement('sup'); s.className = 'pc-dudoso'; s.textContent = '?';
+            s.title = L('Lectura dudosa: revisar en la imagen', 'Uncertain reading: check the image'); td.appendChild(s);
+          }
+          return;
+        }
+        td.textContent = vacio ? '' : V(x.v);
+      });
   }).order();
 }
 
 dash.draw('tabla_fuera', (tb) => {
   const g = dash.data('fuera_gd');
   if (g.status !== 'ok') { tb.replaceChildren(); return; }
-  filasTabla(tb, g.data, [{ k: 'apellido', cls: 'pc-zh' }, { k: 'apellido_canton' }, { k: 'sexo' }, { k: 'edad', cls: 'pc-num' }, { k: 'origen_zh', cls: 'pc-zh' }, { k: 'origen_provincia' }, { k: 'ocupacion_resuelto', cls: 'pc-zh' }, { k: 'sede' }]);
+  filasTabla(tb, g.data, [{ k: 'nombre', cls: 'pc-zh pc-nombre' }, { k: 'sexo' }, { k: 'edad', cls: 'pc-num' }, { k: 'origen_zh', cls: 'pc-zh' }, { k: 'origen_provincia' }, { k: 'ocupacion_resuelto', cls: 'pc-zh' }, { k: 'sede' }, { k: 'img' }]);
 });
 
 dash.draw('tabla_mujeres', (tb) => {
   const g = dash.data('mujeres');
   if (g.status !== 'ok') { tb.replaceChildren(); return; }
-  filasTabla(tb, g.data, [{ k: 'apellido', cls: 'pc-zh' }, { k: 'apellido_canton' }, { k: 'edad', cls: 'pc-num' }, { k: 'origen_zh', cls: 'pc-zh' }, { k: 'origen_condado' }, { k: 'ocupacion_resuelto', cls: 'pc-zh' }, { k: 'sede' }]);
+  filasTabla(tb, g.data, [{ k: 'nombre', cls: 'pc-zh pc-nombre' }, { k: 'edad', cls: 'pc-num' }, { k: 'origen_zh', cls: 'pc-zh' }, { k: 'origen_condado' }, { k: 'ocupacion_resuelto', cls: 'pc-zh' }, { k: 'sede' }, { k: 'img' }]);
 });
 
 function filasPadron() {
@@ -138,16 +164,23 @@ function filasPadron() {
   if (g.status !== 'ok') return null;
   const p = dash.params();
   const q = CH.busqueda;
-  const campos = ['apellido', 'apellido_canton', 'apellido_pinyin', 'origen_zh', 'origen_condado', 'origen_canton', 'ocupacion_resuelto', 'ocupacion_cat', 'sede', 'localidad'];
+  const campos = ['nombre', 'apellido', 'apellido_canton', 'apellido_pinyin', 'origen_zh', 'origen_condado', 'origen_canton', 'ocupacion_resuelto', 'ocupacion_cat', 'sede', 'localidad'];
   return g.data.filter((e) => (!p.sede || e.sede === p.sede) && (!p.condado || e.origen_condado === p.condado) &&
     (!q || campos.some((c) => e[c] && [String(e[c]).toLowerCase(), I18N.zh(String(e[c])), String(V(e[c])).toLowerCase()].some((s) => s.includes(q)))));
 }
 dash.draw('tabla_padron', (tb) => {
   const f = filasPadron();
   if (!f) { tb.replaceChildren(); return; }
-  filasTabla(tb, f, [{ k: 'apellido', cls: 'pc-zh' }, { k: 'apellido_canton' }, { k: 'sexo' }, { k: 'edad', cls: 'pc-num' }, { k: 'origen_zh', cls: 'pc-zh' }, { k: 'origen_condado' }, { k: 'ocupacion_resuelto', cls: 'pc-zh' }, { k: 'ocupacion_cat' }, { k: 'sede' }, { k: 'localidad' }]);
+  filasTabla(tb, f, [{ k: 'nombre', cls: 'pc-zh pc-nombre' }, { k: 'sexo' }, { k: 'edad', cls: 'pc-num' }, { k: 'origen_zh', cls: 'pc-zh' }, { k: 'origen_condado' }, { k: 'ocupacion_resuelto', cls: 'pc-zh' }, { k: 'ocupacion_cat' }, { k: 'sede' }, { k: 'localidad' }, { k: 'img' }]);
 });
 dash.draw('cuenta_tabla', (el) => {
   const f = filasPadron();
   el.textContent = f ? L(`${f.length} inscripciones`, `${f.length} entries`) : '—';
 });
+
+// ---- Enlaces configurables (contacto y expediente) ----
+(function () {
+  const c = window.PADRON_CONFIG || {};
+  document.querySelectorAll('a[data-contacto]').forEach((a) => { a.href = c.contacto || '#'; a.target = '_blank'; a.rel = 'noopener'; });
+  document.querySelectorAll('a[data-expediente]').forEach((a) => { a.href = c.urlExpediente || '#'; a.target = '_blank'; a.rel = 'noopener'; });
+})();

@@ -40,7 +40,7 @@ En noviembre de 1947, los ciudadanos chinos residentes en Chile se inscribieron 
 - En el padrón aparecen cinco inscritos con el apellido **徐**, tres de ellos de Heshan, en Santiago e Iquique.
 
 > **[Radiografía de los chinos en Chile, 1947: ver el padrón interactivo →](padron-1947/)**
-> Mapas de origen y de residencia, edades, oficios y apellidos, con sus grafías en Chile y su pronunciación en mandarín, cantonés y hakka. La página no publica nombres completos: cada inscripción se identifica solo por su apellido.
+> Mapas de origen y de residencia, edades, oficios y apellidos, con sus grafías en Chile y su pronunciación en mandarín, cantonés y hakka (con audio). Incluye el nombre de cada inscrito, en caracteres tal como figura en el original, con enlace a la imagen del expediente en el archivo del 國史館 (Taiwán). Si eres familiar y quieres corregir o retirar un nombre, puedes escribirnos desde la misma página.
 
 ## Fuentes y referencias
 

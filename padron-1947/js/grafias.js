@@ -47,14 +47,17 @@ dash.draw('tabla_grafias', (tb) => {
     row.selectAll('td').remove();
     row.append('td').attr('class', 'pc-zh pc-big').attr('data-trad', '').text(d.apellido);
     row.append('td').attr('class', d.simplificado === d.apellido ? 'pc-zh pc-muted' : 'pc-zh').text(d.simplificado);
-    row.append('td').text(d.pinyin);
-    row.append('td').text(d.jyutping);
-    const h = row.append('td');
+    const oir = (td, modo, grafia) => { td.node().appendChild(PRONUNCIA.boton(d.apellido, modo, grafia)); };
+    const pm = row.append('td').attr('class', 'pc-pron-td'); pm.append('span').text(d.pinyin); oir(pm, 'mandarin');
+    const pc = row.append('td').attr('class', 'pc-pron-td'); pc.append('span').text(d.jyutping); oir(pc, 'canton');
+    const h = row.append('td').attr('class', 'pc-pron-td');
     h.append('span').text(d.hakka || '—');
     if (d.hakka_fuente && d.hakka_fuente !== 'apellido') h.append('sup').attr('class', 'pc-mark').text(d.hakka_fuente === 'compuestos' ? 'c' : 'g');
+    if (PRONUNCIA.tieneHakka(d.apellido)) oir(h, 'hakka');
     const gc = row.append('td').attr('class', 'pc-graf');
     if (d.grafias_chile) {
       gc.append('span').text(d.grafias_chile);
+      oir(gc, 'chile', d.grafias_chile);
       if (d.correspondencia !== 'Directa') gc.append('span').attr('class', 'pc-tag').text(V(d.correspondencia).toLowerCase());
     } else {
       gc.append('span').attr('class', 'pc-muted').text(L('sin correspondencia en el cuadro', 'no match in the chart'));
@@ -67,7 +70,7 @@ dash.draw('tabla_grafias', (tb) => {
 
 // ---- 徐 en el padrón: la familia Chi ----
 dash.draw('familia_xu', (el) => {
-  const d = CH.listo(el, ['electores', 'apellidos_grafias']);
+  const d = CH.listo(el, ['electores', 'apellidos_grafias', 'audio']);
   if (!d) return;
   const [electores, grafias] = d;
   const xu = electores.filter((e) => e.apellido === '徐');
@@ -88,8 +91,9 @@ dash.draw('familia_xu', (el) => {
     cuenta('origen_condado'), L('. Listas: ', '. Lists: '), cuenta('sede'), '.');
   cuerpo.appendChild(p);
   const pron = h('div', 'xu-pron');
-  [['普通話', cap(g.pinyin)], ['廣東話', `${canton}${g.jyutping ? ` (${g.jyutping})` : ''}`], ['客家話', cap(g.hakka)], [L('En Chile', 'In Chile'), g.grafias_chile]].forEach(([k, v], i) => {
+  [['普通話', cap(g.pinyin), 'mandarin'], ['廣東話', `${canton}${g.jyutping ? ` (${g.jyutping})` : ''}`, 'canton'], ['客家話', cap(g.hakka), 'hakka'], [L('En Chile', 'In Chile'), g.grafias_chile, 'chile']].forEach(([k, v, modo], i) => {
     const s = h('span', i >= 2 ? 'xu-match' : '', `${k} ${v || '—'}`);
+    if (modo !== 'hakka' || PRONUNCIA.tieneHakka('徐')) s.appendChild(PRONUNCIA.boton('徐', modo, modo === 'chile' ? g.grafias_chile : undefined));
     pron.appendChild(s);
   });
   cuerpo.appendChild(pron);
