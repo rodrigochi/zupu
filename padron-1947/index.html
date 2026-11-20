@@ -244,6 +244,7 @@ a { color: var(--color-accent); }
 .orn::before, .orn::after { content: ''; flex: 1; height: 1px; background: var(--color-border2); }
 .pc-details { border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 12px 18px; background: var(--color-panel); }
 .pc-details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); color: var(--color-accent); }
+.pc-details code { font-size: .9em; padding: 1px 5px; border-radius: 4px; background: var(--color-paper3); }
 .pc-details li { margin-bottom: 8px; line-height: 1.55; color: var(--color-fg2); }
 .pie { margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--color-border-line); font-size: 12.5px; color: var(--color-fg-muted); line-height: 1.6; }
 .pie a { color: inherit; }
@@ -303,9 +304,6 @@ a.pc-fuente:hover { border-bottom-style: solid; }
 @media print { .pc-bar { position: static; } .pc-table-wrap { max-height: none; overflow: visible; } .topbar, .indice { display: none; } }
 
 .ctx-ficha .ctx-py { font-family: var(--fuente-sans); font-size: 13px; color: var(--color-fg-muted); margin-left: 4px; letter-spacing: .02em; }
-.pc-metodo { margin: 0 0 24px; max-width: 72ch; }
-.pc-metodo p { margin: 0 0 12px; line-height: 1.7; color: var(--color-fg2); }
-.pc-metodo code { font-size: .9em; padding: 1px 5px; border-radius: 4px; background: var(--color-paper3); }
 /* Contexto de la elección */
 .contexto { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 34px; margin: 4px 0 34px; padding: 28px 0 30px; border-top: 1px solid var(--color-border2); border-bottom: 1px solid var(--color-border2); }
 .ctx-kicker { margin: 0 0 4px; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--color-accent); font-weight: 600; }
@@ -615,18 +613,11 @@ a.pc-fuente:hover { border-bottom-style: solid; }
 
   <div class="orn" aria-hidden="true">❦</div>
 
-  <section class='pc-metodo' id='metodo' aria-labelledby='metodo-t'>
-    <h2 class='ctx-t' id='metodo-t' data-en="How the roll was digitized">Cómo se digitalizó el padrón</h2>
-    <p data-l="es">La transcripción del manuscrito se hizo principalmente con un modelo de inteligencia artificial, gemini-3.6-flash, mediante un script propio (<code>procesar_padron.py</code>). De las 70 hojas que tienen registro de procesamiento, 65 quedaron transcritas con ese modelo y 4 con gemini-3.8-flash, que es hoy el modelo predeterminado del script. La hoja restante, la imagen 067, se transcribió por cotejo visual.</p>
-    <p data-l="es">Después usé GPT-6.2 Sol, en Codex, para revisar los escaneos, hacer el cotejo histórico de lugares y nombres y preparar el Excel del que sale todo lo que muestra esta página. Ninguna transcripción es perfecta: las lecturas dudosas van marcadas con <sup class='pc-dudoso'>?</sup>, y cada fila de la tabla enlaza a su imagen en el archivo para que cualquiera pueda comprobarla.</p>
-    <p data-l="en">The manuscript was transcribed mainly with an AI model, gemini-3.6-flash, through a custom script (<code>procesar_padron.py</code>). Of the 70 sheets with a processing log, 65 were transcribed with that model and 4 with gemini-3.8-flash, which is now the script’s default model. The remaining sheet, image 067, was transcribed by visual comparison.</p>
-    <p data-l="en">I then used GPT-6.2 Sol, in Codex, to review the scans, cross-check places and names against historical sources, and prepare the spreadsheet behind everything on this page. No transcription is perfect: uncertain readings are marked with <sup class='pc-dudoso'>?</sup>, and every row in the table links to its image in the archive so anyone can check it.</p>
-  </section>
-
   <details class='pc-details' id='notas'>
     <summary data-en="Notes on the data and method">Notas sobre los datos y el método</summary>
     <ul data-l="es">
       <li>Fuente: transcripción del expediente 033-020104-0091 (padrón de la elección de representantes a la Asamblea Nacional, distrito 9 de ciudadanos en el extranjero, noviembre de 1947), conservado en el Archivo Histórico del 國史館 (Academia Historica, Taiwán): <a data-expediente href='https://ahonline.drnh.gov.tw/index.php?act=Display/image/15151534kwNOIgk'>典藏號 033-020104-0091</a>. La columna «Fuente» indica el número de imagen (el mismo del archivo 033-020104-0091-NNN.jpg) y abre esa página en el visor. Se cuentan las hojas «Electores» y «Otras listas»; los traslados pueden repetir a una persona.</li>
+      <li>Digitalización: la transcripción del padrón se hizo principalmente con gemini-3.6-flash, mediante el script <code>procesar_padron.py</code>. De las 70 hojas con registro de procesamiento, 65 quedaron transcritas con ese modelo, 4 con gemini-3.8-flash (hoy el modelo predeterminado del script) y 1, la imagen 067, por cotejo visual. La revisión de los escaneos, el cotejo histórico y la preparación del Excel se hicieron con GPT-6.2 Sol en Codex.</li>
       <li>Santiago, Iquique y Antofagasta son sedes documentadas. Arica, Tocopilla, Taltal, Copiapó y Coquimbo son equivalencias propuestas por cotejo; Chañaral es tentativa.</li>
       <li data-trad>古華埠 y 華思拿埠 se ubican por hipótesis en Pueblo Hundido (interior de Chañaral, junto a Potrerillos y El Salado) y en Vallenar. Base: el cuadro de distribución de la encuesta de 1965 (Kam-Ching Zambrano, pp. 122–123). Con esa asignación, cada lugar de Atacama conserva en 1965 una proporción de nacidos en China parecida al promedio nacional (846 de 1197, 71 %); Pueblo Hundido, Inca de Oro y El Salado suman 22 frente a 28, y Vallenar, 15 frente a 15. A favor de Pueblo Hundido: la lista de Chañaral anota cuatro traslados «a 古埠» y el 36 % de 古華埠 viene de Dongguan, como en Copiapó; el nombre chino, en cambio, no calza con la fonética. A favor de Vallenar: 華 transcribe «Va» (阿華夜 = Ovalle) y 拿, «nar»; el segundo carácter podría ser 恩 (yan, la «ll» chilena) leído como 思. Alternativas consideradas: Huasco («Guasco») para 古華埠 y Huara, menos coherente con los traslados y el origen de los inscritos.</li>
       <li>El origen es el 籍貫 declarado (procedencia familiar), no necesariamente el lugar de nacimiento. Se unificaron nombres antiguos y variantes: 香山 → Zhongshan, 新安 → Bao’an, 臺山 → Taishan, 斗門 → Zhongshan, 肇慶 → Gaoyao, 水步 → Taishan. Las casillas con otro dato desplazado (por ejemplo, un oficio en la columna de origen) cuentan como «sin dato».</li>
@@ -638,6 +629,7 @@ a.pc-fuente:hover { border-bottom-style: solid; }
     </ul>
     <ul data-l="en">
       <li>Source: transcription of file 033-020104-0091 (roll for the election of representatives to the National Assembly, 9th district of citizens abroad, November 1947), held at the Archives of the 國史館 (Academia Historica, Taiwan): <a data-expediente href='https://ahonline.drnh.gov.tw/index.php?act=Display/image/15151534kwNOIgk'>典藏號 033-020104-0091</a>. The “Source” column gives the image number (the same as in the file name 033-020104-0091-NNN.jpg) and opens that page in the viewer. The “Electores” and “Otras listas” sheets are counted; transfers may repeat a person.</li>
+      <li>Digitization: the roll was transcribed mainly with gemini-3.6-flash, using the script <code>procesar_padron.py</code>. Of the 70 sheets with a processing log, 65 were transcribed with that model, 4 with gemini-3.8-flash (now the script’s default model) and 1, image 067, by visual comparison. Reviewing the scans, the historical cross-checking and preparing the spreadsheet were done with GPT-6.2 Sol in Codex.</li>
       <li>Santiago, Iquique and Antofagasta are documented seats. Arica, Tocopilla, Taltal, Copiapó and Coquimbo are equivalences proposed by comparison; Chañaral is tentative.</li>
       <li data-trad>古華埠 and 華思拿埠 are placed, as a hypothesis, in Pueblo Hundido (inland from Chañaral, next to Potrerillos and El Salado) and in Vallenar. Basis: the distribution table of the 1965 survey (Kam-Ching Zambrano, pp. 122–123). With this assignment, each place in Atacama keeps in 1965 a share of China-born residents similar to the national average (846 of 1197, 71%); Pueblo Hundido, Inca de Oro and El Salado add up to 22 against 28, and Vallenar, 15 against 15. In favour of Pueblo Hundido: the Chañaral list records four transfers “to 古埠”, and 36% of 古華埠 comes from Dongguan, as in Copiapó; the Chinese name, however, does not fit phonetically. In favour of Vallenar: 華 transcribes “Va” (阿華夜 = Ovalle) and 拿, “nar”; the second character could be 恩 (yan, the Chilean “ll”) read as 思. Alternatives considered: Huasco (“Guasco”) for 古華埠, and Huara, less consistent with the transfers and the voters’ origins.</li>
       <li>Origin is the declared 籍貫 (family place of origin), not necessarily the birthplace. Old names and variants were unified: 香山 → Zhongshan, 新安 → Bao’an, 臺山 → Taishan, 斗門 → Zhongshan, 肇慶 → Gaoyao, 水步 → Taishan. Cells holding other displaced data (for example, an occupation in the origin column) count as “no data”.</li>
