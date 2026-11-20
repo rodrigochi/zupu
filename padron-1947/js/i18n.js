@@ -28,7 +28,7 @@ window.I18N = (function () {
     Hombre: 'Male', Mujer: 'Female', 'Sin dato': 'No data', Dudoso: 'Uncertain',
     Comerciante: 'Merchant', 'Lectura por confirmar': 'Reading to be confirmed', 'Abarrotes y mercancías': 'Groceries and goods',
     Empleado: 'Employee', Obrero: 'Labourer', 'Sin empleo': 'Unemployed', Funcionario: 'Official',
-    'Agricultura y hortalizas': 'Farming and market gardens', 'Médico': 'Doctor',
+    'Agricultura y hortalizas': 'Farming and market gardens', 'Médico': 'Doctor', Carpintero: 'Carpenter', 'Profesión liberal': 'Liberal profession',
     Documentada: 'Documented', Propuesta: 'Proposed', 'Hipótesis': 'Hypothesis', Tentativa: 'Tentative',
     'Lectura fonética propuesta': 'Proposed phonetic reading', 'Identificada en el padrón': 'Identified in the roll',
     Directa: 'Direct', Indirecta: 'Indirect', Provisional: 'Provisional', 'Sin correspondencia': 'No match',

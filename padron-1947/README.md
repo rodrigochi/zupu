@@ -93,3 +93,7 @@ Los criterios de normalización (sedes, condados de 1947, oficios, apellidos) es
 ## Digitalización
 
 La transcripción se hizo con inteligencia artificial, casi toda con gemini-3.6-flash (unas pocas hojas con gemini-3.8-flash); la imagen 067 se transcribió por cotejo visual. La revisión de los escaneos, el cotejo histórico y la tabla final se hicieron con GPT-6.2 Sol.
+
+## Correcciones manuales
+
+- Imagen 037 (inscritos 287–302, Santiago): la transcripción había puesto el lugar de origen en la columna de oficio y dejado el origen vacío. Se cotejó con el original: se recuperaron oficios (商, 僱員, 木匠, 自由職業) y orígenes (中山 y 東莞 estaban leídos como 出 y 臺山), se corrigieron las edades de 290, 293, 297 y 299, y el 298 es 鍾渠 (no 陳渠). Los nombres de 289, 290 y 296 quedan marcados como lectura dudosa.

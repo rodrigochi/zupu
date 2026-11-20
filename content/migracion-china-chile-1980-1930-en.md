@@ -34,7 +34,7 @@ The Hakka of the Guǎngdōng region were especially active in emigrating to Lati
 
 In November 1947, Chinese citizens living in Chile registered to vote in the election of the first National Assembly of the Republic of China, the body that elected Chiang Kai-shek president in 1948. Chile belonged to overseas district no. 9, together with Argentina, Paraguay, Uruguay and Bolivia, which elected a single delegate. The electoral roll (file 033-020104-0091) holds **1,197 entries** across local lists from Arica to Santiago, and portrays the generation that had arrived in the preceding decades:
 
-- Almost all came from a handful of Cantonese counties in the Pearl River Delta: **Zhongshan** (中山) accounts for 40% and **Heshan** (鶴山), our family's homeland, for 23%, followed by Dongguan (東莞).
+- Almost all came from a handful of Cantonese counties in the Pearl River Delta: **Zhongshan** (中山) accounts for 41% and **Heshan** (鶴山), our family's homeland, for 23%, followed by Dongguan (東莞).
 - It was a mature community: the median age was **52**.
 - Three in four declared themselves **merchants** (商).
 - Five people on the roll carry the surname **徐**, three of them from Heshan, in Santiago and Iquique.
