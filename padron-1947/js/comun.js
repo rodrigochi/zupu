@@ -184,3 +184,15 @@ dash.draw('cuenta_tabla', (el) => {
   document.querySelectorAll('a[data-contacto]').forEach((a) => { a.href = c.contacto || '#'; a.target = '_blank'; a.rel = 'noopener'; });
   document.querySelectorAll('a[data-expediente]').forEach((a) => { a.href = c.urlExpediente || '#'; a.target = '_blank'; a.rel = 'noopener'; });
 })();
+
+// ---- Enlaces que buscan en la tabla: <a href="#explorar" data-buscar="孫邦華"> ----
+document.addEventListener('click', (ev) => {
+  const a = ev.target.closest && ev.target.closest('a[data-buscar]');
+  if (!a) return;
+  ev.preventDefault();
+  dash.setParams({ sede: '', condado: '' });
+  const inp = document.getElementById('buscar');
+  if (inp) { inp.value = I18N.zh(a.dataset.buscar); inp.dispatchEvent(new Event('input')); }
+  const sec = document.getElementById('explorar');
+  if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});

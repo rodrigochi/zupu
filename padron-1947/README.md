@@ -68,6 +68,7 @@ La página guarda los filtros en la dirección, por ejemplo:
 ## Fuentes y créditos
 
 - Padrón: transcripción del expediente 033-020104-0091 (elección de representantes a la Asamblea Nacional de la República de China, distrito 9 de ciudadanos en el extranjero, noviembre de 1947).
+- Contexto de la elección: Constitución de la República de China, art. 26; 國民大會秘書處, 《第一屆國民大會實錄》 (1961); 總統府公報 n.º 472 (17-II-1954, reemplazo de 鄭藻文 por el suplente 孫邦華).
 - Grafías castellanas de los apellidos: «Cuadro genealógico de la colectividad china», en Elsa Kam-Ching Zambrano, *Historia de la colectividad china en Chile*, pp. 54–57.
 - Hakka (dialecto sixian): diccionario hakka del Ministerio de Educación de Taiwán, datos abiertos de g0v/moedict-data-hakka. Mandarín: pypinyin. Cantonés: pycantonese (jyutping). Simplificado: OpenCC.
 - Mapas: límites de China (DataV/Aliyun, vía lyhmyd1211/GeoMapData_CN), regiones de Chile (caracena/chile-geojson), continentes y países vecinos (Natural Earth, vía world-atlas). Conviene revisar las condiciones de uso de cada fuente antes de publicar.
