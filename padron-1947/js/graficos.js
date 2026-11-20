@@ -6,8 +6,17 @@ function filaBarra(cont, o) {
   row.setAttribute('role', 'button'); row.tabIndex = 0;
   if (o.sel) row.setAttribute('aria-selected', 'true');
   const nm = document.createElement('div'); nm.className = 'pc-row-name';
-  nm.appendChild(document.createTextNode(o.nombre));
-  if (o.detalle) { const s = document.createElement('small'); s.textContent = o.detalle; nm.appendChild(s); }
+  if (o.estado !== undefined) {
+    // Fila de lista: marca de estado, ciudad y, debajo, el nombre de la lista en el original
+    const m = document.createElement('i'); m.className = 'pc-estado ' + (o.estado || '');
+    const c = document.createElement('span'); c.className = 'pc-ciudad'; c.textContent = o.nombre;
+    nm.append(m, c);
+    if (o.zh) { const z = document.createElement('span'); z.className = 'pc-lista-zh'; z.textContent = o.zh; z.title = o.zh; nm.appendChild(z); }
+  } else {
+    nm.appendChild(document.createTextNode(o.nombre));
+    if (o.detalle) { const s = document.createElement('small'); s.textContent = o.detalle; nm.appendChild(s); }
+  }
+  if (o.titulo) row.title = o.titulo;
   const tr = document.createElement('div'); tr.className = 'pc-track';
   const fi = document.createElement('div'); fi.className = 'pc-fill'; fi.style.width = `${Math.max(o.t > 0 ? 0.8 : 0, o.t * 100)}%`; fi.style.background = o.color || dash.colors[0];
   tr.appendChild(fi);
@@ -26,10 +35,11 @@ dash.draw('barras_lista', (el) => {
   const max = d3.max(listas, (r) => r.n) || 1;
   const sel = dash.params().sede;
   listas.forEach((r) => {
-    filaBarra(el, { nombre: r.sede, detalle: `${r.grafia !== r.sede ? r.grafia + ' · ' : ''}${V(r.estado).toLowerCase()}`, t: r.n / max, n: r.n, pct: r.pct,
+    const clase = { 'Documentada': 'documentada', 'Propuesta': 'propuesta', 'Tentativa': 'tentativa', 'Hipótesis': 'hipotesis' }[r.estado] || '';
+    filaBarra(el, { nombre: r.sede, zh: r.grafia !== r.sede ? r.grafia : '', estado: clase, titulo: L(`${r.sede}: sede ${V(r.estado).toLowerCase()}`, `${r.sede}: ${V(r.estado).toLowerCase()} seat`), t: r.n / max, n: r.n, pct: r.pct,
       sel: sel === r.sede, dim: sel && sel !== r.sede, color: r.estado === 'Hipótesis' ? 'var(--cds-chart-muted)' : dash.colors[0], click: () => CH.alternar('sede', r.sede) });
     locs.filter((l) => l.sede === r.sede && l.localidad !== r.sede && l.n > 0).forEach((l) => {
-      filaBarra(el, { nombre: `↳ ${l.localidad}`, t: l.n / max, n: l.n, sub: true, sel: false, dim: sel && sel !== r.sede, color: CH.mix(dash.colors[0], 55), click: () => CH.alternar('sede', r.sede) });
+      filaBarra(el, { nombre: `↳ ${l.localidad}`, estado: 'sub', t: l.n / max, n: l.n, sub: true, sel: false, dim: sel && sel !== r.sede, color: CH.mix(dash.colors[0], 55), click: () => CH.alternar('sede', r.sede) });
     });
   });
 });

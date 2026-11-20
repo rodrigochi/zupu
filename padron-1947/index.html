@@ -303,6 +303,18 @@ a.pc-fuente:hover { border-bottom-style: solid; }
 @media print { .pc-bar { position: static; } .pc-table-wrap { max-height: none; overflow: visible; } .topbar, .indice { display: none; } }
 
 .ctx-ficha .ctx-py { font-family: var(--fuente-sans); font-size: 13px; color: var(--color-fg-muted); margin-left: 4px; letter-spacing: .02em; }
+.pc-estados { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0 0 12px; padding: 0 0 10px; list-style: none; font-size: 12px; color: var(--color-fg-muted); border-bottom: 1px dotted var(--color-border2); }
+.pc-estados li { display: inline-flex; align-items: center; gap: 6px; }
+.pc-estado { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; box-sizing: border-box; }
+.pc-estado.documentada { background: var(--color-accent); }
+.pc-estado.propuesta { border: 1.5px solid var(--color-accent); }
+.pc-estado.tentativa { border: 1.5px dashed var(--color-accent); }
+.pc-estado.hipotesis { border: 1.5px dashed var(--color-dim); }
+#grafico-listas .pc-row { grid-template-columns: minmax(9rem, 13rem) minmax(0, 1fr) 6.2rem; padding-top: 5px; padding-bottom: 5px; }
+#grafico-listas .pc-row-name { display: grid; grid-template-columns: 8px minmax(0, 1fr); column-gap: 8px; align-items: center; }
+#grafico-listas .pc-row-name .pc-ciudad { font-weight: 600; color: var(--color-fg); }
+#grafico-listas .pc-row-name .pc-lista-zh { grid-column: 2; font-family: var(--fuente-serif); font-size: 12.5px; color: var(--color-fg-muted); letter-spacing: .04em; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#grafico-listas .pc-sub-row .pc-ciudad { font-weight: 400; font-size: .86rem; color: var(--color-fg2); }
 /* Contexto de la elección */
 .contexto { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 34px; margin: 4px 0 34px; padding: 28px 0 30px; border-top: 1px solid var(--color-border2); border-bottom: 1px solid var(--color-border2); }
 .ctx-kicker { margin: 0 0 4px; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--color-accent); font-weight: 600; }
@@ -349,7 +361,7 @@ a.pc-fuente:hover { border-bottom-style: solid; }
   <header class='hero' id='cabecera'>
     <div class="hero-sello" aria-hidden="true">一九四七</div>
     <div>
-      <p class='pc-kicker' data-en="File 033-020104-0091 · Election of the National Assembly of the Republic of China, 1947">Expediente 033-020104-0091 · Elección de la Asamblea Nacional de la República de China, 1947</p>
+      <p class='pc-kicker' data-en="Election of the National Assembly of the Republic of China, 1947">Elección de la Asamblea Nacional de la República de China, 1947</p>
       <h1 class='pc-title' data-en="An X-ray of the Chinese in Chile">Radiografía de los chinos en Chile</h1>
       <p class='hero-bajada' data-en="Who they were, where they came from and where they lived in 1947, as told by their own electoral roll.">Quiénes eran, de dónde venían y dónde vivían en 1947, según su propio padrón electoral.</p>
       <p class='hero-zh'>旅智華僑選舉人名冊</p>
@@ -366,12 +378,12 @@ a.pc-fuente:hover { border-bottom-style: solid; }
       <div data-l="es">
         <p>En noviembre de 1947, la República de China eligió a la <b>primera Asamblea Nacional</b> (國民大會) prevista en su nueva Constitución. La Asamblea tenía como tarea principal elegir al presidente: se reunió en Nankín entre marzo y mayo de 1948 y eligió a Chiang Kai-shek.</p>
         <p>La Constitución reservaba escaños para los chinos residentes en el extranjero (art.&nbsp;26): <b>65 delegados repartidos en 41 distritos</b>. Chile pertenecía al <b>distrito n.º&nbsp;9</b>, junto con Argentina, Paraguay, Uruguay y Bolivia, y ese distrito elegía un solo delegado. Para votar había que inscribirse, y cada asociación china de Chile preparó su propia lista de electores. Este padrón reúne esas listas.</p>
-        <p>Por distintos motivos, solo 17 de los 41 distritos llegaron a votar. El n.º&nbsp;9 fue uno de ellos: ganó <span data-trad>鄭藻文</span> (Zhèng Zǎowén), y el primer suplente fue <span data-trad>孫邦華</span> (Sūn Bānghuá). En este padrón aparece un inscrito con ese mismo nombre, casi seguramente la misma persona: un funcionario de 47 años, registrado en Santiago y oriundo de Wuxing (Zhejiang), lejos del delta cantonés de donde venía casi todo el resto. En 1954, con el gobierno ya instalado en Taiwán, se anuló el registro de <span data-trad>鄭藻文</span> y <span data-trad>孫邦華</span> ocupó su escaño. <a href='#explorar' data-buscar='孫邦華'>Verlo en el padrón →</a></p>
+        <p>Por distintos motivos, solo 17 de los 41 distritos llegaron a votar. El n.º&nbsp;9 fue uno de ellos: ganó <span data-trad>鄭藻文</span> (Zheng Zaowen), y el primer suplente fue <span data-trad>孫邦華</span> (Sun Banghua). En este padrón aparece un inscrito con ese mismo nombre, casi seguramente la misma persona: un funcionario de 47 años, registrado en Santiago y oriundo de Wuxing (Zhejiang), lejos del delta cantonés de donde venía casi todo el resto. En 1954, con el gobierno ya instalado en Taiwán, se anuló el registro de <span data-trad>鄭藻文</span> y <span data-trad>孫邦華</span> ocupó su escaño. <a href='#explorar' data-buscar='孫邦華'>Verlo en el padrón →</a></p>
       </div>
       <div data-l="en">
         <p>In November 1947 the Republic of China elected the <b>first National Assembly</b> (國民大會) under its new Constitution. The Assembly’s main task was to elect the president: it met in Nanjing from March to May 1948 and elected Chiang Kai-shek.</p>
         <p>The Constitution reserved seats for Chinese citizens living abroad (art.&nbsp;26): <b>65 delegates across 41 districts</b>. Chile belonged to <b>district no.&nbsp;9</b>, together with Argentina, Paraguay, Uruguay and Bolivia, and that district elected a single delegate. Voters had to register, and each Chinese association in Chile drew up its own list of electors. This roll brings those lists together.</p>
-        <p>For various reasons, only 17 of the 41 districts actually voted. District 9 was one of them: the seat went to <span data-trad>鄭藻文</span> (Zhèng Zǎowén), with <span data-trad>孫邦華</span> (Sūn Bānghuá) as first alternate. A man of that same name appears on this roll, almost certainly the same person: a 47-year-old official registered in Santiago and born in Wuxing (Zhejiang), far from the Cantonese delta most of the others came from. In 1954, with the government by then in Taiwan, <span data-trad>鄭藻文</span>’s registration was cancelled and <span data-trad>孫邦華</span> took over the seat. <a href='#explorar' data-buscar='孫邦華'>Find him in the roll →</a></p>
+        <p>For various reasons, only 17 of the 41 districts actually voted. District 9 was one of them: the seat went to <span data-trad>鄭藻文</span> (Zheng Zaowen), with <span data-trad>孫邦華</span> (Sun Banghua) as first alternate. A man of that same name appears on this roll, almost certainly the same person: a 47-year-old official registered in Santiago and born in Wuxing (Zhejiang), far from the Cantonese delta most of the others came from. In 1954, with the government by then in Taiwan, <span data-trad>鄭藻文</span>’s registration was cancelled and <span data-trad>孫邦華</span> took over the seat. <a href='#explorar' data-buscar='孫邦華'>Find him in the roll →</a></p>
       </div>
     </div>
     <aside class='ctx-ficha' aria-label='Ficha de la elección' data-en-aria='Election facts'>
@@ -380,7 +392,7 @@ a.pc-fuente:hover { border-bottom-style: solid; }
         <div><dt data-en="National Assembly">Asamblea Nacional</dt><dd data-en="3,045 seats">3.045 escaños</dd></div>
         <div><dt data-en="Chinese abroad">Chinos en el exterior</dt><dd data-en="65 seats · 41 districts">65 escaños · 41 distritos</dd></div>
         <div class='ctx-destacado'><dt data-en="District no. 9">Distrito n.º 9</dt><dd><span data-en="Chile · Argentina · Paraguay · Uruguay · Bolivia">Chile · Argentina · Paraguay · Uruguay · Bolivia</span><small data-en="1 seat">1 escaño</small></dd></div>
-        <div><dt data-en="Elected">Electo</dt><dd><span data-trad>鄭藻文</span> <span class="ctx-py">Zhèng Zǎowén</span><small><span data-en="alternate">suplente</span> <span data-trad>孫邦華</span> <span class="ctx-py">Sūn Bānghuá</span></small></dd></div>
+        <div><dt data-en="Elected">Electo</dt><dd><span data-trad>鄭藻文</span> <span class="ctx-py">Zheng Zaowen</span><small><span data-en="alternate">suplente</span> <span data-trad>孫邦華</span> <span class="ctx-py">Sun Banghua</span></small></dd></div>
       </dl>
       <p class='ctx-fuentes'><span data-en="Sources:">Fuentes:</span> <a href='https://zh.wikisource.org/wiki/%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B%E6%86%B2%E6%B3%95' target='_blank' rel='noopener' data-en="Constitution of the Republic of China, art. 26">Constitución de la República de China, art. 26</a>; 國民大會秘書處, 《第一屆國民大會實錄》 (1961); 總統府公報 <span data-en="no.">n.º</span>&nbsp;472 (17-II-1954); <a href='https://zh.wikipedia.org/zh-tw/%E7%AC%AC%E4%B8%80%E5%B1%86%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B%E5%9C%8B%E6%B0%91%E5%A4%A7%E6%9C%83%E4%BB%A3%E8%A1%A8' target='_blank' rel='noopener'>第一屆國民大會代表</a> <span data-en="and">y</span> <a href='https://en.wikipedia.org/wiki/1947_Chinese_National_Assembly_election' target='_blank' rel='noopener'>1947 National Assembly election</a> (Wikipedia).</p>
     </aside>
@@ -439,7 +451,13 @@ a.pc-fuente:hover { border-bottom-style: solid; }
       </div>
       <div class='pc-card' id='tarjeta-listas'>
         <h3 class='pc-h3' data-en="Voters by list, north to south">Inscritos por lista, de norte a sur</h3>
-        <p class='pc-note' style='margin:0 0 var(--cds-gap-sm)' data-en="Each list’s seat is either documented in the file or proposed by phonetic comparison.">La sede de cada lista está documentada en el expediente o propuesta por cotejo fonético.</p>
+        <p class='pc-note' style='margin:0 0 6px' data-en="Under each city, the name of its list in the original. The mark shows how the seat was identified.">Bajo cada ciudad, el nombre de su lista en el original. La marca indica cómo se identificó la sede.</p>
+        <ul class='pc-estados' aria-label='Leyenda' data-en-aria='Legend'>
+          <li><i class='pc-estado documentada'></i><span data-en="documented">documentada</span></li>
+          <li><i class='pc-estado propuesta'></i><span data-en="proposed (phonetic match)">propuesta (cotejo fonético)</span></li>
+          <li><i class='pc-estado tentativa'></i><span data-en="tentative">tentativa</span></li>
+          <li><i class='pc-estado hipotesis'></i><span data-en="hypothesis">hipótesis</span></li>
+        </ul>
         <div class='pc-rows' data-draw='barras_lista' id='grafico-listas' style='min-height:420px'></div>
       </div>
     </div>
