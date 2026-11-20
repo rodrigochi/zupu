@@ -1,8 +1,8 @@
 // Pronunciación de los apellidos.
 // - Hakka (sixian): grabaciones del 《臺灣客家語常用詞辭典》 del Ministerio de Educación de Taiwán,
 //   obtenidas vía moedict.tw y guardadas en audio/hakka/ (índice en data/audio.json).
-// - Mandarín y cantonés: voz del dispositivo (Web Speech API, zh-CN / zh-HK).
-// - Grafía chilena: voz en español del dispositivo.
+// - Mandarín: sílabas grabadas de hugolpz/audio-cmn (voz de Chen Wang, CC BY-SA), en audio/mandarin/.
+// - Cantonés: voz del dispositivo (Web Speech API, zh-HK). Grafía chilena: voz en español del dispositivo.
 // Uso: PRONUNCIA.tocar(apellido, 'mandarin' | 'canton' | 'hakka' | 'chile', elemento, grafia)
 window.PRONUNCIA = (function () {
   const grabaciones = () => { const g = window.dash ? dash.data('audio') : null; return (g && g.status === 'ok' && g.data) || {}; };
@@ -45,18 +45,33 @@ window.PRONUNCIA = (function () {
     return false;
   }
 
+  // Las voces cargan con retraso (Chrome): se espera hasta 1,5 s antes de decidir.
+  function conVoces(fn) {
+    cargarVoces();
+    if (voces.length) return fn();
+    let hecho = false;
+    const listo = () => { if (hecho) return; hecho = true; cargarVoces(); fn(); };
+    speechSynthesis.addEventListener && speechSynthesis.addEventListener('voiceschanged', listo, { once: true });
+    setTimeout(listo, 1500);
+    return true;
+  }
+
   function decir(texto, modo, el) {
     if (!tts) return aviso(L('Este navegador no puede leer en voz alta.', 'This browser cannot read aloud.'));
-    if (!voces.length) cargarVoces();
+    return conVoces(() => decirYa(texto, modo, el));
+  }
+
+  function decirYa(texto, modo, el) {
     const v = voz(modo);
-    if (!v && voces.length) {
+    // Nunca leer con una voz de otro idioma: suena cualquier cosa.
+    if (!v) {
       return aviso(modo === 'canton'
         ? L('Tu dispositivo no tiene una voz en cantonés. Prueba en el celular o instala la voz «Chino (Hong Kong)».', 'Your device has no Cantonese voice. Try on a phone or install the “Chinese (Hong Kong)” voice.')
         : L('Tu dispositivo no tiene una voz para este idioma.', 'Your device has no voice for this language.'));
     }
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(texto);
-    if (v) { u.voice = v; u.lang = v.lang; } else u.lang = IDIOMAS[modo][0];
+    u.voice = v; u.lang = v.lang;
     u.rate = modo === 'chile' ? 0.9 : 0.75;
     let empezo = false;
     u.onstart = () => { empezo = true; };
@@ -78,22 +93,33 @@ window.PRONUNCIA = (function () {
     try { player.pause(); } catch (e) { /* nada */ }
     if (tts) speechSynthesis.cancel();
     marcar(null);
+    const g = grabaciones()[apellido] || {};
     if (modo === 'hakka') {
-      const g = grabaciones()[apellido];
-      if (!g || !g.hakka) return aviso(L(`No hay grabación hakka de ${apellido}.`, `There is no Hakka recording of ${apellido}.`));
-      player.src = g.hakka;
-      player.onended = () => marcar(null);
-      player.onerror = () => { marcar(null); aviso(L('No se pudo reproducir la grabación.', 'The recording could not be played.')); };
-      marcar(el);
-      player.play().catch(() => marcar(null));
-      return true;
+      if (!g.hakka) return aviso(L(`No hay grabación hakka de ${apellido}.`, `There is no Hakka recording of ${apellido}.`));
+      return sonar([g.hakka], el);
     }
+    if (modo === 'mandarin' && g.mandarin && g.mandarin.length) return sonar(g.mandarin, el);
     if (modo === 'chile') {
       const t = String(grafia || '').split(',')[0].split('/')[0].replace(/\?/g, '').trim();
       if (!t) return aviso(L(`${apellido} no tiene grafía chilena documentada.`, `${apellido} has no documented Chilean spelling.`));
       return decir(t, 'chile', el);
     }
     return decir(POLIFONICOS.has(apellido) ? '姓' + apellido : apellido, modo, el);
+  }
+
+  // Reproduce una o más grabaciones seguidas (歐陽 = ōu + yáng).
+  function sonar(lista, el) {
+    let i = 0;
+    const siguiente = () => {
+      if (i >= lista.length) { marcar(null); return; }
+      player.src = lista[i++];
+      player.play().catch(() => marcar(null));
+    };
+    player.onended = siguiente;
+    player.onerror = () => { marcar(null); aviso(L('No se pudo reproducir la grabación.', 'The recording could not be played.')); };
+    marcar(el);
+    siguiente();
+    return true;
   }
 
   const tieneHakka = (apellido) => !!(grabaciones()[apellido] && grabaciones()[apellido].hakka);

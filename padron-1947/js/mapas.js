@@ -17,46 +17,189 @@ function etiquetasSinChoque(items, minGap, yMin, yMax) {
   return items;
 }
 
-// ---------- Ruta ----------
+// D3 espera los anillos exteriores en sentido horario; si un polígono cubre más de medio globo, está invertido.
+function enderezar(feats) {
+  return feats.map((f) => {
+    if (!f.geometry || d3.geoArea(f) <= 2 * Math.PI) return f;
+    const inv = (rings) => rings.map((r) => r.slice().reverse());
+    const g = f.geometry;
+    const geometry = g.type === 'Polygon' ? { ...g, coordinates: inv(g.coordinates) } : g.type === 'MultiPolygon' ? { ...g, coordinates: g.coordinates.map(inv) } : g;
+    return { ...f, geometry };
+  });
+}
+
+// ---------- Ruta: carta del Pacífico ----------
 dash.draw('mapa_ruta', (el) => {
-  const d = CH.listo(el, ['mapa_mundo', 'por_lista']);
+  const d = CH.listo(el, ['mapa_mundo', 'mapa_china', 'mapa_chile', 'por_lista']);
   if (!d) return;
-  const [mundo, listas] = d;
+  const [mundo, china, chile, listas] = d;
   el.replaceChildren();
-  const W = Math.max(300, el.clientWidth), H = Math.round(Math.min(380, Math.max(170, W * (W < 600 ? 0.52 : 0.36))));
-  const proj = d3.geoEqualEarth().rotate([160, 0]).fitExtent([[10, 10], [W - 10, H - 10]], { type: 'MultiPoint', coordinates: [[100, 42], [-58, -40], [100, -40], [-58, 42]] });
+  const W = Math.max(300, el.clientWidth);
+  const chico = W < 600;
+  const H = Math.round(Math.min(560, Math.max(260, W * (chico ? 0.78 : 0.5))));
+  const M = chico ? 8 : 14; // margen del marco
+  const proj = d3.geoEqualEarth().rotate([158, 0])
+    .fitExtent([[M + 6, M + 6], [W - M - 6, H - M - 6]], { type: 'MultiPoint', coordinates: chico ? [[90, 44], [-44, -50], [90, -50], [-44, 44]] : [[98, 46], [-58, -48], [98, -48], [-58, 46]] });
   const path = d3.geoPath(proj);
-  const svg = CH.svg(el, W, H, L('Mapa del Pacífico con líneas desde el delta del río de las Perlas hasta cada ciudad chilena, con grosor según el número de inscritos', 'Map of the Pacific with lines from the Pearl River Delta to each Chilean city, sized by number of voters'));
-  svg.append('path').datum({ type: 'Sphere' }).attr('d', path).style('fill', 'var(--pc-water)');
-  svg.append('g').selectAll('path').data(CH.filas(mundo)).join('path').attr('d', path).style('fill', 'var(--pc-land)').style('stroke', 'var(--color-border-line)').style('stroke-width', 0.5);
+  const svg = CH.svg(el, W, H, L('Carta del Pacífico con las rutas desde el delta del río de las Perlas hasta cada ciudad chilena, con grosor según el número de inscritos', 'Chart of the Pacific with routes from the Pearl River Delta to each Chilean city, sized by number of voters'));
+  svg.attr('class', 'pc-carta');
+  const defs = svg.append('defs');
+  const uid = 'carta' + Math.random().toString(36).slice(2, 7);
+
+  // Mar: degradado suave
+  const mar = defs.append('radialGradient').attr('id', `${uid}-mar`).attr('cx', '50%').attr('cy', '45%').attr('r', '75%');
+  mar.append('stop').attr('offset', '0%').attr('stop-color', '#eef3f2');
+  mar.append('stop').attr('offset', '100%').attr('stop-color', '#d9e3e3');
+  const clip = defs.append('clipPath').attr('id', `${uid}-clip`);
+  clip.append('rect').attr('x', M).attr('y', M).attr('width', W - 2 * M).attr('height', H - 2 * M);
+
+  // Fondo de papel y marco doble, como una carta antigua
+  svg.append('rect').attr('width', W).attr('height', H).attr('rx', 8).style('fill', 'var(--color-panel)');
+  const g = svg.append('g').attr('clip-path', `url(#${uid}-clip)`);
+  g.append('rect').attr('x', M).attr('y', M).attr('width', W - 2 * M).attr('height', H - 2 * M).style('fill', `url(#${uid}-mar)`);
+
+  // Retícula, trópicos y ecuador
+  g.append('path').datum(d3.geoGraticule().step([15, 15])()).attr('d', path)
+    .style('fill', 'none').style('stroke', '#8aa3a6').style('stroke-width', 0.5).style('stroke-opacity', 0.35);
+  const paralelo = (lat) => ({ type: 'LineString', coordinates: d3.range(-180, 181, 2).map((x) => [x, lat]) });
+  [[23.44, L('Trópico de Cáncer', 'Tropic of Cancer')], [0, L('Ecuador', 'Equator')], [-23.44, L('Trópico de Capricornio', 'Tropic of Capricorn')]].forEach(([lat, nombre]) => {
+    g.append('path').datum(paralelo(lat)).attr('d', path).style('fill', 'none')
+      .style('stroke', lat === 0 ? '#b0894a' : '#9fb4b6').style('stroke-width', lat === 0 ? 0.9 : 0.7).style('stroke-dasharray', lat === 0 ? '6 4' : '2 4');
+    if (!chico) {
+      const p = proj([-128, lat]);
+      g.append('text').attr('x', p[0]).attr('y', p[1] - 4).attr('text-anchor', 'middle').text(nombre)
+        .style('font-size', '10px').style('font-style', 'italic').style('letter-spacing', '.06em').style('fill', lat === 0 ? '#8a6a35' : '#7f9597');
+    }
+  });
+
+  // Tierra firme, China y Chile destacados
+  g.append('g').selectAll('path').data(enderezar(CH.filas(mundo))).join('path').attr('d', path)
+    .style('fill', '#ece0c6').style('stroke', '#bca37a').style('stroke-width', 0.6);
+  g.append('g').selectAll('path').data(enderezar(CH.filas(china))).join('path').attr('d', path)
+    .style('fill', (f) => (f.properties.es === 'Guangdong' ? 'color-mix(in oklab, var(--serie-1) 55%, #ece0c6)' : '#e3d2ae'))
+    .style('stroke', '#c8ad80').style('stroke-width', 0.35);
+  g.append('g').selectAll('path').data(enderezar(CH.filas(chile)).filter((f) => f.properties.tipo !== 'vecino')).join('path').attr('d', path)
+    .style('fill', 'color-mix(in oklab, var(--serie-1) 45%, #ece0c6)').style('stroke', 'none');
+
+  // Rótulos geográficos
+  const rotulo = (lonlat, texto, tam, extra = {}) => {
+    const p = proj(lonlat);
+    const t = g.append('text').attr('x', p[0]).attr('y', p[1]).attr('text-anchor', extra.anchor || 'middle').text(texto)
+      .style('font-family', 'var(--fuente-serif)').style('font-size', `${tam}px`).style('fill', extra.color || '#6b5744')
+      .style('letter-spacing', extra.esp || '.12em').style('font-style', extra.italic ? 'italic' : null).style('pointer-events', 'none');
+    if (extra.halo) t.style('paint-order', 'stroke').style('stroke', '#ece0c6').style('stroke-width', 3);
+    return t;
+  };
+  rotulo(chico ? [-160, -24] : [-152, -8], L('OCÉANO PACÍFICO', 'PACIFIC OCEAN'), chico ? 11 : 17, { color: '#5f7a7d', esp: '.32em', italic: true });
+  rotulo(chico ? [-160, -31] : [-152, -15], '太 平 洋', chico ? 11 : 16, { color: '#7f9597', esp: '.2em' }).attr('dy', chico ? 10 : 14);
+  rotulo(chico ? [96, 38] : [104, 33], 'CHINA 中國', chico ? 10 : 13, { color: 'var(--color-accent)', halo: true, anchor: chico ? 'start' : 'middle' });
+  if (!chico) rotulo([-64, -33], 'CHILE', 13, { color: 'var(--color-accent)', anchor: 'start', esp: '.2em', halo: true });
+  if (!chico) {
+    rotulo([-95, 38], L('AMÉRICA', 'AMERICA'), 11, { color: '#9a8566', esp: '.3em' });
+    rotulo([138, 38], L('JAPÓN', 'JAPAN'), 9.5, { color: '#9a8566', anchor: 'start', esp: '.2em' });
+    rotulo([136, -25], 'AUSTRALIA', 11, { color: '#9a8566', esp: '.3em' });
+    rotulo([-157, 23.5], L('Hawái', 'Hawaii'), 9.5, { color: '#7f9597', italic: true, esp: '.04em' }).attr('dy', -9);
+  }
+
+  // Rutas: del delta a cada lista, con degradado oro → rojo y grosor según inscritos
   const tip = CH.tip(el);
   const p0 = proj(ZHONGSHAN);
   const max = d3.max(listas, (r) => r.n) || 1;
   const sel = dash.params().sede;
-  const filas = listas.filter((r) => SEDE_XY[r.sede] && r.n > 0);
-  const g = svg.append('g');
-  filas.forEach((r) => {
+  const filas = listas.filter((r) => SEDE_XY[r.sede] && r.n > 0).sort((a, b) => b.n - a.n);
+  const rutas = g.append('g');
+  const curva = (p1, i) => {
+    const mx = (p0[0] + p1[0]) / 2, my = Math.min(p0[1], p1[1]) - H * (0.3 + 0.012 * i);
+    return `M${p0[0]},${p0[1]} Q${mx},${my} ${p1[0]},${p1[1]}`;
+  };
+  filas.forEach((r, i) => {
     const p1 = proj(SEDE_XY[r.sede]);
-    const mx = (p0[0] + p1[0]) / 2, my = Math.min(p0[1], p1[1]) - H * 0.32;
-    g.append('path').attr('d', `M${p0[0]},${p0[1]} Q${mx},${my} ${p1[0]},${p1[1]}`)
-      .style('fill', 'none').style('stroke', dash.colors[0]).style('stroke-linecap', 'round')
-      .style('stroke-opacity', !sel || sel === r.sede ? 0.55 : 0.12)
-      .style('stroke-width', 1 + 9 * Math.sqrt(r.n / max))
+    const gid = `${uid}-r${i}`;
+    const lg = defs.append('linearGradient').attr('id', gid).attr('gradientUnits', 'userSpaceOnUse')
+      .attr('x1', p0[0]).attr('y1', p0[1]).attr('x2', p1[0]).attr('y2', p1[1]);
+    lg.append('stop').attr('offset', '0%').attr('stop-color', 'var(--color-gold)');
+    lg.append('stop').attr('offset', '100%').attr('stop-color', 'var(--serie-1)');
+    const activa = !sel || sel === r.sede;
+    const dd = curva(p1, i);
+    rutas.append('path').attr('d', dd).attr('class', 'pc-ruta')
+      .style('fill', 'none').style('stroke', `url(#${gid})`).style('stroke-linecap', 'round')
+      .style('stroke-opacity', activa ? 0.75 : 0.12)
+      .style('stroke-width', 1.2 + 9 * Math.sqrt(r.n / max))
       .style('cursor', 'pointer')
       .on('mousemove', (ev) => tip.show(ev, [`${r.sede} ${r.grafia !== r.sede ? r.grafia : ''}`, L(`${r.n} inscritos`, `${r.n} voters`), L(`Sede ${V(r.estado).toLowerCase()}`, `${V(r.estado)} seat`)]))
       .on('mouseleave', () => tip.hide())
       .on('click', () => CH.alternar('sede', r.sede));
+    // Flujo animado sobre las rutas activas
+    if (activa) rutas.append('path').attr('d', dd).attr('class', 'pc-ruta-flujo').style('fill', 'none').style('pointer-events', 'none')
+      .style('stroke', '#fff9f2').style('stroke-opacity', 0.7).style('stroke-width', Math.max(0.8, 1.6 * Math.sqrt(r.n / max)))
+      .style('stroke-linecap', 'round').style('stroke-dasharray', '1.5 14').style('animation-delay', `${-i * 0.37}s`);
   });
-  const pin = (pt, txt, anchor, dx) => {
-    svg.append('circle').attr('cx', pt[0]).attr('cy', pt[1]).attr('r', 4).style('fill', 'var(--color-fg)').style('stroke', 'var(--color-panel)').style('stroke-width', 2);
-    svg.append('text').attr('x', pt[0] + dx).attr('y', pt[1] + 4).attr('text-anchor', anchor).text(txt).style('font-size', '12px').style('fill', 'var(--color-fg)').style('paint-order', 'stroke').style('stroke', 'var(--color-panel)').style('stroke-width', 3);
-  };
-  pin(p0, W < 600 ? 'Delta' : L('Delta del río de las Perlas', 'Pearl River Delta'), 'start', 8);
+
+  // Vapor sobre la ruta más concurrida (a 45 % del trayecto, orientado según la curva)
+  if (filas.length) {
+    const guia = rutas.append('path').attr('d', curva(proj(SEDE_XY[filas[0].sede]), 0)).style('fill', 'none').style('stroke', 'none').node();
+    const L0 = guia.getTotalLength();
+    if (L0 > 0) {
+      const f = chico ? 0.62 : 0.45;
+      const a = guia.getPointAtLength(L0 * f), b = guia.getPointAtLength(L0 * f + 2);
+      const ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+      const s = chico ? 0.8 : 1.15;
+      const barco = g.append('g').attr('transform', `translate(${a.x},${a.y - 9 * s}) rotate(${ang}) scale(${s})`).style('pointer-events', 'none');
+      barco.append('path').attr('d', 'M-13,0 L13,0 L9,6 L-10,6 Z').style('fill', 'var(--color-fg2)');
+      barco.append('rect').attr('x', -7).attr('y', -5).attr('width', 13).attr('height', 5).attr('rx', 1).style('fill', '#fff9f2').style('stroke', 'var(--color-fg2)').style('stroke-width', 0.8);
+      barco.append('rect').attr('x', -1).attr('y', -11).attr('width', 4).attr('height', 6).style('fill', 'var(--serie-1)');
+      barco.append('path').attr('d', 'M1,-12 q4,-4 9,-3 q4,1 7,-2').style('fill', 'none').style('stroke', '#a08060').style('stroke-width', 1).style('stroke-linecap', 'round').style('opacity', 0.7);
+    }
+  }
+
+  // Extremos: sello en el delta y punto en el Norte Grande
   const pc = proj([-70.3, -23]);
-  pin(pc, W < 600 ? 'Chile' : L('Norte de Chile', 'Northern Chile'), 'end', -10);
+  const sello = g.append('g').attr('transform', `translate(${p0[0]},${p0[1]})`).style('pointer-events', 'none');
+  sello.append('circle').attr('r', chico ? 6 : 8).style('fill', 'var(--color-bg)').style('stroke', 'var(--color-seal)').style('stroke-width', 2);
+  sello.append('circle').attr('r', chico ? 2.5 : 3.2).style('fill', 'var(--color-seal)');
+  const et = g.append('g').style('pointer-events', 'none');
+  const etiqueta = (pt, lineas, anchor, dx, dy) => {
+    const t = et.append('text').attr('x', pt[0] + dx).attr('y', pt[1] + dy).attr('text-anchor', anchor)
+      .style('paint-order', 'stroke').style('stroke', '#f3ead6').style('stroke-width', 4).style('stroke-linejoin', 'round');
+    lineas.forEach(([txt, est], i) => t.append('tspan').attr('x', pt[0] + dx).attr('dy', i ? '1.2em' : 0).text(txt)
+      .style('font-size', est.size).style('font-weight', est.bold ? 700 : null).style('fill', est.color || 'var(--color-fg)').style('font-family', est.serif ? 'var(--fuente-serif)' : null));
+  };
+  etiqueta(p0, chico ? [['珠江三角洲', { size: '11px', serif: true, color: 'var(--color-accent)' }]]
+    : [['珠江三角洲', { size: '14px', serif: true, color: 'var(--color-accent)' }], [L('Delta del río de las Perlas', 'Pearl River Delta'), { size: '11.5px' }]], 'start', 12, 18);
+  et.append('circle').attr('cx', pc[0]).attr('cy', pc[1]).attr('r', chico ? 3.5 : 4.5).style('fill', 'var(--color-fg)').style('stroke', '#fff9f2').style('stroke-width', 2);
+  if (chico) etiqueta(pc, [[L('Norte Grande', 'Norte Grande'), { size: '11px', serif: true, color: 'var(--color-accent)' }]], 'end', -8, 22);
+  else etiqueta(pc, [[L('Norte Grande', 'Norte Grande'), { size: '14px', serif: true, color: 'var(--color-accent)' }], [L('Iquique · Antofagasta', 'Iquique · Antofagasta'), { size: '11px' }]], 'start', 14, 0);
+
+  // Distancia, sobre la ruta
   const km = Math.round(d3.geoDistance(ZHONGSHAN, [-70.15, -20.21]) * 6371 / 100) * 100;
-  svg.append('text').attr('x', (p0[0] + pc[0]) / 2).attr('y', Math.max(18, Math.min(p0[1], pc[1]) - H * 0.18)).attr('text-anchor', 'middle')
-    .text(W < 600 ? `≈ ${km.toLocaleString(I18N.LOC())} km` : L(`Zhongshan–Iquique: ≈ ${km.toLocaleString('es-CL')} km en línea recta, casi medio globo`, `Zhongshan–Iquique: ≈ ${km.toLocaleString('en-US')} km as the crow flies, almost half the globe`)).style('font-size', '12px').style('fill', 'var(--cds-text-secondary)');
+  const pd = proj([-176, 34]);
+  const cartel = g.append('g').attr('transform', `translate(${(p0[0] + pc[0]) / 2},${Math.max(M + 22, pd[1])})`).style('pointer-events', 'none');
+  const txtKm = chico ? `≈ ${km.toLocaleString(I18N.LOC())} km` : L(`Zhongshan → Iquique · ≈ ${km.toLocaleString('es-CL')} km, casi medio globo`, `Zhongshan → Iquique · ≈ ${km.toLocaleString('en-US')} km, almost half the globe`);
+  const tk = cartel.append('text').attr('text-anchor', 'middle').text(txtKm).style('font-family', 'var(--fuente-serif)').style('font-style', 'italic')
+    .style('font-size', chico ? '11px' : '13px').style('fill', 'var(--color-fg2)');
+  const bb = tk.node().getBBox();
+  cartel.insert('rect', 'text').attr('x', bb.x - 10).attr('y', bb.y - 4).attr('width', bb.width + 20).attr('height', bb.height + 8).attr('rx', 999)
+    .style('fill', 'rgba(255, 249, 242, .85)').style('stroke', '#c8ad80').style('stroke-width', 0.8);
+
+  // Rosa de los vientos
+  if (!chico) {
+    const rx = W - M - 46, ry = H - M - 50;
+    const rosa = g.append('g').attr('transform', `translate(${rx},${ry})`).style('pointer-events', 'none').style('opacity', 0.85);
+    rosa.append('circle').attr('r', 26).style('fill', 'rgba(255, 249, 242, .6)').style('stroke', '#b0894a').style('stroke-width', 0.8);
+    rosa.append('circle').attr('r', 21).style('fill', 'none').style('stroke', '#b0894a').style('stroke-width', 0.4);
+    const punta = (ang, largo, color) => rosa.append('path').attr('transform', `rotate(${ang})`)
+      .attr('d', `M0,${-largo} L4,0 L0,4 L-4,0 Z`).style('fill', color).style('stroke', '#8a6a35').style('stroke-width', 0.4);
+    [45, 135, 225, 315].forEach((a) => punta(a, 15, '#e3d2ae'));
+    [90, 180, 270].forEach((a) => punta(a, 23, '#f3ead6'));
+    punta(0, 23, 'var(--color-seal)');
+    rosa.append('text').attr('y', -29).attr('text-anchor', 'middle').text('N').style('font-family', 'var(--fuente-serif)').style('font-size', '11px').style('font-weight', 700).style('fill', 'var(--color-accent)');
+  }
+
+  // Marco doble
+  svg.append('rect').attr('x', M).attr('y', M).attr('width', W - 2 * M).attr('height', H - 2 * M)
+    .style('fill', 'none').style('stroke', '#8a6a35').style('stroke-width', 1.2);
+  svg.append('rect').attr('x', M - 4).attr('y', M - 4).attr('width', W - 2 * M + 8).attr('height', H - 2 * M + 8).attr('rx', 3)
+    .style('fill', 'none').style('stroke', '#c8ad80').style('stroke-width', 0.6);
 });
 
 // ---------- Chile ----------

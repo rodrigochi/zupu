@@ -86,4 +86,5 @@ Los criterios de normalización (sedes, condados de 1947, oficios, apellidos) es
 
 - `js/audio.js`: botón 🔊 en la tabla de grafías y en el recuadro de 徐; en el mosaico, un clic reproduce el apellido en la lengua elegida (doble clic: sus grafías).
 - Hakka: grabaciones (dialecto sixian) del 《臺灣客家語常用詞辭典》 del Ministerio de Educación de Taiwán, descargadas vía moedict.tw sin modificar, en `audio/hakka/<código Unicode>.mp3`; índice en `data/audio.json`. Se eligió la entrada cuya lectura sixian coincide exactamente con la de `apellidos_grafias.json`; 99 de 116 apellidos tienen grabación. Origen: `https://www.moedict.tw/h/<carácter>.json` (campo `=`) y `https://r2-assets.moedict.tw/audio/h/1-<id>.mp3` (1 = sixian).
-- Mandarín, cantonés y grafía chilena: voz sintética del dispositivo (Web Speech API: zh-CN, zh-HK, es). 曾, 翟 y 任 se dicen «姓X» para forzar la lectura de apellido.
+- Mandarín: sílabas grabadas de [hugolpz/audio-cmn](https://github.com/hugolpz/audio-cmn) (voz de Chen Wang, CC BY-SA), `64k/syllabs/cmn-<pinyin con número de tono>.mp3` (ü = v), en `audio/mandarin/`; índice en `data/audio.json` (歐陽 = dos sílabas que suenan seguidas).
+- Cantonés y grafía chilena: voz sintética del dispositivo (Web Speech API: zh-HK, es). Si no hay voz para el idioma, se avisa en vez de leer con otra voz. En cantonés, 曾, 翟 y 任 se dicen «姓X» para forzar la lectura de apellido.
