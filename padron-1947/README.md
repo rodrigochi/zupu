@@ -92,4 +92,4 @@ Los criterios de normalización (sedes, condados de 1947, oficios, apellidos) es
 
 ## Digitalización
 
-La transcripción se hizo principalmente con gemini-3.6-flash mediante `procesar_padron.py`. De las 70 hojas con registro de procesamiento, 65 quedaron registradas con ese modelo, 4 con gemini-3.8-flash (modelo predeterminado del script) y 1, la imagen 067, se transcribió por cotejo visual. La revisión de los escaneos, el cotejo histórico y la preparación del Excel se hicieron con GPT-6.2 Sol en Codex.
+La transcripción se hizo con inteligencia artificial, casi toda con gemini-3.6-flash (unas pocas hojas con gemini-3.8-flash); la imagen 067 se transcribió por cotejo visual. La revisión de los escaneos, el cotejo histórico y la tabla final se hicieron con GPT-6.2 Sol.
