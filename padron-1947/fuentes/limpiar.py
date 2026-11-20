@@ -18,11 +18,12 @@ sedes_info = {
     'Coquimbo':    dict(grafia='角兼步埠', estado='Propuesta', lat=-29.95, lon=-71.34, prov='Coquimbo'),
     'Taltal':      dict(grafia='達打埠', estado='Propuesta', lat=-25.40, lon=-70.48, prov='Antofagasta'),
     'Chañaral':    dict(grafia='棧夜喇埠', estado='Tentativa', lat=-26.35, lon=-70.62, prov='Atacama'),
-    '古華埠':       dict(grafia='古華埠', estado='Sin identificar', lat=None, lon=None, prov=''),
-    '華思拿埠':     dict(grafia='華思拿埠', estado='Sin identificar', lat=None, lon=None, prov=''),
+    # Ubicaciones por hipótesis (cuadro de la encuesta de 1965, Kam-Ching Zambrano, pp. 122–123)
+    'Pueblo Hundido': dict(grafia='古華埠', estado='Hipótesis', lat=-26.39, lon=-70.05, prov='Atacama'),
+    'Vallenar':    dict(grafia='華思拿埠', estado='Hipótesis', lat=-28.58, lon=-70.76, prov='Atacama'),
 }
 sede = e.ciudad_padron.fillna(e.ciudad_propuesta).fillna(e.sede_historica)
-sede = sede.replace({'Chañaral (tentativa)': 'Chañaral'})
+sede = sede.replace({'Chañaral (tentativa)': 'Chañaral', '古華埠': 'Pueblo Hundido', '華思拿埠': 'Vallenar'})
 e['sede'] = sede
 
 # ---------- Localidad dentro de la lista ----------
@@ -80,7 +81,7 @@ COUNTY = {  # clave: (condado, cantonés, pinyin, provincia, grupo de mapa)
     '武進': ('Wujin', '', 'Wǔjìn', 'Jiangsu'),
     '無錫': ('Wuxi', '', 'Wúxī', 'Jiangsu'),
 }
-ALIAS = {'臺山': ('台山', 'Variante gráfica'), '水步': ('台山', 'Localidad de Taishan'),
+ALIAS = {'臺山': ('台山', 'Variante gráfica'), '岡山': ('鶴山', 'Lectura probable de 鶴山'), '水步': ('台山', 'Localidad de Taishan'),
          '香山': ('中山', 'Nombre antiguo de Zhongshan'), '斗門': ('中山', 'Parte de Zhongshan en 1947'),
          '新安': ('寶安', 'Nombre antiguo de Bao’an'), '宝安': ('寶安', 'Variante gráfica'),
          '肇慶': ('高要', 'Sede de la prefectura, en Gaoyao'), '商鶴山': ('鶴山', 'Prefijo desplazado'),
@@ -118,11 +119,14 @@ e.loc[e.origen_calidad == 'Solo provincia', 'origen_provincia'] = 'Guangdong'
 # ---------- Oficio ----------
 OFI = {
     '商': 'Comerciante', '商人': 'Comerciante',
-    '雜貨': 'Abarrotes y mercancías', '貨': 'Abarrotes y mercancías', '貨員': 'Abarrotes y mercancías', '僱貨': 'Abarrotes y mercancías',
+    '雜貨': 'Abarrotes y mercancías', '貨': 'Abarrotes y mercancías', '貨員': 'Abarrotes y mercancías', '僱貨': 'Empleado',
     '僱員': 'Empleado', '傭員': 'Empleado', '雇員': 'Empleado',
     '工': 'Obrero', '政': 'Funcionario', '醫生': 'Médico',
     '農業': 'Agricultura y hortalizas', '菜業': 'Agricultura y hortalizas',
     '失業': 'Sin empleo',
+    '工人': 'Obrero', '兼商': 'Comerciante', '商業': 'Comerciante', '僱': 'Empleado',
+    '木匠': 'Carpintero', '自由職業': 'Profesión liberal', '肉店': 'Carnicería',
+    '主婦': 'Dueña de casa', '厨工': 'Cocinero', '教員': 'Profesor', '牙醫師': 'Dentista', '鑛務': 'Minería',
 }
 def oficio(v):
     if pd.isna(v) or str(v).strip() == '':

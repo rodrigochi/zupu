@@ -14,7 +14,7 @@ window.I18N = (function () {
   if (script !== 'simp') script = 'trad';
 
   // Pares tradicional→simplificado de todos los caracteres de la página (generado con OpenCC; ver README).
-  const PARES = /*T2S*/'乾干亞亚來来倉仓個个倫伦偉伟傑杰傭佣傳传傷伤僑侨僱雇儀仪億亿優优兩两冊册剛刚創创劉刘劍剑務务勝胜勳勋勵励區区吳吴呂吕員员啟启嚴严國国堅坚堯尧報报壯壮壽寿夠够夾夹嫻娴嬌娇孫孙實实寧宁寬宽寶宝屆届師师帶带廣广張张強强彥彦從从復复徵征悅悦愛爱愷恺慶庆憲宪應应懷怀揚扬撫抚敘叙時时書书會会東东棟栋棧栈楊杨業业榮荣樂乐樑梁樓楼標标樸朴樹树權权欽钦歐欧歸归沖冲況况湯汤溫温滿满漢汉潤润澤泽濃浓濟济灣湾無无煒炜煥焕熾炽燦灿燼烬獎奖獻献瓊琼瓏珑發发盧卢碩硕祿禄禪禅禮礼積积穩稳競竞筆笔粵粤紀纪純纯細细紹绍統统經经維维綱纲緝缉締缔練练縣县總总羅罗義义翹翘聞闻聯联聲声聶聂脩修臨临臺台興兴舉举莊庄華华萬万葉叶蓮莲蔣蒋蔭荫蕭萧藝艺蘆芦蘇苏蘭兰處处號号術术衛卫覺觉觀观計计訓训記记許许詞词詠咏詮诠話话誌志語语調调諾诺謙谦謝谢謨谟譚谭譜谱讓让貞贞貢贡貨货貫贯貴贵買买貽贻賀贺賁贲賃赁賜赐賢贤賴赖贊赞趙赵車车軒轩輝辉辭辞農农連连進进遊游運运達达遠远選选鄉乡鄒邹鄔邬鄧邓鄭郑鄺邝醫医釋释釗钊釵钗鈴铃鈿钿銀银銓铨銘铭銳锐鋒锋鋼钢錄录錡锜錢钱錦锦錫锡鍾钟鎔镕鏞镛鏡镜鐘钟鐸铎長长門门開开陰阴陳陈陸陆陽阳雜杂雲云電电靈灵靚靓韓韩頁页頃顷順顺頌颂頭头頸颈顯显風风養养館馆饒饶馬马馮冯駒驹駱骆體体鳳凤鴻鸿鶴鹤麗丽麥麦黃黄齡龄龍龙龐庞龔龚';
+  const PARES = /*T2S*/'乾干亞亚來来倉仓個个倫伦偉伟傑杰傭佣傳传傷伤僑侨僱雇儀仪億亿優优兩两冊册剛刚創创劉刘劍剑務务勝胜勳勋勵励區区吳吴呂吕員员啟启嚴严國国堅坚堯尧報报壯壮壽寿夠够夾夹婦妇嫻娴嬌娇孫孙實实寧宁寬宽寶宝屆届師师帶带廣广張张強强彥彦從从復复徵征悅悦愛爱愷恺慶庆憲宪應应懷怀揚扬撫抚敘叙時时書书會会東东棟栋棧栈楊杨業业榮荣樂乐樑梁樓楼標标樸朴樹树權权欽钦歐欧歸归沖冲況况湯汤溫温滿满漢汉潤润澤泽濃浓濟济灣湾無无煒炜煥焕熾炽燦灿燼烬獎奖獻献瓊琼瓏珑發发盧卢碩硕祿禄禪禅禮礼積积穩稳競竞筆笔粵粤紀纪純纯細细紹绍統统經经維维綱纲緝缉締缔練练縣县總总羅罗義义翹翘聞闻聯联聲声聶聂職职脩修臨临臺台興兴舉举莊庄華华萬万葉叶蓮莲蔣蒋蔭荫蕭萧藝艺蘆芦蘇苏蘭兰處处號号術术衛卫覺觉觀观計计訓训記记許许詞词詠咏詮诠話话誌志語语調调諾诺謙谦謝谢謨谟譚谭譜谱讓让貞贞貢贡貨货貫贯貴贵買买貽贻賀贺賁贲賃赁賜赐賢贤賴赖贊赞趙赵車车軒轩輝辉辭辞農农連连進进遊游運运達达遠远選选鄉乡鄒邹鄔邬鄧邓鄭郑鄺邝醫医釋释釗钊釵钗鈴铃鈿钿銀银銓铨銘铭銳锐鋒锋鋼钢錄录錡锜錢钱錦锦錫锡鍾钟鎔镕鏞镛鏡镜鐘钟鐸铎長长門门開开陰阴陳陈陸陆陽阳雜杂雲云電电靈灵靚靓韓韩頁页頃顷順顺頌颂頭头頸颈顯显風风養养館馆饒饶馬马馮冯駒驹駱骆體体鳳凤鴻鸿鶴鹤麗丽麥麦黃黄齡龄龍龙龐庞龔龚';
   const T2S = {};
   for (let i = 0; i + 1 < PARES.length; i += 2) T2S[PARES[i]] = PARES[i + 1];
   const HAN = /[㐀-鿿豈-﫿]/g;
@@ -28,7 +28,7 @@ window.I18N = (function () {
     Hombre: 'Male', Mujer: 'Female', 'Sin dato': 'No data', Dudoso: 'Uncertain',
     Comerciante: 'Merchant', 'Lectura por confirmar': 'Reading to be confirmed', 'Abarrotes y mercancías': 'Groceries and goods',
     Empleado: 'Employee', Obrero: 'Labourer', 'Sin empleo': 'Unemployed', Funcionario: 'Official',
-    'Agricultura y hortalizas': 'Farming and market gardens', 'Médico': 'Doctor', Carpintero: 'Carpenter', 'Profesión liberal': 'Liberal profession',
+    'Agricultura y hortalizas': 'Farming and market gardens', 'Médico': 'Doctor', Carpintero: 'Carpenter', 'Profesión liberal': 'Liberal profession', 'Carnicería': 'Butcher', 'Dueña de casa': 'Housewife', Cocinero: 'Cook', Profesor: 'Teacher', Dentista: 'Dentist', 'Minería': 'Mining',
     Documentada: 'Documented', Propuesta: 'Proposed', 'Hipótesis': 'Hypothesis', Tentativa: 'Tentative',
     'Lectura fonética propuesta': 'Proposed phonetic reading', 'Identificada en el padrón': 'Identified in the roll',
     Directa: 'Direct', Indirecta: 'Indirect', Provisional: 'Provisional', 'Sin correspondencia': 'No match',

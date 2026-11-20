@@ -36,7 +36,7 @@ En noviembre de 1947, los ciudadanos chinos residentes en Chile se inscribieron 
 
 - Venían casi todos de un puñado de condados cantoneses del delta del río de las Perlas: **Zhongshan** (中山) aporta el 41 % y **Heshan** (鶴山), la tierra de nuestra familia, el 23 %, seguido de Dongguan (東莞).
 - Era una comunidad madura: la edad mediana era de **52 años**.
-- Tres de cada cuatro se declaraban **comerciantes** (商).
+- Más de cuatro de cada cinco se declaraban **comerciantes** (商).
 - En el padrón aparecen cinco inscritos con el apellido **徐**, tres de ellos de Heshan, en Santiago e Iquique.
 
 > **[Radiografía de los chinos en Chile, 1947: ver el padrón interactivo →](padron-1947/)**

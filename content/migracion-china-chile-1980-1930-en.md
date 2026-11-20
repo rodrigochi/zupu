@@ -36,7 +36,7 @@ In November 1947, Chinese citizens living in Chile registered to vote in the ele
 
 - Almost all came from a handful of Cantonese counties in the Pearl River Delta: **Zhongshan** (中山) accounts for 41% and **Heshan** (鶴山), our family's homeland, for 23%, followed by Dongguan (東莞).
 - It was a mature community: the median age was **52**.
-- Three in four declared themselves **merchants** (商).
+- More than four in five declared themselves **merchants** (商).
 - Five people on the roll carry the surname **徐**, three of them from Heshan, in Santiago and Iquique.
 
 > **[An X-ray of the Chinese in Chile, 1947: explore the interactive roll →](padron-1947/)**

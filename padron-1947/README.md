@@ -96,4 +96,11 @@ La transcripción se hizo con inteligencia artificial, casi toda con gemini-3.6-
 
 ## Correcciones manuales
 
-- Imagen 037 (inscritos 287–302, Santiago): la transcripción había puesto el lugar de origen en la columna de oficio y dejado el origen vacío. Se cotejó con el original: se recuperaron oficios (商, 僱員, 木匠, 自由職業) y orígenes (中山 y 東莞 estaban leídos como 出 y 臺山), se corrigieron las edades de 290, 293, 297 y 299, y el 298 es 鍾渠 (no 陳渠). Los nombres de 289, 290 y 296 quedan marcados como lectura dudosa.
+Los oficios y orígenes que la transcripción automática no resolvía se cotejaron con los escaneos (noviembre de 2026): 272 campos en 35 hojas. Los cambios se registraron en el Excel de trabajo (columna `duda` y hoja «Cambios de lectura»), del que se regeneran estos datos con `fuentes/limpiar.py` y `fuentes/web_export.py`. Lo principal:
+
+- Santiago (JPG 020–043): 育, 盲, 壽 y otras lecturas eran 商 o 失業 en cursiva; 雜貨, 貨 y 貨員 eran 僱員. Varias casillas de origen vacías o mal leídas (臺山 por 東莞, 白川 por 台山).
+- JPG 037: origen y oficio intercambiados de columna; también edades y dos nombres.
+- JPG 055 y 054: 企 y 仝 son marcas de «ídem» (仝上).
+- JPG 078: desde la columna 6, edad, origen y oficio estaban corridos una columna.
+- JPG 048 y 053: edad y origen intercambiados de casilla.
+- JPG 085: 南店 y 宏德 eran 肉店 (carnicería).
