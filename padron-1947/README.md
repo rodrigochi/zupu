@@ -89,3 +89,7 @@ Los criterios de normalización (sedes, condados de 1947, oficios, apellidos) es
 - Hakka: grabaciones (dialecto sixian) del 《臺灣客家語常用詞辭典》 del Ministerio de Educación de Taiwán, descargadas vía moedict.tw sin modificar, en `audio/hakka/<código Unicode>.mp3`; índice en `data/audio.json`. Se eligió la entrada cuya lectura sixian coincide exactamente con la de `apellidos_grafias.json`; 99 de 116 apellidos tienen grabación. Origen: `https://www.moedict.tw/h/<carácter>.json` (campo `=`) y `https://r2-assets.moedict.tw/audio/h/1-<id>.mp3` (1 = sixian).
 - Mandarín: sílabas grabadas de [hugolpz/audio-cmn](https://github.com/hugolpz/audio-cmn) (voz de Chen Wang, CC BY-SA), `64k/syllabs/cmn-<pinyin con número de tono>.mp3` (ü = v), en `audio/mandarin/`; índice en `data/audio.json` (歐陽 = dos sílabas que suenan seguidas).
 - Cantonés y grafía chilena: voz sintética del dispositivo (Web Speech API: zh-HK, es). Si no hay voz para el idioma, se avisa en vez de leer con otra voz. En cantonés, 曾, 翟 y 任 se dicen «姓X» para forzar la lectura de apellido.
+
+## Digitalización
+
+La transcripción se hizo principalmente con gemini-3.6-flash mediante `procesar_padron.py`. De las 70 hojas con registro de procesamiento, 65 quedaron registradas con ese modelo, 4 con gemini-3.8-flash (modelo predeterminado del script) y 1, la imagen 067, se transcribió por cotejo visual. La revisión de los escaneos, el cotejo histórico y la preparación del Excel se hicieron con GPT-6.2 Sol en Codex.
