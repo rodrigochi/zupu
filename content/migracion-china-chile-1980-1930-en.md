@@ -39,7 +39,7 @@ In November 1947, Chinese citizens living in Chile registered to vote in the ele
 - Three in four declared themselves **merchants** (商).
 - Five people on the roll carry the surname **徐**, three of them from Heshan, in Santiago and Iquique.
 
-> **[Explore the interactive 1947 electoral roll →](padron-1947/)**
+> **[An X-ray of the Chinese in Chile, 1947: explore the interactive roll →](padron-1947/)**
 > Maps of origin and residence in Chile, ages, occupations and surnames, with their Chilean spellings and their Mandarin, Cantonese and Hakka pronunciations. The page publishes no full names: each entry is identified only by surname.
 
 ## Sources and references

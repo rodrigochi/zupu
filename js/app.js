@@ -378,12 +378,16 @@ function buildStats() {
 function buildCoverArticles() {
   const container = document.getElementById('cover-articles-grid');
   if (!container || !ARTICLES || !ARTICLES.length) return;
-  container.innerHTML = ARTICLES.map(a => {
-    const lbl  = lang==='en' ? (a.buttonLabel_en||a.title_en||a.title) : (a.buttonLabel||a.title);
+  // Primero los escritos listos, en una fila; debajo los pendientes ("pendiente": true en articles.json)
+  const tarjeta = a => {
+    const pend = !!a.pendiente;
+    let lbl    = lang==='en' ? (a.buttonLabel_en||a.title_en||a.title) : (a.buttonLabel||a.title);
+    if (pend) lbl = lbl.replace(/\s*\((pendiente|pending)\)\s*$/i, '');
     const desc = lang==='en' ? (a.desc_en||a.subtitle_en||a.subtitle) : a.subtitle;
+    const cls  = 'abtn' + (pend ? ' pend' : '');
     // Entradas con "url": páginas propias (p. ej. padron-1947/), no artículos Markdown
     if (a.url) return `
-    <a class="abtn" href="${escHtml(a.url)}">
+    <a class="${cls}" href="${escHtml(a.url)}">
       <div class="aicon">${a.icon||'📄'}</div>
       <div class="atxt">
         <div class="albl">${escHtml(lbl)}</div>
@@ -391,14 +395,18 @@ function buildCoverArticles() {
       </div>
     </a>`;
     return `
-    <button class="abtn" onclick="startArticle('${a.id}')">
+    <button class="${cls}" onclick="startArticle('${a.id}')">
       <div class="aicon">${a.icon||'📄'}</div>
       <div class="atxt">
         <div class="albl">${escHtml(lbl)}</div>
         <div class="adesc">${escHtml(desc||'')}</div>
       </div>
     </button>`;
-  }).join('');
+  };
+  const listos = ARTICLES.filter(a => !a.pendiente);
+  const pendientes = ARTICLES.filter(a => a.pendiente);
+  container.innerHTML = listos.map(tarjeta).join('') +
+    (pendientes.length ? `<div class="cover-articles-sub">${lang==='en' ? 'In progress' : 'En preparación'}</div>` + pendientes.map(tarjeta).join('') : '');
 }
 
 function showError(err) {

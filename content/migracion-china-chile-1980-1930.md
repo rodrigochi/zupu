@@ -39,7 +39,7 @@ En noviembre de 1947, los ciudadanos chinos residentes en Chile se inscribieron 
 - Tres de cada cuatro se declaraban **comerciantes** (商).
 - En el padrón aparecen cinco inscritos con el apellido **徐**, tres de ellos de Heshan, en Santiago e Iquique.
 
-> **[Ver el padrón electoral interactivo de 1947 →](padron-1947/)**
+> **[Radiografía de los chinos en Chile, 1947: ver el padrón interactivo →](padron-1947/)**
 > Mapas de origen y de residencia, edades, oficios y apellidos, con sus grafías en Chile y su pronunciación en mandarín, cantonés y hakka. La página no publica nombres completos: cada inscripción se identifica solo por su apellido.
 
 ## Fuentes y referencias

@@ -85,6 +85,10 @@ html,body{height:100%;font-family:'Noto Serif TC','Songti SC','Georgia',serif;ba
 .abtn{text-decoration:none;color:inherit;padding:14px 12px;border-radius:12px;border:2px solid var(--border);background:var(--paper2);cursor:pointer;text-align:left;transition:all .18s;display:flex;align-items:flex-start;gap:10px}
 .abtn:hover{border-color:var(--gold);background:var(--gold-bg);transform:translateY(-2px);box-shadow:var(--shadow)}
 .abtn .aicon{font-size:20px;flex-shrink:0;margin-top:2px}
+.abtn.pend{opacity:.62;border-style:dashed}
+.abtn.pend:hover{opacity:1}
+.cover-articles-sub{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:8px 0 0;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);font-family:"Segoe UI",sans-serif}
+.cover-articles-sub::after{content:"";flex:1;height:1px;background:var(--border)}
 .abtn .atxt .albl{font-size:12px;font-weight:600;color:var(--ink);font-family:'Segoe UI',sans-serif;line-height:1.4}
 .abtn .atxt .adesc{font-size:10px;color:var(--muted);font-family:'Segoe UI',sans-serif;margin-top:3px;line-height:1.4}
 
