@@ -1,0 +1,77 @@
+/* Relato: lectura larga dentro del huerto */
+
+.relato-pag { --medida: 66ch; }
+.r-portada {
+  display: grid; grid-template-columns: minmax(220px, 360px) minmax(0, 720px); gap: clamp(24px, 5vw, 72px);
+  align-items: center; justify-content: center;
+  padding: clamp(40px, 8vw, 110px) var(--gutter) clamp(48px, 7vw, 96px);
+}
+.r-globo { width: 100%; height: auto; overflow: visible; }
+.g-tierra { fill: var(--hoja-800); }
+.g-reticula ellipse, .g-reticula line { fill: none; stroke: var(--hoja-700); stroke-width: 1; }
+.g-ruta { fill: none; stroke: var(--lichi-vivo); stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 520; stroke-dashoffset: 520; animation: trazar 2.4s var(--ease) .4s forwards; }
+@keyframes trazar { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .g-ruta { animation: none; stroke-dashoffset: 0; } }
+.g-punto { fill: var(--pulpa); }
+.g-etq { font: 600 17px var(--f-ui); fill: var(--pulpa); }
+.g-etq.zh { font: 700 22px var(--f-zh); }
+.r-titulo { font: 400 clamp(2.8rem, 7vw, 5.6rem)/1 var(--f-display); margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+.r-autor { font: 500 1rem/1.4 var(--f-ui); color: var(--rubor); margin: 18px 0 0; }
+.r-autor .zh { font-size: 1.15rem; margin-left: 4px; }
+.r-bajada { font-size: 1.2rem; color: var(--musgo); max-width: 48ch; margin: 24px 0 0; text-wrap: pretty; }
+
+/* Texto */
+.r-texto { max-width: calc(var(--medida) + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter); font-size: clamp(1.08rem, 1.3vw, 1.2rem); line-height: 1.72; }
+.r-texto p { margin: 0 0 1.15em; text-wrap: pretty; hanging-punctuation: first; }
+.r-texto p.dialogo { margin-bottom: .55em; }
+.r-texto h2 {
+  font: 400 clamp(1.7rem, 3.2vw, 2.4rem)/1.15 var(--f-display); margin: 2.6em 0 .9em; scroll-margin-top: 90px;
+  display: flex; align-items: baseline; gap: .55em; text-wrap: balance;
+}
+.r-num { font: 600 .9rem/1 var(--f-ui); color: var(--rubor); letter-spacing: .08em; min-width: 2.2em; }
+.r-texto .zh { font-size: 1.06em; color: var(--rubor); }
+.r-texto em { color: var(--pulpa); }
+.r-texto p.cierre { font: 400 clamp(1.8rem, 4vw, 2.6rem)/1.2 var(--f-display); margin: 1.4em 0 1.2em; color: var(--rubor); }
+.r-texto p.cierre em { font-style: normal; color: inherit; }
+.r-texto > p:last-child { font-size: 1.15em; }
+
+/* Fotos: más anchas que el texto */
+.r-foto { margin: 2.4em calc(50% - min(50vw - var(--gutter), 460px)); }
+.r-foto.vertical { margin-left: auto; margin-right: auto; max-width: min(100%, 520px); }
+.r-foto.ancha { margin-left: calc(50% - min(50vw - var(--gutter), 600px)); margin-right: calc(50% - min(50vw - var(--gutter), 600px)); }
+.r-foto img { width: 100%; height: auto; border-radius: 4px; box-shadow: var(--sombra); background: var(--hoja-800); cursor: zoom-in; }
+.r-foto figcaption { display: flex; gap: 12px; font: .92rem/1.5 var(--f-ui); color: var(--musgo); margin: 14px auto 0; max-width: var(--medida); padding: 0 2px; text-wrap: pretty; }
+.r-foto figcaption .zh { color: var(--rubor); font-size: 1em; }
+.r-fnum { flex: none; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--lichi); color: var(--pulpa); font: 600 .8rem/1 var(--f-ui); margin-top: -1px; }
+
+/* Índice de partes: ocho frutos en una rama */
+.r-indice { position: fixed; left: max(16px, calc(50vw - var(--medida) / 2 - 300px)); top: 50%; transform: translateY(-50%); z-index: 10; opacity: 0; pointer-events: none; transition: opacity .4s; }
+.r-indice.visible { opacity: 1; pointer-events: auto; }
+.r-indice ol { list-style: none; margin: 0; padding: 0 0 0 14px; border-left: 2px solid var(--corteza-viva); display: grid; gap: 6px; }
+.r-indice a { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--musgo-tenue); font: 500 .82rem/1.2 var(--f-ui); padding: 4px 0; max-width: 15rem; }
+.r-indice a svg { width: 16px; height: 18px; flex: none; margin-left: -23px; }
+.r-indice a .verde { display: block; }
+.r-indice a .roja { display: none; }
+.r-indice a.leido .verde { display: none; }
+.r-indice a.leido .roja { display: block; }
+.r-indice a[aria-current='true'] { color: var(--pulpa); }
+.r-indice a:hover { color: var(--pulpa); }
+@media (max-width: 1599px) { .r-indice { display: none; } }
+
+/* Ampliar foto */
+.visor { position: fixed; inset: 0; z-index: 80; background: rgba(8, 22, 15, .94); display: grid; place-items: center; padding: 16px; cursor: zoom-out; }
+.visor[hidden] { display: none; }
+.visor img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; }
+
+/* Cierre */
+.r-sigue { max-width: calc(var(--medida) + 2 * var(--gutter)); margin: clamp(64px, 9vw, 120px) auto 0; padding: 32px var(--gutter) 0; border-top: 1px solid var(--hoja-700); }
+.r-sigue p { color: var(--musgo); margin: 0 0 20px; }
+.r-sigue-botones { display: flex; flex-wrap: wrap; gap: 12px; }
+
+@media (max-width: 760px) {
+  .r-portada { grid-template-columns: 1fr; }
+  .r-globo { max-width: 240px; }
+  .r-foto, .r-foto.ancha { margin-left: calc(var(--gutter) * -1); margin-right: calc(var(--gutter) * -1); }
+  .r-foto img { border-radius: 0; }
+  .r-foto figcaption { padding: 0 var(--gutter); }
+}

@@ -1,0 +1,61 @@
+/* Ruta familiar: el tronco y sus treinta frutos */
+
+.ru-portada { max-width: 1100px; margin: 0 auto; padding: clamp(48px, 8vw, 110px) var(--gutter) 24px; }
+.ru-portada .titulo { font-size: clamp(2.8rem, 7vw, 5.4rem); }
+
+.ru-guia {
+  position: sticky; top: 72px; z-index: 20; width: max-content; max-width: calc(100vw - 32px);
+  margin: 12px auto 0; display: flex; align-items: center; gap: 6px;
+  background: var(--pulpa); color: var(--hoja-900); border-radius: 999px; padding: 4px; box-shadow: var(--sombra);
+  font: 500 .95rem/1.2 var(--f-ui);
+}
+.ru-guia-txt { padding: 0 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ru-guia-txt .zh { font-size: 1.1rem; }
+.ru-paso { width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--hoja-900); color: var(--pulpa); cursor: pointer; display: grid; place-items: center; flex: none; }
+.ru-paso:hover { background: var(--lichi); }
+.ru-paso svg { width: 18px; height: 18px; }
+.ru-paso[data-paso='-1'] svg { transform: rotate(180deg); }
+
+.ru-linea { list-style: none; margin: 0 auto; padding: 40px var(--gutter) 0; max-width: 1100px; position: relative; }
+.ru-linea::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: calc(var(--gutter) + 43px); width: 10px; border-radius: 5px;
+  background: linear-gradient(90deg, #3f2619, var(--corteza) 40%, #5d3a27 60%, var(--corteza));
+}
+.ru-epoca { position: relative; padding: 64px 0 24px 120px; }
+.ru-epoca::before { content: ''; position: absolute; left: 34px; top: 58px; width: 28px; height: 28px; border-radius: 50%; background: var(--hoja-700); border: 3px solid var(--corteza-viva); }
+.ru-epoca span { font: 400 clamp(1.4rem, 2.6vw, 1.9rem)/1.2 var(--f-display); color: var(--rubor); }
+
+.ru-gen { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 24px; padding: 40px 0; position: relative; scroll-margin-top: 140px; }
+.ru-marca { position: relative; height: 60px; }
+.ru-marca svg { position: absolute; left: 22px; top: 2px; width: 52px; height: 60px; transition: transform .5s var(--ease); }
+.ru-gen.actual .ru-marca svg { transform: scale(1.15); }
+.ru-n { position: absolute; left: 0; right: 0; top: 66px; text-align: center; font: 600 .85rem/1 var(--f-ui); color: var(--musgo); }
+.ru-cuerpo { max-width: 68ch; }
+.ru-zh { font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; margin: 0; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; font-weight: 700; }
+.ru-car {
+  font-size: .62em; width: 1.6em; height: 1.6em; display: inline-grid; place-items: center; border-radius: 50%;
+  border: 1.5px solid var(--lichi-vivo); color: var(--lichi-vivo); font-weight: 400;
+}
+.ru-py { font: 500 1.15rem/1.3 var(--f-ui); color: var(--musgo); margin: 8px 0 0; }
+.ru-civil { font: 400 1.4rem/1.3 var(--f-display); color: var(--rubor); margin: 6px 0 0; }
+.ru-hakka { font: .95rem/1.4 var(--f-ui); color: var(--musgo-tenue); margin: 6px 0 0; }
+.ru-hakka span { font-weight: 600; color: var(--musgo); margin-right: 4px; }
+.ru-hechos { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px 24px; margin: 22px 0; padding: 16px 0; border-top: 1px solid var(--hoja-700); border-bottom: 1px solid var(--hoja-700); }
+.ru-hechos div { min-width: 0; }
+.ru-hechos dt { font: 600 .74rem/1.2 var(--f-ui); letter-spacing: .07em; text-transform: uppercase; color: var(--musgo-tenue); }
+.ru-hechos dd { margin: 4px 0 0; font: .98rem/1.45 var(--f-ui); color: var(--pulpa); overflow-wrap: anywhere; }
+.ru-historia { font-size: 1.08rem; line-height: 1.7; }
+.ru-historia p { margin: 0 0 1em; text-wrap: pretty; }
+.ru-historia em { color: var(--rubor); }
+.ru-acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+
+@media (max-width: 700px) {
+  .ru-guia { top: 108px; }
+  .ru-linea::before { left: calc(var(--gutter) + 15px); width: 6px; }
+  .ru-gen { grid-template-columns: 38px minmax(0, 1fr); gap: 14px; scroll-margin-top: 190px; }
+  .ru-marca svg { left: 1px; width: 36px; height: 42px; }
+  .ru-n { top: 46px; font-size: .75rem; }
+  .ru-epoca { padding-left: 52px; }
+  .ru-epoca::before { left: 9px; width: 18px; height: 18px; top: 66px; }
+  .ru-hechos { grid-template-columns: 1fr 1fr; }
+}

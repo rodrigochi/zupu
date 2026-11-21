@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es" data-raiz="./">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>族譜 · 徐氏 — El árbol de los Chi</title>
+<meta name="description" content="Árbol genealógico de la familia Chi (徐/Xu): 913 personas y 30 generaciones, desde la dinastía Song hasta Chile.">
+<meta property="og:title" content="族譜 · 徐氏 — El árbol de los Chi">
+<meta property="og:description" content="913 personas y 30 generaciones del clan 徐, desde la dinastía Song hasta Chile.">
+<meta property="og:image" content="https://rodrigochi.github.io/zupu/v2/img/og-huerto.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#173b2c">
+<link rel="icon" type="image/svg+xml" href="img/fruto.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=LXGW+WenKai+TC:wght@400;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/huerto.css">
+<link rel="stylesheet" href="css/portada.css">
+</head>
+<body data-pagina="inicio">
+
+<main>
+  <section class="huerto" aria-labelledby="t-portada">
+    <div class="huerto-texto">
+      <h1 id="t-portada" class="huerto-titulo"><span class="zh" data-zh-simp="族谱 · 徐氏">族譜 · 徐氏</span></h1>
+      <p class="huerto-sub" data-en="The Chi family tree">El árbol de los Chi</p>
+      <p class="huerto-dato" data-en="<span class='num' data-n='personas'>913</span> people and <span class='num' data-n='gens'>30</span> generations of the 徐 clan, from the Song dynasty to Iquique and Santiago. Every fruit is a person; the red ones have a story.">
+        <span class="num" data-n="personas">913</span> personas y <span class="num" data-n="gens">30</span> generaciones del clan 徐, desde la dinastía Song hasta Iquique y Santiago. Cada fruto es una persona; los rojos tienen historia.</p>
+      <div class="buscador" data-buscador>
+        <label for="q-portada" data-en="Find a relative">Busca a un pariente</label>
+        <div class="campo">
+          <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+          <input id="q-portada" type="search" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="r-portada"
+            placeholder="兆璋, Zhaozhang, Sergio Chi, Heshan…" data-en-ph="兆璋, Zhaozhang, Sergio Chi, Heshan…">
+        </div>
+        <ul class="resultados" id="r-portada" role="listbox" hidden></ul>
+      </div>
+      <p class="huerto-leyenda"><svg class="fruto-mini" aria-hidden="true"><use href="#fruto"/></svg> <span data-en="The tree is the direct line: from 廿九郎公 (c. 1100) at the root to the Chilean branch at the top. Tap a fruit.">El árbol es la línea directa: de 廿九郎公 (c. 1100) en la raíz a la rama chilena en la copa. Toca un fruto.</span></p>
+    </div>
+
+    <figure class="huerto-arbol" aria-labelledby="leyenda-arbol">
+      <svg id="arbol-linea" role="img" aria-labelledby="leyenda-arbol"></svg>
+      <figcaption id="leyenda-arbol" class="oculto" data-en="The direct line: 30 generations, from 廿九郎公 (c. 1100) at the root to the Chilean branch at the top.">La línea directa: 30 generaciones, de 廿九郎公 (c. 1100) en la raíz a la rama chilena en la copa.</figcaption>
+      <div class="ficha-fruto" id="ficha-fruto" hidden></div>
+    </figure>
+  </section>
+
+  <section class="poema" aria-labelledby="t-poema">
+    <h2 id="t-poema" class="titulo" data-en="One character for each generation">Un carácter para cada generación</h2>
+    <p class="entrada" data-en="The zupu of the Xu of Pankeng assigns each generation a character from a poem: «Honour letters so that talent may flourish; generation after generation, omens of good fortune». Read from right to left, it names the ten generations from 徐敬先, who founded the Heshan branch in 1740, to the grandson who went looking for it in 2025.">El zupu de los Xu de Pankeng asigna a cada generación un carácter de un poema: «Honrar las letras para que el talento prospere; generación tras generación, presagios de buena fortuna». Leído de derecha a izquierda, nombra las diez generaciones que van de 徐敬先, fundador de la rama de Heshan en 1740, al nieto que fue a buscarla en 2025.</p>
+    <ol class="poema-versos" id="poema" dir="rtl"></ol>
+    <p class="poema-nota" data-en="After 兆 (Zhaozhang, the grandfather who left for Chile) the family stopped using generation names. The last two characters are drawn empty: they were never given.">Después de 兆 (Zhaozhang, el abuelo que partió a Chile) la familia dejó de usar los nombres generacionales. Los dos últimos caracteres están vacíos: nunca se pusieron.</p>
+  </section>
+
+  <section class="relato" aria-labelledby="t-relato">
+    <a class="relato-foto" href="la-mitad-de-un-meridiano/" tabindex="-1" aria-hidden="true">
+      <img src="la-mitad-de-un-meridiano/fotos/foto1.jpg" width="928" height="624" loading="lazy"
+        alt="">
+    </a>
+    <div class="relato-texto">
+      <h2 id="t-relato" class="titulo"><span data-en="Half a meridian">La mitad de un meridiano</span></h2>
+      <p class="relato-autor">Rodrigo Chi <span class="zh" data-zh-simp="徐庆贤">徐慶賢</span></p>
+      <p data-en="The farthest two points on Earth can be from each other is 20,004 kilometres: half a meridian. In 1927 the <em>akún</em> left Guangdong for Iquique and never went back. In 2025, a letter from 1989, a DiDi driver and two rural police stations led his grandson to the village where he was born.">Lo más lejos que se puede estar entre dos puntos de la Tierra son 20.004 kilómetros: la mitad de un meridiano. En 1927 el <em>akún</em> partió de Guangdong hacia Iquique y nunca volvió. En 2025, una carta de 1989, una conductora de DiDi y dos comisarías rurales llevaron a su nieto hasta la aldea donde nació.</p>
+      <a class="boton lleno" href="la-mitad-de-un-meridiano/"><span data-en="Read the story">Leer el relato</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+    </div>
+  </section>
+
+  <section class="explorar" aria-labelledby="t-explorar">
+    <h2 id="t-explorar" class="titulo" data-en="Walk the orchard">Recorre el huerto</h2>
+    <ul class="indice">
+      <li><a href="ruta/">
+        <span class="i-nombre" data-en="Family line">Ruta familiar</span>
+        <span class="i-desc" data-en="Thirty generations, one by one, from the Song dynasty to Chile.">Treinta generaciones, una a una, de la dinastía Song a Chile.</span>
+        <span class="i-dato num" data-n="gens">30</span></a></li>
+      <li><a href="arbol/">
+        <span class="i-nombre" data-en="The whole tree">El árbol completo</span>
+        <span class="i-desc" data-en="Every person in the zupu, with parents, wives, children and sources.">Todas las personas del zupu, con padres, esposas, hijos y fuentes.</span>
+        <span class="i-dato num" data-n="personas">913</span></a></li>
+      <li><a href="migraciones/">
+        <span class="i-nombre" data-en="Migrations and clans">Migraciones y clanes</span>
+        <span class="i-desc" data-en="Where the clan moved over nine centuries, and the families the wives came from.">Adónde se movió el clan en nueve siglos y de qué familias venían las esposas.</span>
+        <span class="i-dato num" data-n="migraciones">76</span></a></li>
+      <li><a href="../padron-1947/">
+        <span class="i-nombre" data-en="The Chinese in Chile, 1947">Los chinos en Chile, 1947</span>
+        <span class="i-desc" data-en="The electoral roll of the Chinese community in Chile: who they were and where they came from.">El padrón electoral de la colectividad china en Chile: quiénes eran y de dónde venían.</span>
+        <span class="i-dato num">1197</span></a></li>
+      <li><a href="escritos/">
+        <span class="i-nombre" data-en="Writings">Escritos</span>
+        <span class="i-desc" data-en="The 徐 surname, the Hakka, Chinese migration to Chile.">El apellido 徐, los hakka, la migración china a Chile.</span>
+        <span class="i-dato num" data-n="escritos">3</span></a></li>
+    </ul>
+  </section>
+
+  <section class="nombres" aria-label="Zupu y Chi" data-en-label="Zupu and Chi">
+    <div>
+      <p class="nombres-zh zh" data-zh-simp="族谱">族譜</p>
+      <p class="nombres-py">zúpǔ</p>
+      <p data-en="The clan's book, carried forward generation after generation. Not a search into the past: a record that each generation continues.">El libro del clan, continuado generación tras generación. No es una búsqueda hacia el pasado: es un registro que cada generación prolonga.</p>
+    </div>
+    <div>
+      <p class="nombres-zh zh">徐</p>
+      <p class="nombres-py">Xú · Chí</p>
+      <p data-en="The same character, two pronunciations: Xú in Mandarin, Chí in Hakka. In Chile, Xu and Chi are the same surname.">El mismo carácter, dos pronunciaciones: Xú en mandarín, Chí en hakka. En Chile, Xu y Chi son el mismo apellido.</p>
+    </div>
+  </section>
+</main>
+
+<script src="js/datos.js"></script>
+<script src="js/comun.js"></script>
+<script src="js/portada.js"></script>
+</body>
+</html>

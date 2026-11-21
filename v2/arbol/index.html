@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es" data-raiz="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>El árbol — 族譜 · 徐氏</title>
+<meta name="description" content="Las 913 personas del zupu del clan 徐, con padres, esposas, hijos y fuentes.">
+<meta property="og:title" content="El árbol — 族譜 · 徐氏">
+<meta property="og:description" content="Las 913 personas del zupu del clan 徐, con padres, esposas, hijos y fuentes.">
+<meta property="og:image" content="https://rodrigochi.github.io/zupu/v2/img/og-huerto.png">
+<meta name="theme-color" content="#173b2c">
+<link rel="icon" type="image/svg+xml" href="../img/fruto.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=LXGW+WenKai+TC:wght@400;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/huerto.css">
+<link rel="stylesheet" href="../css/arbol.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+</head>
+<body data-pagina="arbol" class="pag-arbol" data-sin-pie>
+<main class="ar">
+  <div class="ar-lienzo" id="ar-lienzo">
+    <svg id="ar-svg" role="img" aria-label="Árbol genealógico completo" data-en-label="Full family tree"></svg>
+    <p class="cargando ar-cargando" data-en="Loading the tree…">Cargando el árbol…</p>
+  </div>
+
+  <div class="ar-herramientas">
+    <div class="buscador" data-buscador id="ar-buscador">
+      <label for="q-arbol" class="oculto" data-en="Find a person">Buscar una persona</label>
+      <div class="campo">
+        <svg aria-hidden="true"><use href="#i-buscar"/></svg>
+        <input id="q-arbol" type="search" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="r-arbol"
+          placeholder="Nombre, pinyin, lugar o esposa" data-en-ph="Name, pinyin, place or wife">
+      </div>
+      <ul class="resultados" id="r-arbol" role="listbox" hidden></ul>
+    </div>
+    <ul class="ar-leyenda">
+      <li><svg aria-hidden="true"><use href="#fruto"/></svg><span data-en="With a story">Con historia</span></li>
+      <li><svg aria-hidden="true"><use href="#fruto-verde"/></svg><span data-en="In the zupu">En el zupu</span></li>
+      <li><svg aria-hidden="true"><use href="#fruto-vacio"/></svg><span data-en="Incomplete record">Registro incompleto</span></li>
+      <li><span class="ar-ley-rama"></span><span data-en="Direct line">Línea directa</span></li>
+    </ul>
+  </div>
+
+  <div class="ar-zoom" role="group" aria-label="Zoom">
+    <button type="button" data-zoom="1.5" aria-label="Acercar" data-en-label="Zoom in"><svg aria-hidden="true"><use href="#i-mas"/></svg></button>
+    <button type="button" data-zoom="0.66" aria-label="Alejar" data-en-label="Zoom out"><svg aria-hidden="true"><use href="#i-menos"/></svg></button>
+    <button type="button" data-zoom="linea" aria-label="Volver a la línea directa" data-en-label="Back to the direct line"><svg aria-hidden="true"><use href="#i-centro"/></svg></button>
+    <button type="button" class="ar-todo" data-zoom="todo"><span data-en="Open all">Abrir todo</span></button>
+  </div>
+
+  <aside class="ar-ficha" id="ar-ficha" hidden aria-labelledby="af-zh">
+    <button type="button" class="af-cerrar" aria-label="Cerrar" data-en-label="Close"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></button>
+    <div class="af-cuerpo" id="af-cuerpo"></div>
+  </aside>
+  <div class="ar-tip" id="ar-tip" hidden></div>
+</main>
+<script src="../js/datos.js"></script>
+<script src="../js/comun.js"></script>
+<script src="../js/arbol.js"></script>
+</body>
+</html>

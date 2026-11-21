@@ -1,0 +1,123 @@
+/* Portada: el huerto */
+
+.huerto {
+  display: grid; grid-template-columns: minmax(300px, 5fr) 7fr; align-items: center; gap: 0 clamp(24px, 4vw, 64px);
+  min-height: calc(100svh - 64px); padding: clamp(24px, 4vw, 48px) var(--gutter) 24px;
+  position: relative;
+}
+.huerto-texto { position: relative; z-index: 2; max-width: 34rem; }
+.huerto-titulo { margin: 0; font-size: clamp(3.2rem, 6.6vw, 6rem); line-height: 1; letter-spacing: .02em; white-space: nowrap; }
+.huerto-titulo .zh { font-weight: 700; }
+.huerto-sub { font: 400 clamp(1.7rem, 3.4vw, 2.4rem)/1.1 var(--f-display); color: var(--rubor); margin: .3em 0 .7em; }
+.huerto-dato { font-size: 1.1rem; color: var(--musgo); margin: 0 0 32px; max-width: 30rem; text-wrap: pretty; }
+.huerto-dato .num { color: var(--pulpa); }
+
+.huerto-arbol { margin: 0; position: relative; height: min(calc(100svh - 120px), 940px); min-height: 560px; }
+#arbol-linea { width: 100%; height: 100%; overflow: visible; display: block; }
+.huerto-leyenda { margin: 22px 0 0; max-width: 30rem; font: .92rem/1.5 var(--f-ui); color: var(--musgo-tenue); }
+
+/* Dibujo */
+.al-hoja { fill: var(--hoja-700); }
+.al-hoja.b { fill: var(--hoja-800); }
+.al-hoja.c { fill: #3d7d59; }
+.al-tronco { fill: var(--corteza); }
+.al-veta { stroke: #5d3a27; stroke-width: 1.2; fill: none; opacity: .8; }
+.al-ramita { stroke: var(--corteza-viva); fill: none; stroke-linecap: round; }
+.al-raiz { stroke: var(--corteza); fill: none; stroke-linecap: round; opacity: .9; }
+.al-fruto { cursor: pointer; }
+.al-fruto .hit { fill: transparent; }
+.al-fruto use { transition: transform .35s var(--ease); transform-box: fill-box; transform-origin: 50% 40%; }
+.al-fruto:hover use.madura, .al-fruto:focus-visible use.madura, .al-fruto.activo use.madura { transform: scale(1.25); }
+.al-fruto:focus { outline: none; }
+.al-fruto:focus-visible .hit { stroke: var(--rubor); stroke-width: 2; }
+.al-etq { font: 400 17px var(--f-zh); fill: var(--pulpa); pointer-events: none; }
+.al-gen { font: 600 11px var(--f-ui); fill: var(--musgo-tenue); letter-spacing: .04em; pointer-events: none; }
+.al-fruto.chile .al-etq { fill: var(--rubor); }
+.al-hito { font: 500 13px var(--f-ui); fill: var(--musgo-tenue); }
+.al-hito-l { stroke: var(--hoja-500); stroke-width: 1; stroke-dasharray: 2 4; }
+
+@keyframes madurar { from { opacity: 0; transform: scale(.8); } }
+.huerto.anima use.madura { animation: madurar .7s var(--ease) both; animation-delay: calc(var(--i) * 55ms + 250ms); }
+@media (prefers-reduced-motion: reduce) { .huerto.anima use.madura { animation: none; } }
+
+/* Ficha del fruto */
+.ficha-fruto {
+  position: absolute; z-index: 5; width: min(300px, 86vw);
+  background: var(--pulpa); color: var(--hoja-900); border-radius: var(--radio); box-shadow: var(--sombra);
+  padding: 16px 18px 14px; font: .95rem/1.45 var(--f-ui);
+}
+.ficha-fruto[hidden] { display: none; }
+.ff-gen { font: 600 .75rem/1 var(--f-ui); letter-spacing: .06em; color: var(--lichi-oscuro); text-transform: uppercase; }
+.ff-zh { font: 700 2rem/1.1 var(--f-zh); margin: 6px 0 2px; }
+.ff-py { font-weight: 500; color: #33513f; }
+.ff-lugar { color: #4a5d50; margin-top: 4px; font-size: .88rem; }
+.ff-enlaces { display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap; }
+.ff-enlaces a { color: var(--lichi-oscuro); font-weight: 600; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; min-height: 32px; }
+.ff-enlaces a:hover { text-decoration: underline; }
+.ff-enlaces svg { width: 16px; height: 16px; }
+.ff-cerrar { position: absolute; top: 6px; right: 6px; width: 36px; height: 36px; border: 0; background: none; color: #4a5d50; cursor: pointer; border-radius: 50%; display: grid; place-items: center; }
+.ff-cerrar svg { width: 18px; height: 18px; }
+.ff-cerrar:hover { background: #e9dccf; }
+
+/* ── Poema generacional ── */
+.poema { padding: clamp(80px, 12vw, 160px) var(--gutter) 0; max-width: 1240px; margin: 0 auto; }
+.poema-versos {
+  list-style: none; padding: 0; margin: clamp(40px, 6vw, 72px) 0 24px;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(28px, 4vw, 48px) clamp(8px, 2vw, 24px);
+}
+.poema-versos li { text-align: center; direction: ltr; }
+.pv-car { display: block; font: 700 clamp(3.6rem, 10vw, 7.5rem)/1 var(--f-zh); color: var(--pulpa); }
+.pv-quien { display: block; margin-top: 12px; font: 400 1.15rem/1.3 var(--f-zh); color: var(--rubor); }
+.pv-py { display: block; font: 500 .85rem/1.35 var(--f-ui); color: var(--musgo-tenue); }
+.pv-quien a { color: inherit; text-decoration: none; }
+.pv-quien a:hover { text-decoration: underline; }
+.poema-versos li.vacio .pv-car { color: transparent; -webkit-text-stroke: 1.5px var(--rubor); }
+.poema-versos li.abuelo .pv-car { color: var(--lichi-vivo); }
+.poema-nota { color: var(--musgo); max-width: 60ch; font-size: 1rem; }
+
+/* ── Relato destacado ── */
+.relato {
+  display: grid; grid-template-columns: 7fr 5fr; gap: clamp(28px, 5vw, 72px); align-items: center;
+  padding: clamp(96px, 14vw, 180px) var(--gutter) 0; max-width: 1320px; margin: 0 auto;
+}
+.relato-foto { display: block; border-radius: 6px; overflow: hidden; box-shadow: var(--sombra); }
+.relato-foto img { width: 100%; height: auto; transition: transform .8s var(--ease); }
+.relato-foto:hover img { transform: scale(1.02); }
+.relato-autor { font: 500 .95rem/1.3 var(--f-ui); color: var(--musgo-tenue); margin: -.4em 0 1.2em; }
+.relato-texto > p:not(.relato-autor) { color: var(--musgo); font-size: 1.1rem; margin: 0 0 28px; text-wrap: pretty; }
+
+/* ── Índice ── */
+.explorar { padding: clamp(96px, 14vw, 180px) var(--gutter) 0; max-width: 1240px; margin: 0 auto; }
+.indice { list-style: none; padding: 0; margin: 32px 0 0; border-top: 1px solid var(--hoja-700); }
+.indice a {
+  display: grid; grid-template-columns: minmax(200px, 1.1fr) 2fr auto; gap: 6px 32px; align-items: baseline;
+  padding: 26px 4px; border-bottom: 1px solid var(--hoja-700); text-decoration: none; color: var(--pulpa);
+  transition: background .25s, padding .35s var(--ease);
+}
+.indice a:hover { background: var(--hoja-800); padding-left: 16px; padding-right: 16px; }
+.i-nombre { font: 400 1.65rem/1.15 var(--f-display); }
+.i-desc { color: var(--musgo); font-size: 1rem; }
+.i-dato { font: 600 1.05rem/1 var(--f-ui); color: var(--rubor); }
+
+/* ── Zupu y Chi ── */
+.nombres { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); padding: clamp(96px, 14vw, 180px) var(--gutter) 0; max-width: 1100px; margin: 0 auto; }
+.nombres p { margin: 0; color: var(--musgo); max-width: 38ch; }
+.nombres-zh { font-size: clamp(3rem, 7vw, 4.6rem) !important; line-height: 1 !important; color: var(--pulpa) !important; font-weight: 700 !important; }
+.nombres-py { font: 500 1rem/1.4 var(--f-ui) !important; color: var(--rubor) !important; margin: 8px 0 14px !important; }
+
+@media (max-width: 900px) {
+  .huerto { grid-template-columns: 1fr; min-height: 0; padding-top: 28px; }
+  .huerto-arbol { height: auto; min-height: 0; aspect-ratio: 7 / 8.6; margin-top: 28px; }
+  .al-etq, .al-gen { display: none; }
+  .al-fruto.marcado .al-etq { display: block; font-size: 26px; }
+  .ficha-fruto { position: fixed; left: 50% !important; top: auto !important; bottom: max(16px, env(safe-area-inset-bottom)); transform: translateX(-50%); width: calc(100vw - 32px); }
+  .relato { grid-template-columns: 1fr; }
+  .indice a { grid-template-columns: 1fr auto; }
+  .i-desc { grid-column: 1 / -1; grid-row: 2; }
+  .nombres { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .poema-versos { grid-template-columns: repeat(5, 1fr); gap: 24px 4px; }
+  .pv-quien { font-size: .95rem; }
+  .pv-py { font-size: .7rem; }
+}
